@@ -216,7 +216,7 @@ i.e. the current interpreter.  Hence Tom's quip that "Nothing but perl
 can parse Perl."  You may or may not choose to follow this usage.  For
 example, parallelism means "awk and perl" and "Python and Perl" look
 OK, while "awk and Perl" and "Python and perl" do not.  But never
-write "PERL", because perl isn't really an acronym, apocryphal
+write "PERL", because perl is not an acronym, apocryphal
 folklore and post-facto expansions notwithstanding.
 
 =head2 Is it a Perl program or a Perl script?
