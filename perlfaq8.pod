@@ -763,7 +763,7 @@ there, and the old standard error shows up on the old standard out.
 
 =head2 Why doesn't open() return an error when a pipe open fails?
 
-If the second argument to a piped C<open> contains shell
+If the second argument to a piped open() contains shell
 metacharacters, perl fork()s, then exec()s a shell to decode the
 metacharacters and eventually run the desired program.  If the program
 couldn't be run, it's the shell that gets the message, not Perl. All
@@ -771,9 +771,9 @@ your Perl program can find out is whether the shell itself could be
 successfully started.  You can still capture the shell's STDERR and
 check it for error messages.  See L<"How can I capture STDERR from an
 external command?"> elsewhere in this document, or use the
-L<IPC::Open3> module.
+IPC::Open3 module.
 
-If there are no shell metacharacters in the argument of C<open>, Perl
+If there are no shell metacharacters in the argument of open(), Perl
 runs the command directly, without using the shell, and can correctly
 report whether the command started.
 

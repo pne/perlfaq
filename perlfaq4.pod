@@ -650,23 +650,25 @@ done by making a shell alias, like so:
 See the documentation for Text::Autoformat to appreciate its many
 capabilities.
 
-=head2 How can I access/change the first N letters of a string?
+=head2 How can I access or change N characters of a string?
 
-There are many ways.  If you just want to grab a copy, use
-substr():
+You can access the first characters of a string with substr().
+To get the first character, for example, start at position 0
+and grab the string of length 1.  
 
-    $first_byte = substr($a, 0, 1);
 
-If you want to modify part of a string, the simplest way is often to
-use substr() as an lvalue:
+	$string = "Just another Perl Hacker";
+    $first_char = substr( $string, 0, 1 );  #  'J'
 
-    substr($a, 0, 3) = "Tom";
+To change part of a string, you can use the optional fourth
+argument which is the replacement string.
 
-Although those with a pattern matching kind of thought process will
-likely prefer
+    substr( $string, 13, 4, "Perl 5.8.0" );
+	
+You can also use substr() as an lvalue.
 
-    $a =~ s/^.../Tom/;
-
+    substr( $string, 13, 4 ) =  "Perl 5.8.0";
+	
 =head2 How do I change the Nth occurrence of something?
 
 You have to keep track of N yourself.  For example, let's say you want

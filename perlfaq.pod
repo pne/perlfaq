@@ -405,7 +405,7 @@ How do I reformat a paragraph?
 
 =item *
 
-How can I access/change the first N letters of a string?
+How can I access or change N characters of a string?
 
 =item *
 
@@ -961,7 +961,7 @@ How do I create a switch or case statement?
 
 =item *
 
-How can I catch accesses to undefined variables/functions/methods?
+How can I catch accesses to undefined variables, functions, or methods?
 
 =item *
 

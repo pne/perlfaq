@@ -675,31 +675,16 @@ A totally different approach is to create a hash of function references.
         print "No such command: $string\n";
     } 
 
-=head2 How can I catch accesses to undefined variables/functions/methods?
+=head2 How can I catch accesses to undefined variables, functions, or methods?
 
 The AUTOLOAD method, discussed in L<perlsub/"Autoloading"> and
 L<perltoot/"AUTOLOAD: Proxy Methods">, lets you capture calls to
 undefined functions and methods.
 
 When it comes to undefined variables that would trigger a warning
-under C<-w>, you can use a handler to trap the pseudo-signal
-C<__WARN__> like this:
+under C<use warnings>, you can promote the warning to an error.
 
-    $SIG{__WARN__} = sub {
-
-	for ( $_[0] ) {		# voici un switch statement 
-
-	    /Use of uninitialized value/  && do {
-		# promote warning to a fatal
-		die $_;
-	    };
-
-	    # other warning cases to catch could go here;
-
-	    warn $_;
-	}
-
-    };
+	use warnings FATAL => qw(uninitialized);
 
 =head2 Why can't a method included in this same file be found?
 
