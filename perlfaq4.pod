@@ -454,26 +454,29 @@ and Date::Manip modules from CPAN.
 
 =head2 How can I find the Julian Day?
 
-Use the Time::JulianDay module (part of the Time-modules bundle
-available from CPAN.)
+(contributed by brian d foy and Dave Cross)
 
-Before you immerse yourself too deeply in this, be sure to verify that
-it is the I<Julian> Day you really want.  Are you interested in a way
-of getting serial days so that you just can tell how many days they
-are apart or so that you can do also other date arithmetic?  If you
-are interested in performing date arithmetic, this can be done using
-modules Date::Manip or Date::Calc.
+You can use the Time::JulianDay module available on CPAN.  Ensure that
+you really want to find a Julian day, though, as many people have
+different ideas about Julian days.  See
+http://www.hermetic.ch/cal_stud/jdn.htm for instance.
 
-There is too many details and much confusion on this issue to cover in
-this FAQ, but the term is applied (correctly) to a calendar now
-supplanted by the Gregorian Calendar, with the Julian Calendar failing
-to adjust properly for leap years on centennial years (among other
-annoyances).  The term is also used (incorrectly) to mean: [1] days in
-the Gregorian Calendar; and [2] days since a particular starting time
-or `epoch', usually 1970 in the Unix world and 1980 in the
-MS-DOS/Windows world.  If you find that it is not the first meaning
-that you really want, then check out the Date::Manip and Date::Calc
-modules.  (Thanks to David Cassell for most of this text.)
+You can also try the DateTime module, which can convert a date/time
+to a Julian Day.
+
+  $ perl -MDateTime -le'print DateTime->today->jd'
+  2453401.5
+
+Or the modified Julian Day
+
+  $ perl -MDateTime -le'print DateTime->today->mjd'
+  53401
+
+Or even the day of the year (which is what some people think of as a
+Julian day)
+
+  $ perl -MDateTime -le'print DateTime->today->doy'
+  31
 
 =head2 How do I find yesterday's date?
 
@@ -935,14 +938,11 @@ you can use this kind of thing:
 
 =head2 How do I find the soundex value of a string?
 
-Use the standard Text::Soundex module distributed with Perl.
-Before you do so, you may want to determine whether `soundex' is in
-fact what you think it is.  Knuth's soundex algorithm compresses words
-into a small space, and so it does not necessarily distinguish between
-two words which you might want to appear separately.  For example, the
-last names `Knuth' and `Kant' are both mapped to the soundex code K530.
-If Text::Soundex does not do what you are looking for, you might want
-to consider the String::Approx module available at CPAN.
+(contributed by brian d foy)
+
+You can use the Text::Soundex module. If you want to do fuzzy or close
+matching, you might also try the String::Approx, and Text::Metaphone,
+and Text::DoubleMetaphone modules.
 
 =head2 How can I expand variables in text strings?
 
