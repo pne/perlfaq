@@ -41,10 +41,22 @@ operations typically found in symbolic debuggers.
 
 =head2 Is there a Perl shell?
 
-In general, no.  The Shell.pm module (distributed with Perl) makes
-Perl try commands which aren't part of the Perl language as shell
-commands.  perlsh from the source distribution is simplistic and
-uninteresting, but may still be what you want.
+In general, not yet.  There is psh available at
+
+    http://www.focusresearch.com/gregor/psh
+
+Which includes the following description:
+
+    The Perl Shell is a shell that combines the interactive nature
+    of a Unix shell with the power of Perl. The goal is to eventually
+    have a full featured shell that behaves as expected for normal
+    shell activity. But, the Perl Shell will use Perl syntax and
+    functionality for for control-flow statements and other things.
+
+The Shell.pm module (distributed with Perl) makes Perl try commands
+which aren't part of the Perl language as shell commands.  perlsh
+from the source distribution is simplistic and uninteresting, but
+may still be what you want.
 
 =head2 How do I debug my Perl programs?
 
