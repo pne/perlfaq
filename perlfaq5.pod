@@ -108,7 +108,13 @@ C<.c.orig> file.
 
 =head2 How do I make a temporary file name?
 
-Use the File::Temp module, see L<File::Temp> for more information.
+If you don't need to know the name of the file, you can use C<open()>
+with C<undef> in place of the file name.  The C<open()> function
+creates an anonymous temporary file.
+
+	open my $tmp, '+>', undef or die $!;
+	
+Otherwise, you can use the File::Temp module.
 
   use File::Temp qw/ tempfile tempdir /;
 
