@@ -801,7 +801,7 @@ case transformations:
 =head2 How can I split a [character] delimited string except when inside [character]?
 
 Several modules can handle this sort of pasing---Text::Balanced,
-Text::CVS, Text::CVS_XS, and Text::ParseWords, among others.
+Text::CSV, Text::CSV_XS, and Text::ParseWords, among others.
 
 Take the example case of trying to split a string that is
 comma-separated into its different fields. You can't use C<split(/,/)>
