@@ -147,7 +147,7 @@ my @message = split /$/m, $message;
 
 my @header = (
 	"Newsgroups: $newsgroup\n",
-	"Subject: FAQ: $subject\n",
+	"Subject: FAQ $major.$minor: $subject\n",
 	"From: PerlFAQ Server <$email>\n",
 	);
 
