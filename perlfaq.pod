@@ -421,8 +421,7 @@ How do I capitalize all the words on one line?
 
 =item *
 
-How can I split a [character] delimited string except when inside
-[character]? (Comma-separated files)
+How can I split a [character] delimited string except when inside [character]?
 
 =item *
 

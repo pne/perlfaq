@@ -744,20 +744,21 @@ case", but that's not quite accurate.  Consider the proper
 capitalization of the movie I<Dr. Strangelove or: How I Learned to
 Stop Worrying and Love the Bomb>, for example.
 
-=head2 How can I split a [character] delimited string except when inside
-[character]? (Comma-separated files)
+=head2 How can I split a [character] delimited string except when inside [character]?
 
-Take the example case of trying to split a string that is comma-separated
-into its different fields.  (We'll pretend you said comma-separated, not
-comma-delimited, which is different and almost never what you mean.) You
-can't use C<split(/,/)> because you shouldn't split if the comma is inside
-quotes.  For example, take a data line like this:
+Several modules can handle this sort of pasing---Text::Balanced,
+Text::CVS, Text::CVS_XS, and Text::ParseWords, among others.
+
+Take the example case of trying to split a string that is
+comma-separated into its different fields. You can't use C<split(/,/)>
+because you shouldn't split if the comma is inside quotes.  For
+example, take a data line like this:
 
     SAR001,"","Cimetrix, Inc","Bob Smith","CAM",N,8,1,0,7,"Error, Core Dumped"
 
 Due to the restriction of the quotes, this is a fairly complex
-problem.  Thankfully, we have Jeffrey Friedl, author of a highly
-recommended book on regular expressions, to handle these for us.  He
+problem.  Thankfully, we have Jeffrey Friedl, author of 
+I<Mastering Regular Expressions>, to handle these for us.  He
 suggests (assuming your string is contained in $text):
 
      @new = ();
@@ -770,8 +771,7 @@ suggests (assuming your string is contained in $text):
 
 If you want to represent quotation marks inside a
 quotation-mark-delimited field, escape them with backslashes (eg,
-C<"like \"this\"">.  Unescaping them is a task addressed earlier in
-this section.
+C<"like \"this\"">.
 
 Alternatively, the Text::ParseWords module (part of the standard Perl
 distribution) lets you say:
