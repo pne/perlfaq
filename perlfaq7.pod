@@ -736,18 +736,22 @@ not necessarily the same as the one in which you were compiled):
 =head2 How can I comment out a large block of perl code?
 
 You can use embedded POD to discard it.  Enclose the blocks you want
-to comment out in POD markers, for example C<=for nobody> and C<=cut>
-(which marks ends of POD blocks).
+to comment out in POD markers.  The <=begin> directive marks a section
+for a specific formatter.  Use the C<comment> format, which no formatter
+should claim to understand (by policy).  Mark the end of the block
+with <=end>.
 
     # program is here
 
-    =for nobody
+    =begin comment
 
     all of this stuff
 
     here will be ignored
     by everyone
 
+	=end comment
+	
     =cut
 
     # program continues
