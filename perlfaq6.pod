@@ -745,13 +745,13 @@ Or like this:
    }
 
 Here's another, slightly less painful, way to do it from Benjamin
-Goldberg:
+Goldberg, who uses a zero-width negative look-behind assertion.
 
-	$martian =~ m/
-	   (?<![A-Z])
-	   (?:[A-Z][A-Z])*?
-	   GX
-	/x;
+	print "found GX!\n" if	$martian =~ m/
+		   (?<![A-Z])
+		   (?:[A-Z][A-Z])*?
+		   GX
+		/x;
 
 This succeeds if the "martian" character GX is in the string, and fails
 otherwise.  If you don't like using (?<!), a zero-width negative
