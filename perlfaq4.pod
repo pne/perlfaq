@@ -690,6 +690,11 @@ integers:
     while ($string =~ /-\d+/g) { $count++ }
     print "There are $count negative numbers in the string";
 
+Another version uses a global match in list context, then assigns the
+result to a scalar, producing a count of the number of matches.
+
+	$count = () = $string =~ /-\d+/g;
+
 =head2 How do I capitalize all the words on one line?
 
 To make the first letter of each word upper case:
