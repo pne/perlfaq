@@ -1265,16 +1265,37 @@ an exercise to the reader.
 
 =head2 How do I find the first array element for which a condition is true?
 
-You can use this if you care about the index:
+To find the first array element which satisfies a condition, you can
+use the first() function in the List::Util module, which comes with
+Perl 5.8.  This example finds the first element that contains "Perl".
 
-    for ($i= 0; $i < @array; $i++) {
-        if ($array[$i] eq "Waldo") {
-	    $found_index = $i;
-            last;
+	use List::Util qw(first);
+	
+	my $element = first { /Perl/ } @array;
+	
+If you cannot use List::Util, you can make your own loop to do the
+same thing.  Once you find the element, you stop the loop with last.
+
+	my $found;
+	foreach my $element ( @array )
+		{
+		if( /Perl/ ) { $found = $element; last }
+		}
+
+If you want the array index, you can iterate through the indices
+and check the array element at each index until you find one
+that satisfies the condition.
+
+	my( $found, $i ) = ( undef, -1 );
+    for( $i = 0; $i < @array; $i++ ) 
+    	{
+        if( $array[$i] =~ /Perl/ ) 
+        	{ 
+        	$found = $array[$i];
+        	$index = $i; 
+        	last;
+        	}
         }
-    }
-
-Now C<$found_index> has what you want.
 
 =head2 How do I handle linked lists?
 
