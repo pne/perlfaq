@@ -81,6 +81,11 @@ One way is to treat the return values as a list and index into it:
 Another way is to use undef as an element on the left-hand-side:
 
     ($dev, $ino, undef, undef, $uid, $gid) = stat($file);
+    
+You can also use a list slice to select only the elements that
+you need:
+
+	($dev, $ino, $uid, $gid) = ( stat($file) )[0,1,4,5];
 
 =head2 How do I temporarily block warnings?
 
@@ -298,37 +303,21 @@ reference to an existing or anonymous variable or function:
 
 =item Passing Filehandles
 
-To pass filehandles to subroutines, use the C<*FH> or C<\*FH> notations.
+As of Perl 5.6, you can represent filehandles with scalar variables
+which you treat as any other scalar.
+
+	open my $fh, $filename or die "Cannot open $filename! $!";
+	func( $fh );
+	
+	sub func {
+		my $passed_fh = shift;
+		
+		my $line = <$fh>;
+		}
+	
+Before Perl 5.6, you had to use the C<*FH> or C<\*FH> notations.
 These are "typeglobs"--see L<perldata/"Typeglobs and Filehandles">
 and especially L<perlsub/"Pass by Reference"> for more information.
-
-Here's an excerpt:
-
-If you're passing around filehandles, you could usually just use the bare
-typeglob, like *STDOUT, but typeglobs references would be better because
-they'll still work properly under C<use strict 'refs'>.  For example:
-
-    splutter(\*STDOUT);
-    sub splutter {
-        my $fh = shift;
-        print $fh "her um well a hmmm\n";
-    }
-
-    $rec = get_rec(\*STDIN);
-    sub get_rec {
-        my $fh = shift;
-        return scalar <$fh>;
-    }
-
-If you're planning on generating new filehandles, you could do this:
-
-    sub openit {
-        my $path = shift;
-        local *FH;
-        return open (FH, $path) ? *FH : undef;
-    }
-    $fh = openit('< /etc/motd');
-    print <$fh>;
 
 =item Passing Regexes
 
