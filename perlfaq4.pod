@@ -197,10 +197,10 @@ the 0b notation:
 
     $number = 0b10110110;
 
-Using ord:
+Using oct:
 
     my $input = "10110110";
-    $decimal = ord( "0b$input" );
+    $decimal = oct( "0b$input" );
 
 Using pack and ord:
 
