@@ -626,6 +626,10 @@ How do I count the number of lines in a file?
 
 =item *
 
+How can I use Perl's C<-i> option from within a program?
+
+=item *
+
 How do I make a temporary file name?
 
 =item *
