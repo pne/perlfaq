@@ -523,6 +523,51 @@ When the files you're processing are small, it doesn't much matter which
 way you do it, but it makes a huge difference when they start getting
 larger. 
 
+=item * Use map and grep selectively
+
+Remember that both map and grep expect a LIST argument, so doing this:
+
+        @wanted = grep {/pattern/} <FILE>;
+
+will cause the entire file to be slurped. For large files, it's better
+to loop:
+
+        while (<FILE>) {
+                push(@wanted, $_) if /pattern/;
+        }
+
+=item * Avoid unnecessary quotes and stringification
+
+Don't quote large strings unless absolutely necessary:
+
+        my $copy = "$large_string";
+
+makes 2 copies of $large_string (one for $copy and another for the
+quotes), whereas
+
+        my $copy = $large_string;
+
+only makes one copy.
+
+Ditto for stringifying large arrays:
+
+        {
+                local $, = "\n";
+                print @big_array;
+        }
+
+is much more memory-efficient than either
+
+        print join "\n", @big_array;
+
+or
+
+        {
+                local $" = "\n";
+                print "@big_array";
+        }
+
+
 =item * Pass by reference
 
 Pass arrays and hashes by reference, not by value. For one thing, it's
