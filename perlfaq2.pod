@@ -167,7 +167,6 @@ assistance:
 
     http://perldoc.cpan.org/
     http://www.perldoc.com/
-    http://reference.perl.com/query.cgi?tutorials
     http://bookmarks.cpan.org/search.cgi?cat=Training%2FTutorials
 
 =head2 What are the Perl newsgroups on Usenet?  Where do I post questions?
@@ -399,26 +398,13 @@ http://www.stonehenge.com/merlyn/LinuxMag/ .
 
 =head2 Perl on the Net: FTP and WWW Access
 
-To get the best performance, pick a site from
-the list below and use it to grab the complete list of mirror sites
-which is at /CPAN/MIRRORED.BY or at http://mirror.cpan.org/ .
-From there you can find the quickest site for you.  Remember, the
-following list is I<not> the complete list of CPAN mirrors
-(the complete list contains 165 sites as of January 2001):
+To get the best performance, pick a site from the list at
+http://www.cpan.org/SITES.html . From there you can find the quickest
+site for you.
 
-  http://www.cpan.org/
-  http://www.perl.com/CPAN/
-  http://download.sourceforge.net/mirrors/CPAN/
-  ftp://ftp.digital.com/pub/plan/perl/CPAN/
-  ftp://ftp.flirble.org/pub/languages/perl/CPAN/
-  ftp://ftp.uvsq.fr/pub/perl/CPAN/
-  ftp://ftp.funet.fi/pub/languages/perl/CPAN/
-  ftp://ftp.dti.ad.jp/pub/lang/CPAN/
-  ftp://cpan.if.usp.br/pub/mirror/CPAN/
-
-One may also use xx.cpan.org where "xx" is the 2-letter country code
-for your domain; e.g. Australia would use au.cpan.org.
-[Note: This only applies to countries that host at least one mirror.]
+You may also use xx.cpan.org where "xx" is the 2-letter country code
+for your domain; e.g. Australia would use au.cpan.org. [Note: This
+only applies to countries that host at least one mirror.]
 
 =head2 What mailing lists are there for Perl?
 
@@ -428,9 +414,7 @@ subscription information.
 
 A comprehensive list of Perl related mailing lists can be found at:
 
-	http://lists.cpan.org/
-
-( also visible as http://lists.perl.org/ )
+	http://lists.perl.org/
 
 =head2 Archives of comp.lang.perl.misc
 
