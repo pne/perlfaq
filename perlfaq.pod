@@ -182,6 +182,10 @@ Is there a Perl shell?
 
 =item *
 
+How do I find which modules are installed on my system?
+
+=item *
+
 How do I debug my Perl programs?
 
 =item *
