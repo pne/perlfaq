@@ -1,0 +1,353 @@
+=pod
+
+=head1 NAME
+
+The Perl Glossary
+
+=head1 TERMS
+
+=head2 Abigail
+
+Abigail is an enigmatic Perl programmer who is quite fond of regular
+expressions and obscure JAPHs.
+
+=head2 ActivePerl
+
+A commercial Perl distribution, primarily for Win32 architectures,
+created, released and maintained by ActiveState,
+http://www.activestate.com/.  See also C<cygwin>.
+
+=head2 Apocalypses
+
+These are articles on perl.com detailing the design of Perl 6.  Larry
+Wall writes them, and each Apocalypse is designed to corrispond with
+a chapter in the Programming Perl book.  Each Apocalypse is followed
+by an Exegesis.
+
+=head2 Camel book 
+
+Programming Perl published by O'Reilly & Associates, which has a camel
+on the cover.  The first edition has a pink spine, and is known as
+"the pink camel".   The second and third editions have a blue spine and are
+known as "camel2" and "camel3".
+
+=head2 CGI
+
+The Common Gateway Interface for creating dynamic web pages.  CGI is a
+general purpose interface that can be used with any programming
+language, including Perl.  See also C<CGI.pm> and C<mod_perl>.
+
+=head2 CGI.pm 
+
+Standard Perl module that handles HTML form interaction, written
+by Lincoln Stein.   It is included in the standard Perl distribution.
+
+=head2 clpm 
+
+comp.lang.perl.misc, a usenet newsgroup. 
+
+=head2 The Cookbook
+
+The Perl Cookbook.  See also The Ram Book.
+
+=head2 CPAN 
+
+The Comprehensive Perl Archive Network, modeled after CTAN, the
+Comprehensive TeX Archive Network.  CPAN is a central repository for
+core and third-party Perl software and modules.  See http://www.cpan.org/
+
+=head2 CPAN.pm
+
+A standard module for managing installation of modules from CPAN.  A
+common way to use the CPAN module is by using the command C<perl -MCPAN
+-e shell>, or using the C<cpan> script, if it is provided on
+your system.
+
+=head2 CPANPLUS
+
+A more modern replacement for the CPAN Perl module, which provides
+command-line access to the CPAN.
+
+=head2 cygwin
+
+A portability layer for Windows that provides many UNIX tools from the
+GNU toolchain.  A very popular technique for installing Perl on Windows
+systems.
+
+=head2 DBD 
+
+A DataBase Driver for DBI.  The DBD provides the connection between a
+particular database server product (e.g. Oracle) and the abstract
+interface.  To change database products (e.g. from mysql to Oracle),
+one simply uses a different DBD. 
+
+=head2 DBI 
+
+Perl's abstract DataBase Interface which supports any database product
+with a database driver (DBD) 
+
+=head2 Exegesis
+
+A detailed article on perl.com that explains an Apocalypse.  These
+articles are written by Damian Conway, and go into extreme depth to
+help us understand the why and how of Perl 6' design.
+
+=head2 Golf
+
+A semi-competitive game to rewrite a Perl program by using fewer
+keystrokes.  Usually conducted online.
+
+=head2 GPW
+
+The German Perl Workshop.  See http://www.perlworkshop.de/
+
+=head2 h2xs
+
+A utility for creating a new Perl module, possibly interfacing with a
+pre-existing C library.  See also C<Module::Build> and C<XS>.
+
+=head2 Hip Owls Book
+
+Mastering Regular Expressions, 2nd Ed, published by O'Reilly &
+Associates.
+
+=head2 HFB 
+
+Happy Fun Ball - Elaine Ashton. 
+
+=head2 Inline
+
+Brian Ingerson's C<Inline> module for embedding foreign code in a Perl
+program.  The most popular use of Inline is C<Inline::C>, which provides
+a cleaner and simpler way to interface with C programs, compared to h2xs
+or SWIG.
+
+=head2 JAPH 
+
+[1] "Just another Perl hacker" - popularized by Randal L. Schwartz. 
+
+[2] A small Perl program that prints the phrase "Just Another Perl
+Hacker" using some combination of possibly obscure Perl features.
+
+=head2 Llama book 
+
+This is Learning Perl published by O'Reilly & Associates, which has a
+llama on the cover.  The first edition has a pink spine, and is known
+as "the pink llama". The second and third editions have a blue spine and 
+are known as "llama2" and "llama3".
+
+=head2 LWP 
+
+Library for interfacing with the World Wide Web from Perl.  This
+distribution provides many modules for interacting with HTTP, FTP, and 
+email.  Look for C<Bundle::LWP> on CPAN.
+
+=head2 Mason
+
+The C<HTML::Mason> module, a Perl framework for dynamic web development.
+See http://www.masonhq.com/
+
+=head2 mod_perl 
+
+The Apache server plug-in that embeds a perl in the web server for
+super-fast performance and increased flexibility. 
+
+=head2 Nutty Camel
+
+Perl in a Nutshell, published by O'Reilly and Associates.
+
+=head2 NMS
+
+A library of CGI programs designed to be easy replacements for
+buggy programs available from Matt's Script Archive.  The NMS
+programs are actively developed, work with standard Perl distributions
+(no extra modules required), and are written to avoid standard
+security bugs.  The programs that they replace have not been actively
+developed since the mid 1990s and are well known for containing a
+littany of security bugs.
+
+=head2 O'Reilly book covers 
+
+In general, O'Reilly books have animals on the covers (although not
+for Java or all Unix books).  The books are often referred to by the
+animal on their cover.  If someone says something like "the Ram book",
+he is referring to an O'Reilly book. 
+
+=head2 ORA 
+
+O'Reilly & Associates. 
+
+=head2 OSCON
+
+Open Source Conference.  This conference encompasses many others,
+including TPC, and is run by O'Reilly & Associates.
+
+=head2 OSS 
+
+Open Source Software.  Perl is open source and is often mentioned into
+relationship to the OSS movement 
+
+=head2 p5p 
+
+See perl5-porters. 
+
+=head2 PAR
+
+A Perl Archive Toolkit.  This allows distribution and use of Perl
+modules from a portable archive.
+
+=head2 parrot
+
+Parrot is a virtual machine used to efficiently execute bytecode
+for interpreted languages - specifically, Perl 6.
+
+=head2 PAUSE 
+
+Perl Authors Upload Server - how software gets into CPAN.  See
+http://www.cpan.org/modules/04pause.html. 
+
+=head2 Perl 
+
+The language itself, as opposed to the interpreter, "perl", with a
+lowercase "p". 
+
+=head2 perl 
+
+The program which interprets Perl and makes the computer do what it
+says. 
+
+=head2 Perl4 
+
+A dead camel carcass.  This is the version of Perl that pre-dated the
+current major release.  It should not be used for any new development 
+
+=head2 perl5-porters 
+
+The mailing list for perl 5 developers. 
+
+=head2 perl6-internals
+
+Mailing list for Perl6 and parrot code development.
+
+=head2 perl6-language
+
+A livley list for the discussion of the Perl 6 language design.  Not
+for the faint of heart.
+
+=head2 Perl5 
+
+The modern major release of Perl 
+
+=head2 Perl6
+
+A long-term project to reinvent the Perl language.  This project is
+still in the design phase.
+
+=head2 perlio
+
+Perl's cross-platform I/O layer that replaces the paradoxically
+non-standard stdio C interface.
+
+=head2 perldoc
+
+The C<perldoc> utility to view Perl documentation.  Also, the Perldoc
+website for viewing Perl documentation, http://www.perldoc.com/
+
+=head2 Perl Mongers
+
+Perl Mongers is a world-wide organization devoted to the social and
+technical nature of Perl.  Comprised of geographically localized groups,
+Perl Mongers brings Perl to the masses.  http://www.pm.org/
+
+=head2 The Perl Review
+
+An electronically published Perl magazine supported and developed by the
+community.  http://www.theperlreview.com
+
+=head2 pumpking 
+
+A Perl project coordinator 
+
+=head2 Ram book 
+
+This is The Perl Cookbook published by O'Reilly & Associates. 
+
+=head2 regex 
+
+A regular expression. 
+
+=head2 regexp
+
+A misspelling of C<regex>.
+
+=head2 SWIG 
+
+An interface for allowing Perl to use C/C++ libraries and code. 
+
+=head2 TMTOWTDI 
+
+There's More Than One Way To Do It - a major philosophy in the design
+of Perl. Language constructs can be expressed in more than one way,
+just as in natural language. 
+
+=head2 Topaz 
+
+An old, exploratory project by Chip Salzenberg to rewrite Perl in C++.
+This project predates the Perl6 project and is now dead.
+
+=head2 TPC 
+
+The Perl Conference, hosted by O'Reilly & Associates.  It is held
+concurrently with OSCon.
+
+=head2 TPF
+
+The Perl Foundation.  Coordinates a number of projects to further the
+growth and development of the Perl community.  Such projects include
+YAPC, Perl 6 and parrot, Perl Mongers, and PerlMonks.
+
+=head2 TPI 
+
+The Perl Institute (now defunct). 
+
+=head2 TPJ 
+
+The Perl Journal. 
+
+=head2 TPR
+
+The Perl Review.
+
+=head2 TT
+
+The Template Toolkit.
+
+=head2 use Perl;
+
+A Slash web site for Perl, maintained by Slash developer Chris
+Nandor.  This web site is the center for Perl news and information,
+as well as many online Journals (blogs) of people in the Perl
+community.  http://use.perl.org
+
+=head2 White Camel 
+
+An award given out by Perl Mongers for significant nontechnical
+contribution to the Perl community. 
+
+=head2 XS 
+
+An interface for allowing Perl to use C/C++ libraries and code. 
+
+=head2 YAS
+
+Yet Another Society, the umbrella organization that includes the
+Perl Foundation, and YAPC events worldwide.  YAS is a 501(c)(3)
+nonprofit organization in the USA.
+
+=head2 YAPC 
+
+Yet Another Perl Conference, created by Kevin Lenzo as a low-cost,
+less-lavish alternative to TPC.  There are several YAPC conferences held
+each year.  These events are detailed at http://www.yapc.org/
+
+=cut
