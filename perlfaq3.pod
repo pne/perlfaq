@@ -399,16 +399,22 @@ no 32k limit).
 
 =over 4
 
-=item BBEdit and BBEdit Lite
+=item Affrus
 
-are text editors for Mac OS that have a Perl sensitivity mode
-( http://web.barebones.com/ ).
+is a full Perl development enivornment with full debugger support (
+http://www.latenightsw.com ).
 
 =item Alpha
 
 is an editor, written and extensible in Tcl, that nonetheless has
 built in support for several popular markup and programming languages
 including Perl and HTML ( http://alpha.olm.net/ ).
+
+=item BBEdit and BBEdit Lite
+
+are text editors for Mac OS that have a Perl sensitivity mode
+( http://web.barebones.com/ ).
+
 
 =back
 
