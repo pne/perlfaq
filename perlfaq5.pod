@@ -686,30 +686,22 @@ utime() on those platforms.
 
 =head2 How do I print to more than one file at once?
 
-If you only have to do this once, you can do this:
+To connect one filehandle to several output filehandles,
+you can use the IO::Tee or Tie::FileHandle::Multiplex modules.
+
+If you only have to do this once, you can print individually
+to each filehandle.
 
     for $fh (FH1, FH2, FH3) { print $fh "whatever\n" }
 
-To connect up to one filehandle to several output filehandles, it's
-easiest to use the tee(1) program if you have it, and let it take care
-of the multiplexing:
-
-    open (FH, "| tee file1 file2 file3");
-
-Or even:
-
-    # make STDOUT go to three files, plus original STDOUT
-    open (STDOUT, "| tee file1 file2 file3") or die "Teeing off: $!\n";
-    print "whatever\n"                       or die "Writing: $!\n";
-    close(STDOUT)                            or die "Closing: $!\n";
-
-Otherwise you'll have to write your own multiplexing print
-function--or your own tee program--or use Tom Christiansen's,
-at http://www.cpan.org/authors/id/TOMC/scripts/tct.gz , which is
-written in Perl and offers much greater functionality
-than the stock version.
-
 =head2 How can I read in an entire file all at once?
+
+You can use the File::Slurp module to do it in one step.
+
+	use File::Slurp;
+	
+	$all_of_it = read_file($filename); # entire file in scalar
+    @all_lines = read_file($filename); # one line perl element
 
 The customary Perl approach for processing all the lines in a file is to
 do so one line at a time:

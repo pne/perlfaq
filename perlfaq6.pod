@@ -147,34 +147,34 @@ Here's another example of using C<..>:
 
 =head2 I put a regular expression into $/ but it didn't work. What's wrong?
 
-$/ must be a string, not a regular expression.  Awk has to be better
-for something. :-)
+As of Perl 5.8.0, $/ has to be a string.  This may change in 5.10,
+but don't get your hopes up. Until then, you can use these examples
+if you really need to do this.
 
-Actually, you could do this if you don't mind reading the whole file
-into memory:
+Use the four argument form of sysread to continually add to 
+a buffer.  After you add to the buffer, you check if you have a 
+complete line (using your regular expression).
 
-    undef $/;
-    @records = split /your_pattern/, <FH>;
+       local $_ = "";
+       while( sysread FH, $_, 8192, length ) {
+          while( s/^((?s).*?)your_pattern/ ) {
+             my $record = $1;
+             # do stuff here.
+          }
+       }
+ 
+ You can do the same thing with foreach and a match using the
+ c flag and the \G anchor, if you do not mind your entire file
+ being in memory at the end.
+       
+       local $_ = "";
+       while( sysread FH, $_, 8192, length ) {
+          foreach my $record ( m/\G((?s).*?)your_pattern/gc ) {
+             # do stuff here.
+          }
+          substr( $_, 0, pos ) = "" if pos;
+       }
 
-The Net::Telnet module (available from CPAN) has the capability to
-wait for a pattern in the input stream, or timeout if it doesn't
-appear within a certain time.
-
-    ## Create a file with three lines.
-    open FH, ">file";
-    print FH "The first line\nThe second line\nThe third line\n";
-    close FH;
-
-    ## Get a read/write filehandle to it.
-    $fh = new IO::File "+<file";
-
-    ## Attach it to a "stream" object.
-    use Net::Telnet;
-    $file = new Net::Telnet (-fhopen => $fh);
-
-    ## Search for the second line and print out the third.
-    $file->waitfor('/second line\n/');
-    print $file->getline;
 
 =head2 How do I substitute case insensitively on the LHS while preserving case on the RHS?
 
