@@ -444,8 +444,8 @@ It may be a lot clearer to use sysopen(), though:
 
 =head2 How can I reliably rename a file?
 
-If your operating system supports a proper mv(1) utility or its functional
-equivalent, this works:
+If your operating system supports a proper mv(1) utility or its
+functional equivalent, this works:
 
     rename($old, $new) or system("mv", $old, $new);
 

@@ -675,8 +675,8 @@ looks like it is because "SG" is next to "XX", but there's no real
 
 Here are a few ways, all painful, to deal with it:
 
-   $martian =~ s/([A-Z][A-Z])/ $1 /g; # Make sure adjacent ``martian'' bytes
-                                      # are no longer adjacent.
+   $martian =~ s/([A-Z][A-Z])/ $1 /g; # Make sure adjacent ``martian''
+                                      # bytes are no longer adjacent.
    print "found GX!\n" if $martian =~ /GX/;
 
 Or like this:
