@@ -518,32 +518,58 @@ See the module String::Approx available from CPAN.
 
 =head2 How do I efficiently match many regular expressions at once?
 
-The following is extremely inefficient:
+( contributed by brian d foy )
 
-    # slow but obvious way
-    @popstates = qw(CO ON MI WI MN);
-    while (defined($line = <>)) {
-	for $state (@popstates) {
-	    if ($line =~ /\b$state\b/i) {
-		print $line;
-		last;
-	    }
-	}
-    }
+Avoid asking Perl to compile a regular expression every time 
+you want to match it.  In this example, perl must recompile
+the regular expression for every iteration of the foreach()
+loop since it has no way to know what $pattern will be.
 
-That's because Perl has to recompile all those patterns for each of
-the lines of the file.  As of the 5.005 release, there's a much better
-approach, one which makes use of the new C<qr//> operator:
+    @patterns = qw( foo bar baz );
+    
+    LINE: while( <> ) 
+    	{
+		foreach $pattern ( @patterns ) 
+			{
+	    	print if /\b$pattern\b/i;
+	    	next LINE;
+	   		}
+		}
 
-    # use spiffy new qr// operator, with /i flag even
-    use 5.005;
-    @popstates = qw(CO ON MI WI MN);
-    @poppats   = map { qr/\b$_\b/i } @popstates;
-    while (defined($line = <>)) {
-	for $patobj (@poppats) {
-	    print $line if $line =~ /$patobj/;
-	}
-    }
+The qr// operator showed up in perl 5.005.  It compiles a
+regular expression, but doesn't apply it.  When you use the
+pre-compiled version of the regex, perl does less work. In
+this example, I inserted a map() to turn each pattern into
+its pre-compiled form.  The rest of the script is the same,
+but faster.
+
+    @patterns = map { qr/\b$_\b/i } qw( foo bar baz );
+
+    LINE: while( <> ) 
+    	{
+		foreach $pattern ( @patterns ) 
+			{
+	    	print if /\b$pattern\b/i;
+	    	next LINE;
+	   		}
+		}
+		
+In some cases, you may be able to make several patterns into
+a single regular expression.  Beware of situations that require
+backtracking though.
+
+	$regex = join '|', qw( foo bar baz );
+
+    LINE: while( <> ) 
+    	{
+		print if /\b(?:$regex)\b/i;
+		}
+
+For more details on regular expression efficiency, see Mastering
+Regular Expressions by Jeffrey Freidl.  He explains how regular
+expressions engine work and why some patterns are surprisingly
+inefficient.  Once you understand how perl applies regular 
+expressions, you can tune them for individual situations.
 
 =head2 Why don't word-boundary searches with C<\b> work for me?
 
