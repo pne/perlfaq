@@ -1381,7 +1381,7 @@ For example, this sets $vec to have bit N set if $ints[N] was set:
     $vec = '';
     foreach(@ints) { vec($vec,$_,1) = 1 }
 
-And here's how, given a vector in $vec, you can
+Here's how, given a vector in $vec, you can
 get those bits into your @ints array:
 
     sub bitvec_to_list {
@@ -1416,7 +1416,16 @@ get those bits into your @ints array:
 This method gets faster the more sparse the bit vector is.
 (Courtesy of Tim Bunce and Winfried Koenig.)
 
-Here's a demo on how to use vec():
+Or use the CPAN module Bit::Vector:
+
+    $vector = Bit::Vector->new($num_of_bits);
+    $vector->Index_List_Store(@ints);
+    @ints = $vector->Index_List_Read();
+
+Bit::Vector provides efficient methods for bit vector, sets of small integers
+and "big int" math. 
+
+Here's a more extensive illustration using vec():
 
     # vec demo
     $vector = "\xff\x0f\xef\xfe";
