@@ -341,6 +341,10 @@ Why aren't my random numbers random?
 
 =item *
 
+How do I get a random number between X and Y?
+
+=item *
+
 How do I find the week-of-the-year/day-of-the-year?
 
 =item *

@@ -346,6 +346,20 @@ random numbers, but this takes quite a while.  If you want a better
 pseudorandom generator than comes with your operating system, look at
 ``Numerical Recipes in C'' at http://www.nr.com/ .
 
+=head2 How do I get a random number between X and Y?
+
+Use the following simple function.  It selects a random integer between
+(and possibly including!) the two given integers, e.g.,
+C<random_int_in(50,120)>
+
+   sub random_int_in ($$) {
+     my($min, $max) = @_;
+      # Assumes that the two arguments are integers themselves!
+     return $min if $min == $max;
+     ($min, $max) = ($max, $min)  if  $min > $max;
+     return $min + int rand(1 + $max - $min);
+   }
+
 =head1 Data: Dates
 
 =head2 How do I find the week-of-the-year/day-of-the-year?
