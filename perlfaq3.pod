@@ -641,7 +641,7 @@ everything works out right.
 	return \@a;
     }
 
-    for $i ( 1 .. 10 ) {
+    for ( 1 .. 10 ) {
         push @many, makeone();
     }
 
