@@ -13,6 +13,7 @@ help:
 	@ echo
 	@ echo "    checkurls   -- extract and validate URLs in the perlfaq POD"
 	@ echo "    perlfaq.pod -- create a new perlfaq.pod from the perlfaq POD"
+	@ echo "    test        -- run each .pod file through Test::Pod"
 	@ echo
 
 echo:
@@ -24,3 +25,6 @@ perlfaq.pod: $(FILES)
 checkurls: 
 	${PERL} ${CHECK_URLS} $(FILES)
 	@ touch $@
+	
+test:
+	${PERL} t/pod.t
