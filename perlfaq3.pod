@@ -49,6 +49,11 @@ expected for normal shell activity and uses Perl syntax and
 functionality for control-flow statements and other things.
 You can get psh at http://www.focusresearch.com/gregor/psh/ .
 
+Zoidberg is a similar project and provides a shell written in perl,
+configured in perl and operated in perl. It is intended as a login shell
+and development environment. It can be found at http://zoidberg.sf.net/
+or your local CPAN mirror.
+
 The Shell.pm module (distributed with Perl) makes Perl try commands
 which aren't part of the Perl language as shell commands.  perlsh
 from the source distribution is simplistic and uninteresting, but
