@@ -1460,34 +1460,40 @@ call to rand), you're almost certainly doing something wrong.
 
 =head2 How do I permute N elements of a list?
 
-Here's a little program that generates all permutations
-of all the words on each line of input.  The algorithm embodied
-in the permute() function should work on any list:
+Use the List::Permutor module on CPAN.  If the list is
+actually an array, try the Algorithm::Permute module (also
+on CPAN).  It's written in XS code and is very efficient.
 
-    #!/usr/bin/perl -n
-    # tsc-permute: permute each word of input
-    permute([split], []);
-    sub permute {
-        my @items = @{ $_[0] };
-        my @perms = @{ $_[1] };
-        unless (@items) {
-            print "@perms\n";
-	} else {
-            my(@newitems,@newperms,$i);
-            foreach $i (0 .. $#items) {
-                @newitems = @items;
-                @newperms = @perms;
-                unshift(@newperms, splice(@newitems, $i, 1));
-                permute([@newitems], [@newperms]);
-	    }
+	use Algorithm::Permute;
+	my @array = 'a'..'d';
+	my $p_iterator = Algorithm::Permute->new ( \@array );
+	while (my @perm = $p_iterator->next) {
+	   print "next permutation: (@perm)\n";
 	}
-    }
 
-Unfortunately, this algorithm is very inefficient. The Algorithm::Permute
-module from CPAN runs at least an order of magnitude faster. If you don't
-have a C compiler (or a binary distribution of Algorithm::Permute), then
-you can use List::Permutor which is written in pure Perl, and is still
-several times faster than the algorithm above.
+Here's a little program that generates all permutations of
+all the words on each line of input. The algorithm embodied
+in the permute() function is discussed in Volume 4 (still
+unpublished) of Knuth's I<The Art of Computer Programming>
+and will work on any list:
+
+	#!/usr/bin/perl -n
+	# Fischer-Kause ordered permutation generator
+
+	sub permute (&@) {
+		my $code = shift;
+		my @idx = 0..$#_;
+		while ( $code->(@_[@idx]) ) {
+			my $p = $#idx;
+			--$p while $idx[$p-1] > $idx[$p];
+			my $q = $p or return;
+			push @idx, reverse splice @idx, $p;
+			++$q while $idx[$p-1] > $idx[$q];
+			@idx[$p-1,$q]=@idx[$q,$p-1];
+		}
+	}
+
+	permute {print"@_\n"} split;
 
 =head2 How do I sort an array by (anything)?
 
