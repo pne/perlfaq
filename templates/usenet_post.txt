@@ -33,7 +33,7 @@ The perlfaq manual page contains the following copyright notice.
 
   AUTHOR AND COPYRIGHT
 
-    Copyright (c) 1997-1999 Tom Christiansen and Nathan
+    Copyright (c) 1997-2002 Tom Christiansen and Nathan
     Torkington.  All rights reserved.
 
 This posting is provided in the hope that it will be useful but
