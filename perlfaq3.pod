@@ -832,6 +832,9 @@ For example:
     print "Hello world\n"
      (then Run "Myscript" or Shift-Command-R)
 
+    # MPW
+    perl -e 'print "Hello world\n"'
+
     # VMS
     perl -e "print ""Hello world\n"""
 
