@@ -753,41 +753,40 @@ you want to be sure your license's wording will stand up in court.
 
 =head2 How can I compile my Perl program into byte code or C?
 
-Malcolm Beattie has written a multifunction backend compiler,
-available from CPAN, that can do both these things.  It is included
-in the perl5.005 release, but is still considered experimental.
-This means it's fun to play with if you're a programmer but not
-really for people looking for turn-key solutions.
+(contributed by brian d foy)
 
-Merely compiling into C does not in and of itself guarantee that your
-code will run very much faster.  That's because except for lucky cases
-where a lot of native type inferencing is possible, the normal Perl
-run-time system is still present and so your program will take just as
-long to run and be just as big.  Most programs save little more than
-compilation time, leaving execution no more than 10-30% faster.  A few
-rare programs actually benefit significantly (even running several times
-faster), but this takes some tweaking of your code.
+In general, you can't do this.  There are some things that may work
+for your situation though.  People usually ask this question
+because they want to distribute their works without giving away 
+the source code, and most solutions trade disk space for convenience.
+You probably won't see much of a speed increase either, since most
+solutions simply bundle a Perl interpreter in the final product 
+(but see L<How can I make my Perl program run faster?>).
 
-You'll probably be astonished to learn that the current version of the
-compiler generates a compiled form of your script whose executable is
-just as big as the original perl executable, and then some.  That's
-because as currently written, all programs are prepared for a full
-eval() statement.  You can tremendously reduce this cost by building a
-shared I<libperl.so> library and linking against that.  See the
-F<INSTALL> podfile in the Perl source distribution for details.  If
-you link your main perl binary with this, it will make it minuscule.
-For example, on one author's system, F</usr/bin/perl> is only 11k in
-size!
+The Perl Archive Toolkit (http://par.perl.org/index.cgi) is
+Perl's analog to Java's JAR.  It's freely available and on
+CPAN (http://search.cpan.org/dist/PAR/).
 
-In general, the compiler will do nothing to make a Perl program smaller,
-faster, more portable, or more secure.  In fact, it can make your
-situation worse.  The executable will be bigger, your VM system may take
-longer to load the whole thing, the binary is fragile and hard to fix,
-and compilation never stopped software piracy in the form of crackers,
-viruses, or bootleggers.  The real advantage of the compiler is merely
-packaging, and once you see the size of what it makes (well, unless
-you use a shared I<libperl.so>), you'll probably want a complete
-Perl install anyway.
+The B::* namespace, often called "the Perl compiler", but is really a
+way for Perl programs to peek at its innards rather than create
+pre-compiled versions of your program.  However. the B::Bytecode
+module can turn your script  into a bytecode format that could be
+loaded later by the ByteLoader module and executed as a regular Perl
+script.
+
+There are also some commercial products that may work for
+you, although you have to buy a license for them.
+
+The Perl Dev Kit
+(http://www.activestate.com/Products/Perl_Dev_Kit/) from
+ActiveState can "Turn your Perl programs into ready-to-run
+executables for HP-UX, Linux, Solaris and Windows."
+
+Perl2Exe (http://www.indigostar.com/perl2exe.htm) is a
+command line program for converting perl scripts to
+executable files.  It targets both Windows and unix
+platforms.
+
 
 =head2 How can I compile Perl into Java?
 
