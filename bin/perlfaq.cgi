@@ -20,15 +20,23 @@ it presentable on the web with appropriate links and markup.
 
 =head1 TO DO
 
+* we need an output template.  
+
 * better define allowable characters in the search terms
+
+* i haven't paid to much attention to cross reference linking,
+but i haven't gotten that far.
 
 * figure out what to do with bad requests
 
-* munge the output of perldoc to HTML
+* multiple paragraphs of verbatim text each get their own
+<PRE></PRE>.  i'd like to fix that -- perhaps with a second
+pass at the data.
 
 =head1 BUGS
 
-* none identified
+* I haven't tested the POD -> HTML stuff very well, so i've probably
+missed all sorts of edge cases.
 
 =head1 SEE ALSO
 
@@ -41,6 +49,7 @@ brian d foy <bdfoy@cpan.org>
 =cut
 
 use CGI qw(:cgi -debug);
+use IO::Scalar;
 
 # specify all commands with absolute paths
 $ENV{'PATH'} = '';
@@ -75,45 +84,119 @@ if( $terms =~ m/^([a-zA-Z0-9 ]+)$/ )
 	}
 else
 	{
-	error();
-	exit;
+	error( 'Could not untaint data' );
 	}
 
 print "Content-type: text/html\n\n";
 
-my $text_result = `$PERLDOC $PERLDOC_OPTS $terms 2> /dev/null`;
+# needs error recovery
+open my $pipe, "$PERLDOC $PERLDOC_OPTS $terms 2> /dev/null |"
+	or error( "Could not open pipe to perldoc: $!\n" );
 
-# rudimentary HTML munging -- once this is nice-nice we should 
-# refactor it
+my $parser = MyParser->new();
+error( "Not a parser!" ) unless $parser->isa('Pod::Parser');
 
-# munge headings
-$text_result =~ s|^=head1\s+Found in .*/perlfaq(\d)\.pod$|$links{"perlfaq$1"}|mg;
-$text_result =~ s|^=head2(.*)|<b>$1</b>|mg;
+my $text_result = '';
+my $output = IO::Scalar->new( \$text_result );
 
-# remove trailing whitespace
-$text_result =~ s|\s+$||m;
+$parser->parse_from_filehandle( $pipe, $output );
 
-# wrap PRE tags around sections that start with whitespace
-$text_result =~ s|^([\t ]+\S.*?)$/(?=\S)|\n<pre>\n$1</pre>\n\n|gms;
-
-# munge links
-	# URLs in text flow
-$text_result =~ s|(http://\S+)|<a href="$1">$1</a>|gi;
-$text_result =~ s|L<(.*?)>|<a href="$1">$1</a>|g;
-$text_result =~ s|C<(.*?)>| $links{$1} or "<tt>$1</tt>" |eg;
-
-# remove remaining POD artifacts
-$text_result =~ s|^=over\s+\d+.*$||mg;
-$text_result =~ s|^=back.*$||mg;
-
-#
 print $text_result;
 
 sub error
 	{
+	my $message = shift;
+	
 	print <<"ERROR";
 Content-type: text/html
 
-Put the error message here 
+$message 
 ERROR
+
+	exit;
 	}
+
+# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
+BEGIN {
+package MyParser;
+use Pod::Parser;
+use HTML::Entities;
+
+use base qw(Pod::Parser);
+
+sub _trim { $_[0] =~ s/\s+$// };
+sub _htmlify { HTML::Entities::encode_entities( $_[0] ) }
+
+sub interpolate_and_encode
+	{
+    my($self, $text, $line_num) = @_;
+    my %parse_opts = ( -expand_seq => 'interior_sequence',
+    	-expand_text => sub { my $self = shift;
+    	HTML::Entities::encode_entities( shift ) } );
+    my $ptree = $self->parse_text( \%parse_opts, $text, $line_num );
+    return  join "", $ptree->children();
+	}
+	
+sub command 
+	{ 
+	my( $parser, $command, $paragraph, $line_num ) = @_;
+
+	_trim( $paragraph );
+	_htmlify( $paragraph );
+		
+	my $expansion = '';
+	
+	if( $command =~ m/head(\d)/)
+		{ 
+		my $num = $1 + 1;
+		$expansion = "<h$num>" .  
+			$parser->interpolate_and_encode($paragraph, $line_num) . 
+			"</h$num>\n\n";
+		}
+	
+	my $out_fh = $parser->output_handle();
+	
+	print $out_fh $expansion;
+	}
+
+
+sub verbatim 
+	{ 
+	my( $parser, $paragraph, $line_num ) = @_;
+
+	_trim( $paragraph );
+	_htmlify( $paragraph );
+		
+	my $out_fh = $parser->output_handle();
+
+	print $out_fh "<pre>\n$paragraph\n</pre>\n\n";
+	}
+
+
+sub textblock 
+	{ 
+	my( $parser, $paragraph, $line_num ) = @_;
+
+	_trim( $paragraph );
+		
+	my $out_fh = $parser->output_handle();
+	my $expansion = $parser->interpolate_and_encode($paragraph, $line_num);
+	print $out_fh "<p>\n$expansion\n</p>\n\n";
+	}
+
+
+sub interior_sequence 
+	{ 
+	my( $parser, $command, $argument ) = @_;
+
+	_trim( $argument );
+	_htmlify( $argument );
+		
+	my $out_fh = $parser->output_handle();
+
+	return "<b>$argument</b>"                     if ($command eq 'B');
+	return "<code>$argument</code>"               if ($command eq 'C');
+	return "<i>$argument</i>"                     if ($command eq 'I');
+	return qq|<a href="$argument">$argument</a>|  if ($command eq 'L');
+	}
+}
