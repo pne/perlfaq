@@ -354,7 +354,7 @@ created by Jeffrey Friedl and later modified by Fred Curtis.
 
     $/ = undef;
     $_ = <>;
-    s#/\*[^*]*\*+([^/*][^*]*\*+)*/|("(\\.|[^"\\])*"|'(\\.|[^'\\])*'|.[^/"'\\]*)#$2#gs
+    s#/\*[^*]*\*+([^/*][^*]*\*+)*/|("(\\.|[^"\\])*"|'(\\.|[^'\\])*'|.[^/"'\\]*)#$2#gs;
     print;
 
 This could, of course, be more legibly written with the C</x> modifier, adding
