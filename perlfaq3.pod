@@ -156,7 +156,7 @@ http://www.cpan.org/authors/id/TOMC/scripts/toms.exrc.gz
 
 The a2ps http://www-inf.enst.fr/%7Edemaille/a2ps/black+white.ps does
 lots of things related to generating nicely printed output of
-documents, as does enscript at http://people.ssh.fi/mtr/genscript/.
+documents, as does enscript at http://people.ssh.fi/mtr/genscript/ .
 
 =head2 Is there a ctags for Perl?
 
@@ -644,7 +644,7 @@ you> because the process start-up overhead is where the bottleneck is.
 
 There are two popular ways to avoid this overhead.  One solution
 involves running the Apache HTTP server (available from
-http://www.apache.org/) with either of the mod_perl or mod_fastcgi
+http://www.apache.org/ ) with either of the mod_perl or mod_fastcgi
 plugin modules.
 
 With mod_perl and the Apache::Registry module (distributed with
