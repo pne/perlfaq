@@ -682,7 +682,7 @@ construct like this:
 
 Here's a simple example of a switch based on pattern matching, this
 time lined up in a way to make it look more like a switch statement.
-We'll do a multi-way conditional based on the type of reference stored
+We'll do a multiway conditional based on the type of reference stored
 in $whatchamacallit:
 
     SWITCH: for (ref $whatchamacallit) {

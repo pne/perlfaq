@@ -194,7 +194,7 @@ properties of bitwise xor on ASCII strings.
 
     print;
 
-And here it is as a subroutine, modelled after the above:
+And here it is as a subroutine, modeled after the above:
 
     sub preserve_case($$) {
 	my ($old, $new) = @_;
@@ -387,8 +387,8 @@ Historically, Perl regular expressions were not capable of matching
 balanced text.  As of more recent versions of perl including 5.6.1
 experimental features have been added that make it possible to do this.
 Look at the documentation for the (??{ }) construct in recent perlre manual
-pages to see an example of matching balanced parenthesis.  Be sure to take
-specal notice of the  warnings present in the manual before making use
+pages to see an example of matching balanced parentheses.  Be sure to take
+special notice of the  warnings present in the manual before making use
 of this feature.
 
 CPAN contains many modules that can be useful for matching text

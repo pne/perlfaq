@@ -487,7 +487,7 @@ Or you might be able use the CPAN module Mail::Mailer:
 The Mail::Internet module uses Net::SMTP which is less Unix-centric than
 Mail::Mailer, but less reliable.  Avoid raw SMTP commands.  There
 are many reasons to use a mail transport agent like sendmail.  These
-include queueing, MX records, and security.
+include queuing, MX records, and security.
 
 =head2 How do I use MIME to make an attachment to a mail message?
 
