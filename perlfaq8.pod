@@ -620,6 +620,68 @@ With system(), both STDOUT and STDERR will go the same place as the
 script's STDOUT and STDERR, unless the system() command redirects them.
 Backticks and open() read B<only> the STDOUT of your command.
 
+You can also use the open3() function from IPC::Open3.  Benjamin
+Goldberg provides some sample code:
+
+To capture a program's STDOUT, but discard it's STDERR:
+
+    use IPC::Open3;
+    use File::Spec;
+    use Symbol qw(gensym);
+    open(NULL, ">", File::Spec->devnull);
+    my $pid = open3(gensym, \*PH, ">&NULL", "cmd");
+    while( <PH> ) { }
+    waitpid($pid, 0);
+
+To capture a program's STDERR, but discard it's STDOUT:
+
+    use IPC::Open3;
+    use File::Spec;
+    use Symbol qw(gensym);
+    open(NULL, ">", File::Spec->devnull);
+    my $pid = open3(gensym, ">&NULL", \*PH, "cmd");
+    while( <PH> ) { }
+    waitpid($pid, 0);
+
+To capture a program's STDERR, and let it's STDOUT go to our own STDERR:
+
+    use IPC::Open3;
+    use Symbol qw(gensym);
+    my $pid = open3(gensym, ">&STDERR", \*PH, "cmd");
+    while( <PH> ) { }
+    waitpid($pid, 0);
+
+To read both a command's STDOUT and its STDERR separately, you can
+redirect them to temp files, let the command run, then read the temp
+files:
+
+    use IPC::Open3;
+    use Symbol qw(gensym);
+    use IO::File;
+    local *CATCHOUT = IO::File->new_tempfile;
+    local *CATCHERR = IO::File->new_tempfile;
+    my $pid = open3(gensym, ">&CATCHOUT", ">&CATCHERR", "cmd");
+    waitpid($pid, 0);
+    seek $_, 0, 0 for \*CATCHOUT, \*CATCHERR;
+    while( <CATCHOUT> ) {}
+    while( <CATCHERR> ) {}
+
+But there's no real need for *both* to be tempfiles... the following
+should work just as well, without deadlocking:
+
+    use IPC::Open3;
+    use Symbol qw(gensym);
+    use IO::File;
+    local *CATCHERR = IO::File->new_tempfile;
+    my $pid = open3(gensym, \*CATCHOUT, ">&CATCHERR", "cmd");
+    while( <CATCHOUT> ) {}
+    waitpid($pid, 0);
+    seek CATCHERR, 0, 0;
+    while( <CATCHERR> ) {}
+
+And it'll be faster, too, since we can begin processing the program's
+stdout immediately, rather than waiting for the program to finish.
+
 With any of these, you can change file descriptors before the call:
 
     open(STDOUT, ">logfile");
@@ -744,11 +806,20 @@ processing may take place, whereas backticks do not.
 
 =head2 How can I call backticks without shell processing?
 
-This is a bit tricky.  Instead of writing
+This is a bit tricky.  You can't simply write the command
+like this:
 
     @ok = `grep @opts '$search_string' @filenames`;
 
-You have to do this:
+As of Perl 5.8.0, you can use open() with multiple arguments.
+Just like the list forms of system() and exec(), no shell
+escapes happen.
+
+   open( GREP, "-|", 'grep', @opts, $search_string, @filenames );
+   chomp(@ok = <GREP>);
+   close GREP;
+
+You can also:
 
     my @ok = ();
     if (open(GREP, "-|")) {
@@ -764,12 +835,9 @@ You have to do this:
 Just as with system(), no shell escapes happen when you exec() a list.
 Further examples of this can be found in L<perlipc/"Safe Pipe Opens">.
 
-Note that if you're stuck on Microsoft, no solution to this vexing issue
+Note that if you're use Microsoft, no solution to this vexing issue
 is even possible.  Even if Perl were to emulate fork(), you'd still
-be hosed, because Microsoft gives no argc/argv-style API.  Their API
-always reparses from a single string, which is fundamentally wrong,
-but you're not likely to get the Gods of Redmond to acknowledge this
-and fix it for you.
+be stuck, because Microsoft does not have a argc/argv-style API.
 
 =head2 Why can't my script read from STDIN after I gave it EOF (^D on Unix, ^Z on MS-DOS)?
 
@@ -945,6 +1013,9 @@ handler, as documented in L<perlipc/"Signals"> and the section on
 ``Signals'' in the Camel.  You may instead use the more flexible
 Sys::AlarmCall module available from CPAN.
 
+The alarm() function is not implemented on all versions of Windows.
+Check the documentation for your specific version of Perl.
+
 =head2 How do I set CPU limits?
 
 Use the BSD::Resource module from CPAN.
@@ -953,7 +1024,7 @@ Use the BSD::Resource module from CPAN.
 
 Use the reaper code from L<perlipc/"Signals"> to call wait() when a
 SIGCHLD is received, or else use the double-fork technique described
-in L<perlfunc/fork>.
+in L<perlfaq8/"How do I start a process in the background?">.
 
 =head2 How do I use an SQL database?
 
