@@ -407,8 +407,8 @@ no 32k limit).
 
 =item Affrus
 
-is a full Perl development enivornment with full debugger support (
-http://www.latenightsw.com ).
+is a full Perl development enivornment with full debugger support 
+( http://www.latenightsw.com ).
 
 =item Alpha
 
@@ -929,8 +929,7 @@ L<perlguts>.  Don't forget that you can learn a lot from looking at
 how the authors of existing extension modules wrote their code and
 solved their problems.
 
-=head2 I've read perlembed, perlguts, etc., but I can't embed perl in
-my C program; what am I doing wrong?
+=head2 I've read perlembed, perlguts, etc., but I can't embed perl in my C program; what am I doing wrong?
 
 Download the ExtUtils::Embed kit from CPAN and run `make test'.  If
 the tests pass, read the pods again and again and again.  If they
