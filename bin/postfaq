@@ -1,82 +1,63 @@
-#!/usr/bin/perl
-
+#!/usr/bin/perl -w
 use strict;
-use warnings;
-use File::CounterFile;
-use Mail::Mailer;
 
-my $dir = "$ENV{HOME}/faqs";
-my $counterfile = "$dir/counter";
-my $holdfile    = "$dir/hold_at_zero";
-my $newsgroup = "comp.lang.perl.misc";
-my @faq = <$dir/perlfaq*.txt>;
+use Net::NNTP;
+use Text::Template;
 
-my $c = new File::CounterFile $counterfile;
+my $newsgroup = "alt.test";
+my $email     = 'comdog@panix.com';
+my $dir       = '/home/brian/Dev/perlfaq/faqs';
 
-$c->lock;
-my $v = $c->value();
-my $i = $v % @faq;
+my $template = do { local $/; <DATA> };
 
-if ($i == 0 and -f $holdfile) {
-    send_warning();
-    exit 1;
-} 
+my @files = glob( "$dir/perlfaq*.txt" );
 
-open(F, ">>$holdfile") or die "$0: can't open flag file: $!";
-close(F);
+my $file = $files[rand @files];
+my( $major, $minor ) = $file =~ m/perlfaq.0?(\d).0?(\d+)/g;
 
-$c->inc();
-$c->unlock;
+open my $fh, "$file" or die "Could not open FAQ $file: $!";
+my $subject = <$fh>;
+my @body    = <$fh>;
+$subject =~ s/^\s+|\s+$//g;
 
-my $name = $faq[$i];
-my ($major, $minor) = ($name =~ /(\d+)\.(\d+)/);
-open F, "$name" or die "can't open $name: $!";
-my @text = <F>;
+close $fh;
 
-my $subject = $text[0];
-chomp $subject;
-$subject =~ s/^\s+//;
+my $message = Text::Template::fill_in_string( $template, HASH =>
+	{
+	subject  => $subject,
+	body     => join( '', @body ),
+	major    => $major,
+	minor    => $minor,
+	} );
+	
+my @message = map { "$_\n" } split /\n/, $message;
 
-while (<DATA>) {
-    last if /^=BREAK/;
-    s/(\$\w+)/eval $1/eg;
-    print $_;
-} 
-print @text;
-while (<DATA>) {
-    s/(\$\w+)/eval $1/eg;
-    print $_;
-} 
+my @header = (
+	"Newsgroups: $newsgroup\n",
+	"Subject: FAQ: $subject\n",
+	"From: PerlFAQ Server <$email>\n",
+	);
 
-sub send_warning {
-    my $mailer = new Mail::Mailer;
-    $mailer->open({
-	To      => 'faq@denver.pm.org',
-	From    => 'PerlFAQ Server <faq@denver.pm.org>',
-	Subject => 'Holding at Zero',
-    });
+my $nntp = Net::NNTP->new("news.panix.com", DEBUG => 1);
+$nntp->authinfo( @ENV{ qw(NNTP_USER NNTP_PASS) } );
 
-    print $mailer
-	"PerlFAQ Server is holding for clearance before starting\n".
-	"new cycle\n";
+$nntp->postok()                   or die "Posting not allowed \n";
+$nntp->post( @header, "\n", @message );
+$nntp->quit;
 
-} 
 __END__
-From: PerlFAQ Server <faq@denver.pm.org>
-Newsgroups: $newsgroup
-Subject: FAQ: $subject
-Reply-To: PerlFAQ Server <faq@denver.pm.org>
-Mail-Copies-To: faq@denver.pm.org
-
 This message is one of several periodic postings to comp.lang.perl.misc
 intended to make it easier for perl programmers to find answers to
 common questions. The core of this message represents an excerpt
-from the documentation provided with every Standard Distribution of
-Perl.
+from the documentation provided with Perl.
 
-+
-=BREAK
-- 
+--------------------------------------------------------------------
+
+{ "$major.$minor: $subject" }
+
+{ $body }
+
+--------------------------------------------------------------------
 
 Documents such as this have been called "Answers to Frequently
 Asked Questions" or FAQ for short.  They represent an important
@@ -89,13 +70,6 @@ to ignore them or add the sender to your killfile.  If you find
 errors or other problems with these postings please send corrections
 or comments to the posting email address or to the maintainers as
 directed in the perlfaq manual page.
-
-Answers to questions about LOTS of stuff, mostly not related to
-Perl, can be found by pointing your news client to
-
-    news:news.answers
-
-or to the many thousands of other useful Usenet news groups.
 
 Note that the FAQ text posted by this server may have been modified
 from that distributed in the stable Perl release.  It may have been
@@ -113,5 +87,3 @@ The perlfaq manual page contains the following copyright notice.
 This posting is provided in the hope that it will be useful but
 does not represent a commitment or contract of any kind on the part
 of the contributers, authors or their agents.
-
-                                                           $major.$minor
