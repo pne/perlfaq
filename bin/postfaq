@@ -1,28 +1,141 @@
 #!/usr/bin/perl -w
 use strict;
 
+=head1 NAME
+
+postfaq - post a portion of the perlfaq to a newsgroup
+
+=head1 SYNOPSIS
+
+postfaq [configfile]
+
+=head1 DESCRIPTION
+
+XXX: stuff goes here
+
+=head2 Configuration
+
+This script uses these configuration directives:
+
+	SERVER           the news server to post to
+	GROUP            the group to post to
+	EMAIL            the email address to use in the From field
+	FAQ_DIR          the directory with split files (from splitfaq)
+	POST_TEMPLATE    the Text::Template file to use
+	NNTP_USER        the NNTP user (if needed)
+	NNTP_PASS        the NNTP password (if needed)
+
+This is a sample configuration file:
+
+	SERVER news.example.com
+	GROUP alt.test
+	EMAIL joe@example.com
+	FAQ_DIR /path/to/splits
+	POST_TEMPLATE /path/to/template
+	
+The script checks the file specified on the command line first.
+If you do not specify a file, it looks in the environment variable
+POSTFAQ_CONFIG, and finally for ~/.postfaqrc.  It uses the first
+configuration filename it finds.
+
+If the file does not exist, is not a plain file, and is not 
+readable, the script dies.
+		
+=head2 Post template
+
+The post template, specified in the POST_TEMPLATE configuration
+directive, is a Text::Template file.  The script makes available
+the following variables:
+
+	$subject   the question line of the faq 
+	$body      the answer to the question
+	$major     the section of the perlfaq,  (N in perlfaqN.pod)
+	$minor     the number of the answer within the file
+
+If the template file does not exist, is not a plain file, and is not 
+readable, the script dies.
+
+=head2 Errors
+
+On any error, the script dies.  It looks for various files, and if
+it does not find them, stops the script.
+
+=head1 TO DO
+
+* check the configuration info for all of the necessary pieces
+before we start work.
+
+* don't print error messages in non-interactive sessions
+
+* finish the docs :)
+
+=head1 BUGS
+
+* none identified yet.
+
+=head1 SEE ALSO
+
+L<Text::Template>, the splitfaq script in the perlfaq repository
+
+=head1 AUTHOR
+
+brian d foy, bdfoy@cpan.org
+
+=head1 COPYRIGHT
+
+Copyright 2002, brian d foy
+
+You may use and redistribute this under the same terms as
+Perl itself.
+
+=cut
+
+use ConfigReader::Simple;
+use File::Spec;
 use Net::NNTP;
 use Text::Template;
 
-my $newsgroup = "alt.test";
-my $email     = 'comdog@panix.com';
-my $dir       = '/home/brian/Dev/perlfaq/faqs';
+my $config_file = $ARGV[0] || $ENV{POSTFAQ_CONFIG} || 
+	File::Spec->catfile( $ENV{HOME}, ".postfaqrc");
+die "Could not open config file [$config_file]"
+	unless -e $config_file && -f _ && -r _;
+	
+die "Could not open configuration file [$config_file]"
+	unless -e $config_file && -f _ && -r _;
+	
+my $config    = ConfigReader::Simple->new( $config_file );
+die "Could not parse config file!" unless 
+	UNIVERSAL::isa( $config, 'ConfigReader::Simple' );
 
-my $template = do { local $/; <DATA> };
+my $server    = $config->SERVER;	
+my $newsgroup = $config->GROUP;
+my $email     = $config->EMAIL;
 
-my @files = glob( "$dir/perlfaq*.txt" );
+my $dir       = $config->FAQ_DIR;
+die "Could not open faq_dir [$dir]"
+	unless -e $dir && -d _ && -r _;
+
+my $template  = $config->POST_TEMPLATE;
+die "Could not open template [$template]"
+	unless -e $template && -f _ && -r _;
+	
+my $nntp_user = $config->NNTP_USER;
+my $nntp_pass = $config->NNTP_PASS;
+my $needs_auth = defined $nntp_user || defined $nntp_pass;
+
+my @files = glob( File::Spec->catfile( $dir, "perlfaq*.txt" ) );
 
 my $file = $files[rand @files];
-my( $major, $minor ) = $file =~ m/perlfaq.0?(\d).0?(\d+)/g;
+my( $major, $minor ) = $file =~ m/perlfaq.0?([1-9]).0?(\d+)/g;
 
-open my $fh, "$file" or die "Could not open FAQ $file: $!";
+open my $fh, $file or die "Could not open FAQ $file: $!";
 my $subject = <$fh>;
 my @body    = <$fh>;
 $subject =~ s/^\s+|\s+$//g;
 
 close $fh;
 
-my $message = Text::Template::fill_in_string( $template, HASH =>
+my $message = Text::Template::fill_in_file( $template, HASH =>
 	{
 	subject  => $subject,
 	body     => join( '', @body ),
@@ -30,7 +143,7 @@ my $message = Text::Template::fill_in_string( $template, HASH =>
 	minor    => $minor,
 	} );
 	
-my @message = map { "$_\n" } split /\n/, $message;
+my @message = split /$/m, $message;
 
 my @header = (
 	"Newsgroups: $newsgroup\n",
@@ -38,52 +151,11 @@ my @header = (
 	"From: PerlFAQ Server <$email>\n",
 	);
 
-my $nntp = Net::NNTP->new("news.panix.com", DEBUG => 1);
-$nntp->authinfo( @ENV{ qw(NNTP_USER NNTP_PASS) } );
+my $nntp = Net::NNTP->new( $server );
+$nntp->authinfo( $nntp_user, $nntp_pass ) if $needs_auth;
 
-$nntp->postok()                   or die "Posting not allowed \n";
+$nntp->postok() or die "Posting not allowed \n";
+
 $nntp->post( @header, "\n", @message );
+
 $nntp->quit;
-
-__END__
-This message is one of several periodic postings to comp.lang.perl.misc
-intended to make it easier for perl programmers to find answers to
-common questions. The core of this message represents an excerpt
-from the documentation provided with Perl.
-
---------------------------------------------------------------------
-
-{ "$major.$minor: $subject" }
-
-{ $body }
-
---------------------------------------------------------------------
-
-Documents such as this have been called "Answers to Frequently
-Asked Questions" or FAQ for short.  They represent an important
-part of the Usenet tradition.  They serve to reduce the volume of
-redundant traffic on a news group by providing quality answers to
-questions that keep coming up.
-
-If you are some how irritated by seeing these postings you are free
-to ignore them or add the sender to your killfile.  If you find
-errors or other problems with these postings please send corrections
-or comments to the posting email address or to the maintainers as
-directed in the perlfaq manual page.
-
-Note that the FAQ text posted by this server may have been modified
-from that distributed in the stable Perl release.  It may have been
-edited to reflect the additions, changes and corrections provided
-by respondents, reviewers, and critics to previous postings of
-these FAQ. Complete text of these FAQ are available on request.
-
-The perlfaq manual page contains the following copyright notice.
-
-  AUTHOR AND COPYRIGHT
-
-    Copyright (c) 1997-1999 Tom Christiansen and Nathan
-    Torkington.  All rights reserved.
-
-This posting is provided in the hope that it will be useful but
-does not represent a commitment or contract of any kind on the part
-of the contributers, authors or their agents.
