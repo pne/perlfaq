@@ -556,7 +556,10 @@ syscall(), you can use the syscall function (documented in
 L<perlfunc>).
 
 Remember to check the modules that came with your distribution, and
-CPAN as well--someone may already have written a module to do it.
+CPAN as well---someone may already have written a module to do it. On
+Windows, try Win32::API.  On Macs, try Mac::Carbon.  If no module
+has an interface to the C function, you can inline a bit of C in your
+Perl source with Inline::C.
 
 =head2 Where do I get the include files to do ioctl() or syscall()?
 
@@ -1176,7 +1179,7 @@ but other times it is not.  Modern programs C<use Socket;> instead.
 
 =head1 AUTHOR AND COPYRIGHT
 
-Copyright (c) 1997-2002 Tom Christiansen and Nathan Torkington.
+Copyright (c) 1997-2003 Tom Christiansen and Nathan Torkington.
 All rights reserved.
 
 This documentation is free; you can redistribute it and/or modify it
