@@ -623,7 +623,7 @@ Backticks and open() read B<only> the STDOUT of your command.
 You can also use the open3() function from IPC::Open3.  Benjamin
 Goldberg provides some sample code:
 
-To capture a program's STDOUT, but discard it's STDERR:
+To capture a program's STDOUT, but discard its STDERR:
 
     use IPC::Open3;
     use File::Spec;
@@ -633,7 +633,7 @@ To capture a program's STDOUT, but discard it's STDERR:
     while( <PH> ) { }
     waitpid($pid, 0);
 
-To capture a program's STDERR, but discard it's STDOUT:
+To capture a program's STDERR, but discard its STDOUT:
 
     use IPC::Open3;
     use File::Spec;
@@ -643,7 +643,7 @@ To capture a program's STDERR, but discard it's STDOUT:
     while( <PH> ) { }
     waitpid($pid, 0);
 
-To capture a program's STDERR, and let it's STDOUT go to our own STDERR:
+To capture a program's STDERR, and let its STDOUT go to our own STDERR:
 
     use IPC::Open3;
     use Symbol qw(gensym);
