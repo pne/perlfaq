@@ -75,7 +75,7 @@ Where can I get a list of Larry Wall witticisms?
 
 =item *
 
-How can I convince my sysadmin/supervisor/employees to use version 5/5.005/Perl instead of some other language?
+How can I convince my sysadmin/supervisor/employees to use version 5/5.6.1/Perl instead of some other language?
 
 =back
 
