@@ -213,7 +213,7 @@ but encourages closures.
 Here's a classic function-generating function:
 
     sub add_function_generator {
-      return sub { shift + shift };
+      return sub { shift() + shift() };
     }
 
     $add_sub = add_function_generator();
@@ -232,7 +232,7 @@ value that the lexical had when the function was created.
 
     sub make_adder {
         my $addpiece = shift;
-        return sub { shift + $addpiece };
+        return sub { shift() + $addpiece };
     }
 
     $f1 = make_adder(20);
