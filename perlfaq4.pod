@@ -449,58 +449,60 @@ modules.  (Thanks to David Cassell for most of this text.)
 
 =head2 How do I find yesterday's date?
 
-The C<time()> function returns the current time in seconds since the
-epoch.  Take twenty-four hours off that:
+If you only need to find the date (and not the same time), you
+can use the Date::Calc module.
 
-    $yesterday = time() - ( 24 * 60 * 60 );
+	use Date::Calc qw(Today Add_Delta_Days);
+	
+	my @date = Add_Delta_Days( Today(), -1 );
+	
+	print "@date\n";
 
-Then you can pass this to C<localtime()> and get the individual year,
-month, day, hour, minute, seconds values.
-
-Note very carefully that the code above assumes that your days are
-twenty-four hours each.  For most people, there are two days a year
-when they aren't: the switch to and from summer time throws this off.
-A solution to this issue is offered by Russ Allbery.
+Most people try to use the time rather than the calendar to
+figure out dates, but that assumes that your days are
+twenty-four hours each.  For most people, there are two days
+a year when they aren't: the switch to and from summer time
+throws this off. Russ Allbery offers this solution.
 
     sub yesterday {
-	my $now  = defined $_[0] ? $_[0] : time;
-	my $then = $now - 60 * 60 * 24;
-	my $ndst = (localtime $now)[8] > 0;
-	my $tdst = (localtime $then)[8] > 0;
-	$then - ($tdst - $ndst) * 60 * 60;
-    }
-    # Should give you "this time yesterday" in seconds since epoch relative to
-    # the first argument or the current time if no argument is given and
-    # suitable for passing to localtime or whatever else you need to do with
-    # it.  $ndst is whether we're currently in daylight savings time; $tdst is
-    # whether the point 24 hours ago was in daylight savings time.  If $tdst
-    # and $ndst are the same, a boundary wasn't crossed, and the correction
-    # will subtract 0.  If $tdst is 1 and $ndst is 0, subtract an hour more
-    # from yesterday's time since we gained an extra hour while going off
-    # daylight savings time.  If $tdst is 0 and $ndst is 1, subtract a
-    # negative hour (add an hour) to yesterday's time since we lost an hour.
-    #
-    # All of this is because during those days when one switches off or onto
-    # DST, a "day" isn't 24 hours long; it's either 23 or 25.
-    #
-    # The explicit settings of $ndst and $tdst are necessary because localtime
-    # only says it returns the system tm struct, and the system tm struct at
-    # least on Solaris doesn't guarantee any particular positive value (like,
-    # say, 1) for isdst, just a positive value.  And that value can
-    # potentially be negative, if DST information isn't available (this sub
-    # just treats those cases like no DST).
-    #
-    # Note that between 2am and 3am on the day after the time zone switches
-    # off daylight savings time, the exact hour of "yesterday" corresponding
-    # to the current hour is not clearly defined.  Note also that if used
-    # between 2am and 3am the day after the change to daylight savings time,
-    # the result will be between 3am and 4am of the previous day; it's
-    # arguable whether this is correct.
-    #
-    # This sub does not attempt to deal with leap seconds (most things don't).
-    #
-    # Copyright relinquished 1999 by Russ Allbery <rra@stanford.edu>
-    # This code is in the public domain
+		my $now  = defined $_[0] ? $_[0] : time;
+		my $then = $now - 60 * 60 * 24;
+		my $ndst = (localtime $now)[8] > 0;
+		my $tdst = (localtime $then)[8] > 0;
+		$then - ($tdst - $ndst) * 60 * 60;
+		}
+		
+Should give you "this time yesterday" in seconds since epoch relative to
+the first argument or the current time if no argument is given and
+suitable for passing to localtime or whatever else you need to do with
+it.  $ndst is whether we're currently in daylight savings time; $tdst is
+whether the point 24 hours ago was in daylight savings time.  If $tdst
+and $ndst are the same, a boundary wasn't crossed, and the correction
+will subtract 0.  If $tdst is 1 and $ndst is 0, subtract an hour more
+from yesterday's time since we gained an extra hour while going off
+daylight savings time.  If $tdst is 0 and $ndst is 1, subtract a
+negative hour (add an hour) to yesterday's time since we lost an hour.
+
+All of this is because during those days when one switches off or onto
+DST, a "day" isn't 24 hours long; it's either 23 or 25.
+
+The explicit settings of $ndst and $tdst are necessary because localtime
+only says it returns the system tm struct, and the system tm struct at
+least on Solaris doesn't guarantee any particular positive value (like,
+say, 1) for isdst, just a positive value.  And that value can
+potentially be negative, if DST information isn't available (this sub
+just treats those cases like no DST).
+
+Note that between 2am and 3am on the day after the time zone switches
+off daylight savings time, the exact hour of "yesterday" corresponding
+to the current hour is not clearly defined.  Note also that if used
+between 2am and 3am the day after the change to daylight savings time,
+the result will be between 3am and 4am of the previous day; it's
+arguable whether this is correct.
+
+This sub does not attempt to deal with leap seconds (most things don't).
+
+
 
 =head2 Does Perl have a Year 2000 problem?  Is Perl Y2K compliant?
 
