@@ -480,23 +480,33 @@ L<perlsub/"Temporary Values via local()"> for excruciating details.
 
 =head2 How can I access a dynamic variable while a similarly named lexical is in scope?
 
-You can do this via symbolic references, provided you haven't set
-C<use strict "refs">.  So instead of $var, use C<${'var'}>.
-
-    local $var = "global";
-    my    $var = "lexical";
-
-    print "lexical is $var\n";
-
-    no strict 'refs';
-    print "global  is ${'var'}\n";
-
 If you know your package, you can just mention it explicitly, as in
-$Some_Pack::var.  Note that the notation $::var is I<not> the dynamic
-$var in the current package, but rather the one in the C<main>
-package, as though you had written $main::var.  Specifying the package
-directly makes you hard-code its name, but it executes faster and
-avoids running afoul of C<use strict "refs">.
+$Some_Pack::var. Note that the notation $::var is B<not> the dynamic $var
+in the current package, but rather the one in the "main" package, as
+though you had written $main::var.
+
+	use vars '$var';
+	local $var = "global";
+	my    $var = "lexical";
+
+	print "lexical is $var\n";
+	print "global  is $main::var\n";
+
+Alternatively you can use the compiler directive our() to bring a
+dynamic variable into the current lexical scope.
+
+	require 5.006; # our() did not exist before 5.6
+	use vars '$var';
+
+	local $var = "global";
+	my $var    = "lexical";
+
+	print "lexical is $var\n";
+
+	{
+	  our $var;
+	  print "global  is $var\n";
+	}
 
 =head2 What's the difference between deep and shallow binding?
 
