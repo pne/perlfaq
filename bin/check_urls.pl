@@ -33,7 +33,7 @@ should be errors, and temporary ones shouldn't
 
 =head1 BUGS
 
-* none known (yet)
+* can't handle groups.google.com
 
 =head1 SEE ALSO
 
@@ -52,7 +52,10 @@ HTTP::SimpleLinkChecker::user_agent()->timeout(15);
 
 my $DEBUG   = 0;
 my $VERBOSE = 1;
-
+my %Skip = map { $_, 1 } qw(
+	http://groups.google.com/groups?group=comp.lang.perl.misc
+	);
+	
 print "ARGV is [@ARGV]\n" if $DEBUG;
 
 foreach my $file ( @ARGV )
@@ -86,10 +89,16 @@ foreach my $key ( sort keys %urls )
 	
 	print "\n======$key\n" if $VERBOSE;
 
-	foreach my $url ( @{$urls{$key}} )
+	LINK: foreach my $url ( @{$urls{$key}} )
 		{		
+		if( exists $Skip{$url} and $VERBOSE )
+			{
+			print "---\t$url\n\t--->Skipping\n" if $VERBOSE;
+			next LINK;
+			}
+			
 		my $code = $seen{$url} || HTTP::SimpleLinkChecker::check_link( $url );
-		
+			
 		if( $VERBOSE )
 			{
 			print "$code\t$url\n";
