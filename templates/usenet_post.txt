@@ -1,0 +1,41 @@
+This message is one of several periodic postings to comp.lang.perl.misc
+intended to make it easier for perl programmers to find answers to
+common questions. The core of this message represents an excerpt
+from the documentation provided with Perl.
+
+--------------------------------------------------------------------
+
+{ "$major.$minor: $subject" }
+
+{ $body }
+
+--------------------------------------------------------------------
+
+Documents such as this have been called "Answers to Frequently
+Asked Questions" or FAQ for short.  They represent an important
+part of the Usenet tradition.  They serve to reduce the volume of
+redundant traffic on a news group by providing quality answers to
+questions that keep coming up.
+
+If you are some how irritated by seeing these postings you are free
+to ignore them or add the sender to your killfile.  If you find
+errors or other problems with these postings please send corrections
+or comments to the posting email address or to the maintainers as
+directed in the perlfaq manual page.
+
+Note that the FAQ text posted by this server may have been modified
+from that distributed in the stable Perl release.  It may have been
+edited to reflect the additions, changes and corrections provided
+by respondents, reviewers, and critics to previous postings of
+these FAQ. Complete text of these FAQ are available on request.
+
+The perlfaq manual page contains the following copyright notice.
+
+  AUTHOR AND COPYRIGHT
+
+    Copyright (c) 1997-1999 Tom Christiansen and Nathan
+    Torkington.  All rights reserved.
+
+This posting is provided in the hope that it will be useful but
+does not represent a commitment or contract of any kind on the part
+of the contributers, authors or their agents.
