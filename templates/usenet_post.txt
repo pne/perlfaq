@@ -34,7 +34,8 @@ The perlfaq manual page contains the following copyright notice.
   AUTHOR AND COPYRIGHT
 
     Copyright (c) 1997-2002 Tom Christiansen and Nathan
-    Torkington.  All rights reserved.
+    Torkington, and other contributors as noted. All rights 
+    reserved.
 
 This posting is provided in the hope that it will be useful but
 does not represent a commitment or contract of any kind on the part
