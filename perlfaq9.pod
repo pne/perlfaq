@@ -384,6 +384,14 @@ can have problems, because there are deliverable addresses that aren't
 RFC-822 (the mail header standard) compliant, and addresses that aren't
 deliverable which are compliant.
 
+You can use the Email::Valid or RFC::RFC822::Address which check
+the format of the address, although they cannot actually tell you
+if it is a deliverable address (i.e. that mail to the address
+will not bounce).  Modules like Mail::CheckUser and Mail::EXPN
+try to interact with the domain name system or particular
+mail servers to learn even more, but their methods do not
+work everywhere---especially for security conscious administrators.
+
 Many are tempted to try to eliminate many frequently-invalid
 mail addresses with a simple regex, such as
 C</^[\w.-]+\@(?:[\w-]+\.)+\w+$/>.  It's a very bad idea.  However,
