@@ -507,6 +507,15 @@ Use Text::Wrap (part of the standard Perl distribution):
 The paragraphs you give to Text::Wrap should not contain embedded
 newlines.  Text::Wrap doesn't justify the lines (flush-right).
 
+Or use the CPAN module Text::Autoformat.  Formatting files can be easily
+done by making a shell alias, like so:
+
+    alias fmt="perl -i -MText::Autoformat -n0777 \
+        -e 'print autoformat $_, {all=>1}' $*"
+
+See the documentation for Text::Autoformat to appreciate its many
+capabilities.
+
 =head2 How can I access/change the first N letters of a string?
 
 There are many ways.  If you just want to grab a copy, use
