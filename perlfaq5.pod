@@ -39,7 +39,7 @@ per-filehandle variables.
     $| = 1;
     select($old_fh);
 
-Some idioms can handle this is a single statement:
+Some idioms can handle this in a single statement:
 
     select((select(OUTPUT_HANDLE), $| = 1)[0]);
     
@@ -47,7 +47,7 @@ Some idioms can handle this is a single statement:
 
 Some modules offer object-oriented access to handles and their
 variables, although they may be overkill if this is the only
-thin you do with them.  You can use IO::Handle:
+thing you do with them.  You can use IO::Handle:
 
     use IO::Handle;
     open(DEV, ">/dev/printer");   # but is this?
