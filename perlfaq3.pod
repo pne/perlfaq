@@ -164,9 +164,13 @@ related to generating nicely printed output of documents.
 
 =head2 Is there a ctags for Perl?
 
-There's a simple one at
+Recent versions of ctags do much more than older versions did.
+EXUBERANT CTAGS is available from http://ctags.sourceforge.net/
+and does a good job of making tags files for perl code.
+
+There is also a simple one at
 http://www.perl.com/CPAN/authors/id/TOMC/scripts/ptags.gz which may do
-the trick.  And if not, it's easy to hack into what you want.
+the trick.  It can be easy to hack this into what you want.
 
 =head2 Is there an IDE or Windows Perl Editor?
 
