@@ -90,7 +90,7 @@ architecture.
 
 =head2 What modules and extensions are available for Perl?  What is CPAN?  What does CPAN/src/... mean?
 
-CPAN stands for Comprehensive Perl Archive Network, a ~700mb archive
+CPAN stands for Comprehensive Perl Archive Network, a ~1.2Gb archive
 replicated on nearly 200 machines all over the world.  CPAN contains
 source code, non-native ports, documentation, scripts, and many
 third-party modules and extensions, designed for everything from
