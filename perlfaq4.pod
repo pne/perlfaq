@@ -975,7 +975,7 @@ in the indentation.
             would deliver us. You are a liar, Saruman, and a corrupter
             of men's hearts.  --Theoden in /usr/src/perl/taint.c
         FINIS
-    $quote =~ s/\s*--/\n--/;
+    $quote =~ s/\s+--/\n--/;
 
 A nice general-purpose fixer-upper function for indented here documents
 follows.  It expects to be called with a here document as its argument.
