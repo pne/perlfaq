@@ -346,7 +346,12 @@ passwd(1), for example).
 
 =head2 How do I start a process in the background?
 
-You could use
+Several modules can start other processes that do not block
+your Perl program.  You can use IPC::Open3, Parallel::Jobs,
+IPC::Run, and some of the POE modules.  See CPAN for more
+details.
+
+You could also use
 
     system("cmd &")
 
