@@ -921,7 +921,7 @@ information, see L<ExtUtils::MakeMaker>.
 
 =head1 AUTHOR AND COPYRIGHT
 
-Copyright (c) 1997-1999 Tom Christiansen and Nathan Torkington.
+Copyright (c) 1997-2002 Tom Christiansen and Nathan Torkington.
 All rights reserved.
 
 This documentation is free; you can redistribute it and/or modify it

@@ -1327,7 +1327,7 @@ Perl Porters.
 
 =head1 Author and Copyright Information
 
-Copyright (c) 1997-1999 Tom Christiansen and Nathan Torkington.
+Copyright (c) 1997-2002 Tom Christiansen and Nathan Torkington.
 All rights reserved.
 
 =head2 Bundled Distributions
