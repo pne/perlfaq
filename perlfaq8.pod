@@ -375,9 +375,25 @@ not an issue with C<system("cmd&")>.
 
 =item Zombies
 
-You have to be prepared to "reap" the child process when it finishes
+You have to be prepared to "reap" the child process when it finishes.
 
     $SIG{CHLD} = sub { wait };
+    
+    $SIG{CHLD} = 'IGNORE';
+    
+You can also use a double fork. You immediately wait() for your 
+first child, and the init daemon will wait() for your grandchild once 
+it exits.
+
+	unless ($pid = fork) {
+		unless (fork) {
+            exec "what you really wanna do";
+            die "exec failed!";
+        	}
+        exit 0;
+    	}
+    waitpid($pid,0);
+
 
 See L<perlipc/"Signals"> for other examples of code to do this.
 Zombies are not an issue with C<system("prog &")>.
