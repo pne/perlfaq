@@ -49,18 +49,17 @@ See L<perlop/"Floating-point Arithmetic">.
 
 =head2 Why isn't my octal data interpreted correctly?
 
-Perl only understands octal and hex numbers as such when they occur
-as literals in your program.  Octal literals in perl must start with 
-a leading "0" and hexadecimal literals must start with a leading "0x".
-If they are read in from somewhere and assigned, no automatic 
-conversion takes place.  You must explicitly use oct() or hex() if you 
-want the values converted to decimal.  oct() interprets
-both hex ("0x350") numbers and octal ones ("0350" or even without the
-leading "0", like "377"), while hex() only converts hexadecimal ones,
-with or without a leading "0x", like "0x255", "3A", "ff", or "deadbeef".
+Perl only understands octal and hex numbers as such when they occur as
+literals in your program.  Octal literals in perl must start with a
+leading "0" and hexadecimal literals must start with a leading "0x".
+If they are read in from somewhere and assigned, no automatic
+conversion takes place.  You must explicitly use oct() or hex() if you
+want the values converted to decimal.  oct() interprets hex ("0x350"),
+octal ("0350" or even without the leading "0", like "377") and binary
+("0b1010") numbers, while hex() only converts hexadecimal ones, with
+or without a leading "0x", like "0x255", "3A", "ff", or "deadbeef".
 The inverse mapping from decimal to octal can be done with either the
-"%o" or "%O" sprintf() formats.  To get from decimal to hex try either 
-the "%x" or the "%X" formats to sprintf().
+"%o" or "%O" sprintf() formats.
 
 This problem shows up most often when people try using chmod(), mkdir(),
 umask(), or sysopen(), which by widespread tradition typically take 
@@ -1899,9 +1898,7 @@ this works fine (assuming the files are found):
 
 On less elegant (read: Byzantine) systems, however, you have
 to play tedious games with "text" versus "binary" files.  See
-L<perlfunc/"binmode"> or L<perlopentut>.  Most of these ancient-thinking
-systems are curses out of Microsoft, who seem to be committed to putting
-the backward into backward compatibility.
+L<perlfunc/"binmode"> or L<perlopentut>.
 
 If you're concerned about 8-bit ASCII data, then see L<perllocale>.
 
