@@ -212,6 +212,11 @@ environment for Windows that supports Perl development.
 ( http://helpconsulting.net/visiperl/ )
 From Help Consulting, for Windows.
 
+=item OptiPerl
+
+( http://www.optiperl.com/ ) is a Windows IDE with simulated CGI
+environment, including debugger and syntax highlighting editor.
+
 =back
 
 For Windows there's also the
