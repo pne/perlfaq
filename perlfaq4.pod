@@ -415,14 +415,6 @@ Use the following simple functions:
 	return 1+int((((localtime(shift || time))[5] + 1899))/1000);
     }
 
-You can also use the POSIX strftime() function which may be a bit
-slower but is easier to read and maintain.
-
-	use POSIX qw/strftime/;
-
-	my $week_of_the_year = strftime "%W", localtime;
-	my $day_of_the_year  = strftime "%j", localtime;
-
 On some systems, the POSIX module's strftime() function has
 been extended in a non-standard way to use a C<%C> format,
 which they sometimes claim is the "century".  It isn't,
