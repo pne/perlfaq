@@ -288,11 +288,19 @@ See L<perlform/"Accessing Formatting Internals"> for an swrite() function.
 
 =head2 How can I output my numbers with commas added?
 
-This one from Benjamin Goldberg will do it for you:
+This subroutine will add commas to your number:
+
+	sub commify {
+	   local $_  = shift;
+	   1 while s/^([-+]?\d+)(\d{3})/$1,$2/;
+	   return $_;
+	   }
+
+This regex from Benjamin Goldberg will add commas to numbers:
 
    s/(^[-+]?\d+?(?=(?>(?:\d{3})+)(?!\d))|\G\d{3}(?=\d))/$1,/g;
 
-or written verbosely:
+It is easier to see with comments:
 
    s/(
        ^[-+]?            # beginning of number.
