@@ -970,17 +970,17 @@ the permissions of the file govern whether you're allowed to.
 
 =head2 How do I select a random line from a file?
 
-You can use the Tie::File method which treats the entire file
-as an array.  Simply access a random array element.
-
 Here's an algorithm from the Camel Book:
 
     srand;
     rand($.) < 1 && ($line = $_) while <>;
 
 This has a significant advantage in space over reading the whole file
-in.  You can find an explanation of this method in The Art of Computer
-Programming, Volume 2, Section 3.4.2 by Donald Knuth.
+in.  You can find a proof of this method in I<The Art of Computer
+Programming>, Volume 2, Section 3.4.2, by Donald E. Knuth.
+
+Another way is to use the Tie::File module, which treats the entire
+file as an array.  Simply access a random array element.
 
 =head2 Why do I get weird spaces when I print an array of lines?
 
