@@ -24,7 +24,7 @@ This script uses these configuration directives:
 	POST_TEMPLATE    the Text::Template file to use
 	NNTP_USER        the NNTP user (if needed)
 	NNTP_PASS        the NNTP password (if needed)
-
+	
 This is a sample configuration file:
 
 	SERVER news.example.com
@@ -79,7 +79,7 @@ L<Text::Template>, the splitfaq script in the perlfaq repository
 
 =head1 AUTHOR
 
-brian d foy, bdfoy@cpan.org
+brian d foy, C<< <bdfoy@cpan.org> >>
 
 =head1 COPYRIGHT
 
@@ -95,67 +95,155 @@ use File::Spec;
 use Net::NNTP;
 use Text::Template;
 
-my $config_file = $ARGV[0] || $ENV{POSTFAQ_CONFIG} || 
-	File::Spec->catfile( $ENV{HOME}, ".postfaqrc");
-die "Could not open config file [$config_file]"
-	unless -e $config_file && -f _ && -r _;
-	
-die "Could not open configuration file [$config_file]"
-	unless -e $config_file && -f _ && -r _;
-	
-my $config    = ConfigReader::Simple->new( $config_file );
-die "Could not parse config file!" unless 
-	UNIVERSAL::isa( $config, 'ConfigReader::Simple' );
+my $config                   = get_config( $ARGV[0] );
+                               check_setup( $config );
 
-my $server    = $config->SERVER;	
-my $newsgroup = $config->GROUP;
-my $email     = $config->EMAIL;
+my $nntp                     = get_nntp( $config );
 
-my $dir       = $config->FAQ_DIR;
-die "Could not open faq_dir [$dir]"
-	unless -e $dir && -d _ && -r _;
+my ( $file, $major, $minor ) = select_faq( $config );
 
-my $template  = $config->POST_TEMPLATE;
-die "Could not open template [$template]"
-	unless -e $template && -f _ && -r _;
-	
-my $nntp_user = $config->NNTP_USER;
-my $nntp_pass = $config->NNTP_PASS;
-my $needs_auth = defined $nntp_user || defined $nntp_pass;
+my( $subject, $body )        = get_content( $file );
 
-my @files = glob( File::Spec->catfile( $dir, "perlfaq*.txt" ) );
 
-my $file = $files[rand @files];
-my( $major, $minor ) = $file =~ m/perlfaq.0?([1-9]).0?(\d+)/g;
 
-open my $fh, $file or die "Could not open FAQ $file: $!";
-my $subject = <$fh>;
-my @body    = <$fh>;
-$subject =~ s/^\s+|\s+$//g;
+my $message = Text::Template::fill_in_file( 
+	$config->POST_TEMPLATE,
 
-close $fh;
-
-my $message = Text::Template::fill_in_file( $template, HASH =>
-	{
-	subject  => $subject,
-	body     => join( '', @body ),
-	major    => $major,
-	minor    => $minor,
-	} );
-	
-my @message = split /$/m, $message;
-
-my @header = (
-	"Newsgroups: $newsgroup\n",
-	"Subject: FAQ $major.$minor: $subject\n",
-	"From: PerlFAQ Server <$email>\n",
+	HASH =>
+		{
+		subject  => $subject,
+		body     => $body,
+		major    => $major,
+		minor    => $minor,
+		} 
 	);
+	
 
-my $nntp = Net::NNTP->new( $server );
-$nntp->authinfo( $nntp_user, $nntp_pass ) if $needs_auth;
 
-$nntp->postok() or die "Posting not allowed \n";
+$subject = "$major.$minor $subject";
 
-$nntp->post( @header, "\n", @message );
+my @header                   = get_header( $config, $subject );
+
+print "@header", "\n", $message;
+
+$nntp->post( @header, "\n", split /$/m, $message );
 
 $nntp->quit;
+
+# # # # # # # # # # # # # # #
+ # # # # # # # # # # # # # # #
+# # # # # # # # # # # # # # #
+
+sub get_config
+	{
+	my $file = shift;
+	
+	$file ||= $ENV{POSTFAQ_CONFIG} || 
+		File::Spec->catfile( $ENV{HOME}, ".postfaqrc");
+		
+	die "Could not open config file [$file]"
+		unless -e $file && -f _ && -r _;
+	
+	die "Could not open configuration file [$file]"
+		unless -e $file && -f _ && -r _;
+		
+	my $config    = ConfigReader::Simple->new( $file );
+	die "Could not parse config file!" unless 
+		UNIVERSAL::isa( $config, 'ConfigReader::Simple' );	
+		
+	$config;	
+	}
+
+sub check_setup
+	{
+	my $config = shift;
+	
+	die "Could not open faq_dir [" . $config->FAQ_DIR . "]"
+		unless check_dir( $config->FAQ_DIR );
+	
+	die "Could not open template [" . $config->POST_TEMPLATE . "]"
+		unless check_file( $config->POST_TEMPLATE );
+
+	die "Could not open history [" . $config->HISTORY . "]"
+		unless check_file( $config->POST_TEMPLATE );
+	}
+
+sub get_nntp
+	{
+	my $config = shift;
+	
+	my $nntp = Net::NNTP->new( $config->SERVER );
+	$nntp->postok() or die "Posting not allowed \n";
+	$nntp->authinfo( $config->NNTP_USER, $config->NNTP_PASS ) 
+		if defined $config->NNTP_USER || defined $config->NNTP_PASS;
+	
+	$nntp;
+	}
+	
+sub check_file
+	{
+	my $file = shift;
+	
+	die "Could not read [$file]" unless -r $file;
+	}
+	
+sub check_dir
+	{
+	my $dir = shift;
+	
+	die "Directory does not exist [$dir]" unless -d $dir;
+	}
+	
+sub select_faq
+	{
+	my $config = shift;
+	
+	my @files = get_files( $config );
+	
+	my $file = $files[rand @files];
+	utime time, time, $file;
+	
+	my( $major, $minor ) = $file =~ m/perlfaq.0?([1-9]).0?(\d+).txt$/g;
+	
+	( $file, $major, $minor );
+	}
+
+sub get_files
+	{
+	my $config = shift;
+	
+	my $time  = 0;
+	
+	my @files =
+		map  { $_->[0] }
+		grep { $time ||= $_->[1]; $_->[1] == $time }
+		sort { $b->[1] <=> $a->[1] }
+		map  { [ $_, -A $_ ] }
+		glob( File::Spec->catfile( $config->FAQ_DIR, "perlfaq*.txt" ) ); 
+
+	@files;
+	}
+	
+sub get_content
+	{
+	my $file = shift;
+	
+	open my $fh, $file or die "Could not open FAQ [$file]: $!";
+	my $subject = <$fh>;
+	my $body    = join "", <$fh>;
+	$subject =~ s/^\s+|\s+$//g;
+	
+	( $subject, $body )
+	}
+	
+sub get_header
+	{
+	my $config  = shift;
+	my $subject = shift;
+	
+	my @header = map "$_\n", (
+		"Newsgroups: " . $config->GROUP,
+		"Subject: FAQ $subject",
+		"From: PerlFAQ Server <" . $config->EMAIL . ">",
+		);
+	}
