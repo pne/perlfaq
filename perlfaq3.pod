@@ -472,11 +472,6 @@ http://www.cpan.org/authors/Stephen_O_Lidie/ , and the
 online manpages at
 http://www-users.cs.umn.edu/%7Eamundson/perl/perltk/toc.html .
 
-=head2 How can I generate simple menus without using CGI or Tk?
-
-The http://www.cpan.org/authors/id/SKUNZ/perlmenu.v4.0.tar.gz
-module, which is curses-based, can help with this.
-
 =head2 How can I make my Perl program run faster?
 
 The best way to do this is to come up with a better algorithm.  This

@@ -317,10 +317,6 @@ How can I use X or Tk with Perl?
 
 =item *
 
-How can I generate simple menus without using CGI or Tk?
-
-=item *
-
 How can I make my Perl program run faster?
 
 =item *
