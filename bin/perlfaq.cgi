@@ -54,6 +54,9 @@ my %links = map {
 	}
 	1 .. 9;
 
+@links{ qw(srand rand) } = map {
+	qq|<a href="$_">$_</a>| } qw(srand rand);
+	
 my $terms = param( 'terms' );
 
 # collapse all whitespace to a single space
@@ -80,10 +83,30 @@ print "Content-type: text/html\n\n";
 
 my $text_result = `$PERLDOC $PERLDOC_OPTS $terms 2> /dev/null`;
 
-# rudimentary HTML munging
+# rudimentary HTML munging -- once this is nice-nice we should 
+# refactor it
+
+# munge headings
 $text_result =~ s|^=head1\s+Found in .*/perlfaq(\d)\.pod$|$links{"perlfaq$1"}|mg;
 $text_result =~ s|^=head2(.*)|<b>$1</b>|mg;
 
+# remove trailing whitespace
+$text_result =~ s|\s+$||m;
+
+# wrap PRE tags around sections that start with whitespace
+$text_result =~ s|^([\t ]+\S.*?)$/(?=\S)|\n<pre>\n$1</pre>\n\n|gms;
+
+# munge links
+	# URLs in text flow
+$text_result =~ s|(http://\S+)|<a href="$1">$1</a>|gi;
+$text_result =~ s|L<(.*?)>|<a href="$1">$1</a>|g;
+$text_result =~ s|C<(.*?)>| $links{$1} or "<tt>$1</tt>" |eg;
+
+# remove remaining POD artifacts
+$text_result =~ s|^=over\s+\d+.*$||mg;
+$text_result =~ s|^=back.*$||mg;
+
+#
 print $text_result;
 
 sub error
