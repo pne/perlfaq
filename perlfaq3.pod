@@ -247,10 +247,10 @@ specifically for programming, such as Textpad
 ( http://www.textpad.com/ ) and UltraEdit
 ( http://www.ultraedit.com/ ), among others.
 
-If you are using Mac OS, the same concerns apply.  MacPerl
+If you are using MacOS, the same concerns apply.  MacPerl
 (for Classic environments) comes with a simple editor.
 Popular external editors are BBEdit ( http://www.bbedit.com/ )
-or Alpha ( http://www.kelehers.org/alpha/ ). Mac OS X users can
+or Alpha ( http://www.kelehers.org/alpha/ ). MacOS X users can
 use Unix editors as well.
 
 =over 4
@@ -704,6 +704,12 @@ You can try using the native-code compiler described below, but
 crackers might be able to disassemble it.  These pose varying degrees
 of difficulty to people wanting to get at your code, but none can
 definitively conceal it (true of every language, not just Perl).
+
+It is very easy to recover the source of Perl programs.  You simply
+feed the program to the perl interpreter and use the modules in
+the B:: hierarchy.  The B::Deparse module should be able to
+defeat most attempts to hide source.  Again, this is not
+unique to Perl.
 
 If you're concerned about people profiting from your code, then the
 bottom line is that nothing but a restrictive license will give you
