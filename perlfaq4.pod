@@ -334,6 +334,9 @@ Get the http://www.cpan.org/modules/by-module/Roman module.
 
 If you're using a version of Perl before 5.004, you must call C<srand>
 once at the start of your program to seed the random number generator.
+
+	 BEGIN { srand() if $[ < 5.004 }
+
 5.004 and later automatically call C<srand> at the beginning.  Don't
 call C<srand> more than once---you make your numbers less random, rather
 than more.
