@@ -254,6 +254,10 @@ http://www.microemacs.de/
 
 http://www.xemacs.org/Download/index.html
 
+=item Jed
+
+http://space.mit.edu/~davis/jed/
+
 =back
 
 or a vi clone such as
