@@ -16,9 +16,8 @@ a program ("CGI script") and a web server (HTTPD). It is not specific
 to Perl, and has its own FAQs and tutorials, and usenet group,
 comp.infosystems.www.authoring.cgi
 
-The original CGI specification is at: http://hoohoo.ncsa.uiuc.edu/cgi/
-
-Current best-practice RFC draft at: http://CGI-Spec.Golux.Com/
+The CGI specification is outlined in an informational RFC: 
+http://www.ietf.org/rfc/rfc3875
 
 Other relevant documentation listed in: http://www.perl.org/CGI_MetaFAQ.html
 
