@@ -147,7 +147,7 @@ Here's another example of using C<..>:
 
 =head2 I put a regular expression into $/ but it didn't work. What's wrong?
 
-As of Perl 5.8.0, $/ has to be a string.  This may change in 5.10,
+Up to Perl 5.8.0, $/ has to be a string.  This may change in 5.10,
 but don't get your hopes up. Until then, you can use these examples
 if you really need to do this.
 
