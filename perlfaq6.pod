@@ -634,10 +634,12 @@ L<perlfaq2>).
 
 =head2 What's wrong with using grep or map in a void context?
 
-Both grep and map build a return list, regardless of their context.
-This means you're making Perl go to the trouble of building up a
-return list that you then just ignore.  That's no way to treat a
-programming language, you insensitive scoundrel!
+The problem is that both grep and map build a return list,
+regardless of the context.  This means you're making Perl go
+to the trouble of building a list that you then just throw away.
+If the list is large, you waste both time and space.  If your
+intent is to iterate over the list then use a for loop for this
+purpose.
 
 =head2 How can I match strings with multibyte characters?
 
