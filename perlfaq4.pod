@@ -557,14 +557,6 @@ a subroutine call (in list context) into a string:
 
     print "My sub returned @{[mysub(1,2,3)]} that time.\n";
 
-If you prefer scalar context, similar chicanery is also useful for
-arbitrary expressions:
-
-    print "That yields ${\($n + 5)} widgets\n";
-
-Version 5.004 of Perl had a bug that gave list context to the
-expression in C<${...}>, but this is fixed in version 5.005.
-
 See also ``How can I expand variables in text strings?'' in this
 section of the FAQ.
 
@@ -1398,6 +1390,11 @@ Here's another; let's compute spherical volumes:
 	$_ **= 3;
 	$_ *= (4/3) * 3.14159;  # this will be constant folded
     }
+    
+which can also be done with map() which is made to transform
+one list into another:
+
+	@volumes = map {$_ ** 3 * (4/3) * 3.14159} @radii;
 
 If you want to do the same thing to modify the values of the
 hash, you can use the C<values> function.  As of Perl 5.6
