@@ -70,9 +70,9 @@ delimiter within the pattern:
 
 =head2 I'm having trouble matching over more than one line.  What's wrong?
 
-Either you don't have more than one line in the string you're looking at
-(probably), or else you aren't using the correct modifier(s) on your
-pattern (possibly).
+Either you don't have more than one line in the string you're looking
+at (probably), or else you aren't using the correct modifier(s) on
+your pattern (possibly).
 
 There are many ways to get multiline data into a string.  If you want
 it to happen automatically while reading input, you'll want to set $/
