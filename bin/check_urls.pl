@@ -48,7 +48,7 @@ brian d foy <bdfoy@cpan.org>
 use vars qw( %urls %failures );
 use HTTP::SimpleLinkChecker;
 
-HTTP::SimpleLinkChecker::user_agent()->timeout(15);
+#HTTP::SimpleLinkChecker::user_agent()->timeout(15);
 
 my $DEBUG   = 0;
 my $VERBOSE = 1;
