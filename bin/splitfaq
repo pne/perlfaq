@@ -3,7 +3,16 @@
 use strict;
 use warnings;
 
-my $dir = "$ENV{HOME}/faqs";
+unless( defined $ARGV[0] )
+	{
+	die "Please specify the destination directory\n";
+	}
+
+my $dir = shift @ARGV;
+unless( -d $dir )
+	{
+	mkdir $dir, 0755 or die "Could not create $dir: $!";
+	}
 
 my $skip = 1;
 my $faq;
