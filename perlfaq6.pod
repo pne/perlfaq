@@ -748,14 +748,14 @@ Here's another, slightly less painful, way to do it from Benjamin
 Goldberg:
 
 	$martian =~ m/
-	   (?!<[A-Z])
+	   (?<![A-Z])
 	   (?:[A-Z][A-Z])*?
 	   GX
 	/x;
 
 This succeeds if the "martian" character GX is in the string, and fails
-otherwise.  If you don't like using (?!<), you can replace (?!<[A-Z])
-with (?:^|[^A-Z]).
+otherwise.  If you don't like using (?<!), a zero-width negative
+look-behind assertion, you can replace (?<![A-Z]) with (?:^|[^A-Z]).
 
 It does have the drawback of putting the wrong thing in $-[0] and $+[0],
 but this usually can be worked around.
