@@ -583,9 +583,10 @@ causing your hard disk to thrash due to massive swapping.
 
 =back
 
-=head2 Is it unsafe to return a pointer to local data?
+=head2 Is it safe to return a reference to local or lexical data?
 
-No, Perl's garbage collection system takes care of this.
+Yes. Perl's garbage collection system takes care of this so
+everything works out right.
 
     sub makeone {
 	my @a = ( 1 .. 10 );

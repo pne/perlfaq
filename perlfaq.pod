@@ -234,7 +234,7 @@ How can I make my Perl program take less memory?
 
 =item *
 
-Is it unsafe to return a pointer to local data?
+Is it safe to return a reference to local or lexical data?
 
 =item *
 
