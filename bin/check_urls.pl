@@ -1,13 +1,14 @@
 #!/usr/bin/perl -w
+# $Id$
 use strict;
 
 =head1 NAME
 
-	check_urls.pl -- extract and check URLs in text files
+check_urls.pl -- extract and check URLs in text files
 	
 =head1 SYNOPSIS
 
-	check_urls.pl <file list>
+check_urls.pl <file list>
 	
 =head1 DESCRIPTION
 
@@ -71,8 +72,6 @@ foreach my $file ( @ARGV )
 		}
 		
 	$urls{$file} = [ sort keys %{ {map { $_, 1 } @urls} } ];
-	
-	
 	}
 	
 $" = "\n\t";
