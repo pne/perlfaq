@@ -966,7 +966,7 @@ documentation for details.
 
 This is elaborately and painstakingly described in the
 F<file-dir-perms> article in the "Far More Than You Ever Wanted To
-Know" collection in http://www.cpan.org/olddoc/FMTEYEWTK.tgz .
+Know" collection in http://www.cpan.org/misc/olddoc/FMTEYEWTK.tgz .
 
 The executive summary: learn how your filesystem works.  The
 permissions on a file say what can happen to the data in that file.

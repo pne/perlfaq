@@ -714,7 +714,7 @@ Note that you I<must> use Bourne shell (sh(1)) redirection syntax in
 backticks, not csh(1)!  Details on why Perl's system() and backtick
 and pipe opens all use the Bourne shell are in the
 F<versus/csh.whynot> article in the "Far More Than You Ever Wanted To
-Know" collection in http://www.cpan.org/olddoc/FMTEYEWTK.tgz .  To
+Know" collection in http://www.cpan.org/misc/olddoc/FMTEYEWTK.tgz .  To
 capture a command's STDERR and STDOUT together:
 
     $output = `cmd 2>&1`;                       # either with backticks
@@ -1029,7 +1029,7 @@ in L<perlfaq8/"How do I start a process in the background?">.
 =head2 How do I use an SQL database?
 
 There are a number of excellent interfaces to SQL databases.  See the
-DBD::* modules available from http://www.cpan.org/modules/DBD .
+DBD::* modules available from http://www.cpan.org/modules/by-module/DBD/ .
 A lot of information on this can be found at http://dbi.perl.org/
 
 =head2 How do I make a system() exit on control-C?
