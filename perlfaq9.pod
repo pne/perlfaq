@@ -307,8 +307,11 @@ an absolute URLpath.
 
 =head2 How do I put a password on my web pages?
 
-That depends.  You'll need to read the documentation for your web
-server, or perhaps check some of the other FAQs referenced above.
+To enable authentication for your web server, you need to configure
+your web server.  The configuration is different for different sorts
+of web servers---apache does it differently from iPlanet which does
+it differently from IIS.  Check your web server documentation for
+the details for your particular server.
 
 =head2 How do I edit my .htpasswd and .htgroup files with Perl?
 
