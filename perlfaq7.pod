@@ -176,20 +176,26 @@ If you're looking for something a bit more rigorous, try L<perltoot>.
 
 =head2 How do I create a module?
 
-A module is a package that lives in a file of the same name.  For
-example, the Hello::There module would live in Hello/There.pm.  For
-details, read L<perlmod>.  You'll also find L<Exporter> helpful.  If
-you're writing a C or mixed-language module with both C and Perl, then
-you should study L<perlxstut>.
+(contributed by brian d foy)
 
-The C<h2xs> program will create stubs for all the important stuff for you:
+L<perlmod>, L<perlmodlib>, L<perlmodstyle> explain modules
+in all the gory details. L<perlnewmod> gives a a brief
+overview of the process along with a couple of suggestions
+about style.
 
-  % h2xs -XA -n My::Module
+If you need to include C code or C library interfaces in
+your module, you'll need h2xs.  h2xs will create the module
+distribution structure and the initial interface files
+you'll need.  L<perlxs> and L<perlxstut> explain the details.
 
-The C<-X> switch tells C<h2xs> that you are not using C<XS> extension
-code.  The C<-A> switch tells C<h2xs> that you are not using the
-AutoLoader, and the C<-n> switch specifies the name of the module.
-See L<h2xs> for more details.
+If you don't need to use C code, other tools such as
+ExtUtils::ModuleMaker and Module::Starter, can help you
+create a skeleton module distribution.
+
+You may also want to see Sam Tregar's "Writing Perl Modules
+for CPAN" ( http://apress.com/book/bookDisplay.html?bID=14 )
+which is the best hands-on guide to creating module
+distributions.
 
 =head2 How do I create a class?
 
