@@ -226,10 +226,6 @@ How can I generate simple menus without using CGI or Tk?
 
 =item *
 
-What is undump?
-
-=item *
-
 How can I make my Perl program run faster?
 
 =item *

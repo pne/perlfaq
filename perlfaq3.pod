@@ -432,10 +432,6 @@ http://www-users.cs.umn.edu/%7Eamundson/perl/perltk/toc.html .
 The http://www.cpan.org/authors/id/SKUNZ/perlmenu.v4.0.tar.gz
 module, which is curses-based, can help with this.
 
-=head2 What is undump?
-
-See the next question on ``How can I make my Perl program run faster?''
-
 =head2 How can I make my Perl program run faster?
 
 The best way to do this is to come up with a better algorithm.  This
