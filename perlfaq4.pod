@@ -11,42 +11,23 @@ numbers, dates, strings, arrays, hashes, and miscellaneous data issues.
 
 =head2 Why am I getting long decimals (eg, 19.9499999999999) instead of the numbers I should be getting (eg, 19.95)?
 
-The infinite set that a mathematician thinks of as the real numbers can
-only be approximated on a computer, since the computer only has a finite
-number of bits to store an infinite number of, um, numbers.
+Internally, your computer represents floating-point numbers
+in binary. Digital (as in powers of two) computers cannot
+store all numbers exactly.  Some real numbers lose precision
+in the process.  This is a problem with how computers store
+numbers and affects all computer languages, not just Perl.
 
-Internally, your computer represents floating-point numbers in binary.
-Floating-point numbers read in from a file or appearing as literals
-in your program are converted from their decimal floating-point
-representation (eg, 19.95) to an internal binary representation.
+L<perlnumber> show the gory details of number
+representations and conversions.
 
-However, 19.95 can't be precisely represented as a binary
-floating-point number, just like 1/3 can't be exactly represented as a
-decimal floating-point number.  The computer's binary representation
-of 19.95, therefore, isn't exactly 19.95.
+To limit the number of decimal places in your numbers, you
+can use the printf or sprintf function.  See the
+L<perlop|"Floating Point Arithmetic"> for more details.
 
-When a floating-point number gets printed, the binary floating-point
-representation is converted back to decimal.  These decimal numbers
-are displayed in either the format you specify with printf(), or the
-current output format for numbers.  (See L<perlvar/"$#"> if you use
-print.  C<$#> has a different default value in Perl5 than it did in
-Perl4.  Changing C<$#> yourself is deprecated.)
-
-This affects B<all> computer languages that represent decimal
-floating-point numbers in binary, not just Perl.  Perl provides
-arbitrary-precision decimal numbers with the Math::BigFloat module
-(part of the standard Perl distribution), but mathematical operations
-are consequently slower.
-
-If precision is important, such as when dealing with money, it's good
-to work with integers and then divide at the last possible moment.
-For example, work in pennies (1995) instead of dollars and cents
-(19.95) and divide by 100 at the end.
-
-To get rid of the superfluous digits, just use a format (eg,
-C<printf("%.2f", 19.95)>) to get the required precision.
-See L<perlop/"Floating-point Arithmetic">.  
-
+	printf "%.2f", 10/3;
+	
+	my $number = sprintf "%.2f", 10/3;
+	
 =head2 Why isn't my octal data interpreted correctly?
 
 Perl only understands octal and hex numbers as such when they occur as
