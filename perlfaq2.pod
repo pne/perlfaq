@@ -239,7 +239,7 @@ of real-world examples, mini-tutorials, and complete programs is:
 	by Tom Christiansen and Nathan Torkington,
 	    with Foreword by Larry Wall
 	ISBN 1-56592-243-3 [1st Edition August 1998]
-	http://perl.oreilly.com/cookbook/
+	http://perl.oreilly.com/catalog/cookbook/
 
 If you're already a seasoned programmer, then the Camel Book might
 suffice for you to learn Perl from.  If you're not, check out the
