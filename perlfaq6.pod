@@ -281,9 +281,7 @@ No matter which locale you are in, the alphabetic characters are
 the characters in \w without the digits and the underscore.
 As a regex, that looks like C</[^\W\d_]/>.  Its complement,
 the non-alphabetics, is then everything in \W along with 
-the digits and the underscore, or C</[\W\d_]/>.
-
-You can also 
+the digits and the underscore, or C</[\W\d_]/>. 
 
 =head2 How can I quote a variable to use in a regex?
 
