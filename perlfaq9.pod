@@ -156,6 +156,8 @@ C<HTML::LinkExtor> or C<HTML::Parser>.  You might even use
 C<HTML::SimpleLinkExtor> as an example for something specifically
 suited to your needs.
 
+You can use URI::Find to extract URLs from an arbitrary text document.
+
 Less complete solutions involving regular expressions can save 
 you a lot of processing time if you know that the input is simple.  One
 solution from Tom Christiansen runs 100 times faster than most
