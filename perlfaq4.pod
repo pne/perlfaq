@@ -263,7 +263,7 @@ C<00110011>).  The operators work with the binary form of a number
 (the number C<3> is treated as the bit pattern C<00000011>).
 
 So, saying C<11 & 3> performs the "and" operation on numbers (yielding
-C<1>).  Saying C<"11" & "3"> performs the "and" operation on strings
+C<3>).  Saying C<"11" & "3"> performs the "and" operation on strings
 (yielding C<"1">).
 
 Most problems with C<&> and C<|> arise because the programmer thinks
@@ -390,11 +390,20 @@ Use the following simple functions:
 	return 1+int((((localtime(shift || time))[5] + 1899))/1000);
     } 
 
-On some systems, you'll find that the POSIX module's strftime() function
-has been extended in a non-standard way to use a C<%C> format, which they
-sometimes claim is the "century".  It isn't, because on most such systems,
-this is only the first two digits of the four-digit year, and thus cannot
-be used to reliably determine the current century or millennium.
+You can also use the POSIX strftime() function which may be a bit
+slower but is easier to read and maintain.
+
+	use POSIX qw/strftime/;
+	
+	my $week_of_the_year = strftime "%W", localtime;
+	my $day_of_the_year  = strftime "%j", localtime;
+
+On some systems, the POSIX module's strftime() function has
+been extended in a non-standard way to use a C<%C> format,
+which they sometimes claim is the "century".  It isn't,
+because on most such systems, this is only the first two
+digits of the four-digit year, and thus cannot be used to
+reliably determine the current century or millennium.
 
 =head2 How can I compare two dates and find the difference?
 
@@ -1862,11 +1871,11 @@ it on top of either DB_File or GDBM_File.
 Use the Tie::IxHash from CPAN.
 
     use Tie::IxHash;
-    tie(%myhash, Tie::IxHash);
-    for ($i=0; $i<20; $i++) {
+    tie my %myhash, Tie::IxHash;
+    for (my $i=0; $i<20; $i++) {
         $myhash{$i} = 2*$i;
     }
-    @keys = keys %myhash;
+    my @keys = keys %myhash;
     # @keys = (0,1,2,3,...)
 
 =head2 Why does passing a subroutine an undefined element in a hash create it?
