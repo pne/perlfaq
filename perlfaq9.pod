@@ -227,6 +227,10 @@ through proxies:
 
 =head2 How do I automate an HTML form submission?
 
+If you are doing something complex, such as moving through many pages
+and forms or a web site, you can use C<WWW::Mechanize>.  See its
+documentation for all the details.
+
 If you're submitting values using the GET method, create a URL and encode
 the form using the C<query_form> method:
 
