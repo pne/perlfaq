@@ -1320,7 +1320,7 @@ web sites: http://www.perldoc.com/ and http://perlfaq.cpan.org/ .
 =head2 How to contribute to the perlfaq
 
 You may mail corrections, additions, and suggestions to
-perlfaq-workers@perl.org .  This alias should not be 
+perlfaq-workers@perl.org .  This alias should not be
 used to I<ask> FAQs.  It's for fixing the current FAQ.
 Send questions to the comp.lang.perl.misc newsgroup.
 
@@ -1365,5 +1365,3 @@ This information is offered in good faith and in the hope that it may
 be of use, but is not guaranteed to be correct, up to date, or suitable
 for any particular purpose whatsoever.  The authors accept no liability
 in respect of this information or its use.
-
-=back
