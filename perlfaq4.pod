@@ -598,9 +598,6 @@ a subroutine call (in list context) into a string:
 
     print "My sub returned @{[mysub(1,2,3)]} that time.\n";
 
-See also ``How can I expand variables in text strings?'' in this
-section of the FAQ.
-
 =head2 How do I find matching/nesting anything?
 
 This isn't something that can be done in one regular expression, no
@@ -949,20 +946,19 @@ to consider the String::Approx module available at CPAN.
 
 =head2 How can I expand variables in text strings?
 
-Let's assume that you have a string like:
+Let's assume that you have a string that contains placeholder
+variables.
 
     $text = 'this has a $foo in it and a $bar';
 
-If those were both global variables, then this would
-suffice:
+You can use a substitution with a double evaluation.  The
+first /e turns C<$1> into C<$foo>, and the second /e turns
+C<$foo> into its value.  You may want to wrap this in an
+C<eval>: if you try to get the value of an undeclared variable
+while running under C<use strict>, you get a fatal error.
 
-    $text =~ s/\$(\w+)/${$1}/g;  # no /e needed
-
-But since they are probably lexicals, or at least, they could
-be, you'd have to do this:
-
-    $text =~ s/(\$\w+)/$1/eeg;
-    die if $@;			# needed /ee, not /e
+    eval { $text =~ s/(\$\w+)/$1/eeg };
+    die if $@;
 
 It's probably better in the general case to treat those
 variables as entries in some special hash.  For example:
@@ -972,9 +968,6 @@ variables as entries in some special hash.  For example:
 	bar  => 19,
     );
     $text =~ s/\$(\w+)/$user_defs{$1}/g;
-
-See also ``How do I expand function calls in a string?'' in this section
-of the FAQ.
 
 =head2 What's wrong with always quoting "$vars"?
 
