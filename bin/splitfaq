@@ -18,46 +18,49 @@ my $skip = 1;
 my $faq;
 my ($major, $minor, $revision, $subject);
 
-$major = 0;
-
 while (<>) {
 
-    if (/^perlfaq(\d)*.*Revision/) {
-	chomp;
-	$major = $1;
-	$minor = 0;
-	($revision = $_) =~ s/(?=\()/\n    /;
-	next;
-    }
+	my $old_major = $major;
+	($major) = $ARGV =~ /^perlfaq(\d)/g;
+	
+	unless( $old_major == $major )
+		{
+		printfaq( $old_major, $minor );
+		$minor = 0;
+		$faq = '';
+		redo;
+		}
+		
+	$minor = 0 unless $old_major == $major;
 
     if (/^=head1\s+/) {
-	$skip = 1;
-	next;
-    } 
+		$skip = 1;
+		next;
+		} 
 
     if (/^=head2\s+/) {
-	$skip = 0;
-	if ($faq) {
-	    printfaq();
-	}
-	$faq = $_;
-	$minor++;
-	for ($subject = $_) {
-	    s///;
-	    s/\n/ /g;
-	}
-	next;
-    } 
+		$skip = 0;
+		if ($faq) {
+			printfaq( $major, $minor );
+			}
+		$faq = $_;
+		$minor++;
+		for ($subject = $_) {
+			s///;
+			s/\n/ /g;
+			}
+		next;
+    	} 
 
     unless ($skip) {
-	$faq .= $_;
-    }
+		$faq .= $_;
+		}
 
 }
 
-printfaq();
-
 sub printfaq {
+	my( $major, $minor ) = @_;
+	
     my $faqname = sprintf("perlfaq.%02d.%02d.txt", $major, $minor);
     print STDERR "$faqname\n";
     open (F, "| pod2text > $dir/$faqname")
