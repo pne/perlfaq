@@ -1,0 +1,58 @@
+#!/usr/bin/perl
+
+use strict;
+use warnings;
+
+my $dir = "$ENV{HOME}/faqs";
+
+my $skip = 1;
+my $faq;
+my ($major, $minor, $revision, $subject);
+
+$major = 0;
+
+while (<>) {
+
+    if (/^perlfaq(\d)*.*Revision/) {
+	chomp;
+	$major = $1;
+	$minor = 0;
+	($revision = $_) =~ s/(?=\()/\n    /;
+	next;
+    }
+
+    if (/^=head1\s+/) {
+	$skip = 1;
+	next;
+    } 
+
+    if (/^=head2\s+/) {
+	$skip = 0;
+	if ($faq) {
+	    printfaq();
+	}
+	$faq = $_;
+	$minor++;
+	for ($subject = $_) {
+	    s///;
+	    s/\n/ /g;
+	}
+	next;
+    } 
+
+    unless ($skip) {
+	$faq .= $_;
+    }
+
+}
+
+printfaq();
+
+sub printfaq {
+    my $faqname = sprintf("perlfaq.%02d.%02d.txt", $major, $minor);
+    print STDERR "$faqname\n";
+    open (F, "| pod2text > $dir/$faqname")
+	or die "$0: can't open output";
+    print F $faq;
+    close F;
+} 
