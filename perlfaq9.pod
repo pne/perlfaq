@@ -251,7 +251,7 @@ function to handle encoding.
 The best source of detailed information on URI encoding is RFC 2396.
 Basically, the following substitutions do it:
 
-    s/([^\w()'*~!.-])/sprintf '%%%02x', $1/eg;   # encode
+    s/([^\w()'*~!.-])/sprintf '%%%02x', ord $1/eg;   # encode
 
     s/%([A-Fa-f\d]{2})/chr hex $1/eg;            # decode
 
