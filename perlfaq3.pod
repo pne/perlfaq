@@ -649,23 +649,25 @@ everything works out right.
 
 =head2 How can I free an array or hash so my program shrinks?
 
-You usually can't. On most operating systems, memory
-allocated to a program can never be returned to the system.
-That's why long-running programs sometimes re-exec
-themselves. Some operating systems (notably, systems that
-use mmap(2) for allocating large chunks of memory) can
-reclaim memory that is no longer used, but on such systems,
-perl must be configured and compiled to use the OS's malloc,
-not perl's.
+(contributed by Michael Carman)
 
-However, judicious use of my() on your variables will help make sure
-that they go out of scope so that Perl can free up that space for
-use in other parts of your program.  A global variable, of course, never
-goes out of scope, so you can't get its space automatically reclaimed,
-although undef()ing and/or delete()ing it will achieve the same effect.
+You usually can't. Memory allocated to lexicals (i.e. my() variables)
+cannot be reclaimed or reused even if they go out of scope. It is
+reserved in case the variables come back into scope. Memory allocated
+to global variables can be reused (within your program) by using
+undef()ing and/or delete().
+
+On most operating systems, memory allocated to a program can never be
+returned to the system. That's why long-running programs sometimes re-
+exec themselves. Some operating systems (notably, systems that use
+mmap(2) for allocating large chunks of memory) can reclaim memory that
+is no longer used, but on such systems, perl must be configured and
+compiled to use the OS's malloc, not perl's.
+
 In general, memory allocation and de-allocation isn't something you can
-or should be worrying about much in Perl, but even this capability
-(preallocation of data types) is in the works.
+or should be worrying about much in Perl.
+
+See also "How can I make my Perl program take less memory?"
 
 =head2 How can I make my CGI script more efficient?
 
