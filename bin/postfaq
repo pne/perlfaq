@@ -11,7 +11,7 @@ postfaq [configfile]
 
 =head1 DESCRIPTION
 
-XXX: stuff goes here
+This script posts a portion of the perlfaq to comp.lang.perl.misc.
 
 =head2 Configuration
 
