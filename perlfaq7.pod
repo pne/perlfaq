@@ -808,7 +808,7 @@ symbolic references, you are just using the package's symbol-table hash
 (like C<%main::>) instead of a user-defined hash.  The solution is to
 use your own hash or a real reference instead.
 
-    $fred    = 23;
+    $USER_VARS{"fred"} = 23;
     $varname = "fred";
     $USER_VARS{$varname}++;  # not $$varname++
 
