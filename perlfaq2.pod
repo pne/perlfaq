@@ -427,7 +427,7 @@ subscription information.
 The Google search engine now carries archived and searchable newsgroup
 content. 
 
-http://groups.google.com/groups?hl=en&lr=&safe=off&group=comp.lang.perl.misc
+http://groups.google.com/groups?group=comp.lang.perl.misc
 
 If you have a question, you can be sure someone has already asked the
 same question at some point on c.l.p.m. It requires some time and patience
