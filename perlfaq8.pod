@@ -1065,6 +1065,74 @@ sysopen():
     sysopen(FH, "/foo/somefile", O_WRONLY|O_NDELAY|O_CREAT, 0644)
         or die "can't open /foo/somefile: $!":
 
+=head2 How do I tell the difference between errors from the shell and perl?
+
+(answer contributed by brian d foy, C<< <bdfoy@cpan.org> >>
+
+When you run a Perl script, something else is running the script for you,
+and that something else may output error messages.  The script might
+emit its own warnings and error messages.  Most of the time you cannot
+tell who said what.
+
+You probably cannot fix the thing that runs perl, but you can change how
+perl outputs its warnings by defining a custom warning and die functions.
+
+Consider this script, which has an error you may not notice immediately.
+
+	#!/usr/locl/bin/perl
+
+	print "Hello World\n";
+
+I get an error when I run this from my shell (which happens to be
+bash).  That may look like perl forgot it has a print() function,
+but my shebang line is not the path to perl, so the shell runs the
+script, and I get the error.
+
+	$ ./test
+	./test: line 3: print: command not found
+
+A quick and dirty fix involves a little bit of code, but this may be all
+you need to figure out the problem.
+
+	#!/usr/bin/perl -w
+	
+	BEGIN {
+	$SIG{__WARN__} = sub{ print STDERR "Perl: ", @_; };
+	$SIG{__DIE__}  = sub{ print STDERR "Perl: ", @_; exit 1};
+	}
+	
+	$a = 1 + undef;
+	$x / 0;
+	__END__
+
+The perl message comes out with "Perl" in front.  The BEGIN block
+works at compile time so all of the compilation errors and warnings
+get the "Perl:" prefix too.
+
+	Perl: Useless use of division (/) in void context at ./test line 9.
+	Perl: Name "main::a" used only once: possible typo at ./test line 8.
+	Perl: Name "main::x" used only once: possible typo at ./test line 9.
+	Perl: Use of uninitialized value in addition (+) at ./test line 8.
+	Perl: Use of uninitialized value in division (/) at ./test line 9.
+	Perl: Illegal division by zero at ./test line 9.
+	Perl: Illegal division by zero at -e line 3.
+
+If I don't see that "Perl:", it's not from perl.
+
+You could also just know all the perl errors, and although there are
+some people who may know all of them, you probably don't.  However, they
+all should be in the perldiag manpage. If you don't find the error in
+there, it probably isn't a perl error.
+
+Looking up every message is not the easiest way, so let perl to do it
+for you.  Use the diagnostics pragma with turns perl's normal messages
+into longer discussions on the topic.
+
+	use diagnostics;
+
+If you don't get a paragraph or two of expanded discussion, it
+might not be perl's message.
+
 =head2 How do I install a module from CPAN?
 
 The easiest way is to have a module also named CPAN do it for you.
