@@ -267,13 +267,23 @@ the case of the last character is used for the rest of the substitution.
 
 =head2 How can I make C<\w> match national character sets?
 
-See L<perllocale>.
+Put C<use locale;> in your script.  The \w character class is taken
+from the current locale.
+
+See L<perllocale> for details.
 
 =head2 How can I match a locale-smart version of C</[a-zA-Z]/>?
 
-One alphabetic character would be C</[^\W\d_]/>, no matter what locale
-you're in.  Non-alphabetics would be C</[\W\d_]/> (assuming you don't
-consider an underscore a letter).
+You can use the POSIX character class syntax C</[[:alpha:]]/>
+documented in L<perlre>.
+
+No matter which locale you are in, the alphabetic characters are
+the characters in \w without the digits and the underscore.
+As a regex, that looks like C</[^\W\d_]/>.  Its complement,
+the non-alphabetics, is then everything in \W along with 
+the digits and the underscore, or C</[\W\d_]/>.
+
+You can also 
 
 =head2 How can I quote a variable to use in a regex?
 
