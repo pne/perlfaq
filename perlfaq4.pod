@@ -1890,9 +1890,9 @@ Assuming that you don't care about IEEE notations like "NaN" or
    if (/^-?\d+$/)       { print "is an integer\n" }
    if (/^[+-]?\d+$/)    { print "is a +/- integer\n" }
    if (/^-?\d+\.?\d*$/) { print "is a real number\n" }
-   if (/^-?(?:\d+(?:\.\d*)?|\.\d+)$/) { print "is a decimal number" }
+   if (/^-?(?:\d+(?:\.\d*)?|\.\d+)$/) { print "is a decimal number\n" }
    if (/^([+-]?)(?=\d|\.\d)\d*(\.\d*)?([Ee]([+-]?\d+))?$/)
-			{ print "a C float" }
+			{ print "a C float\n" }
 
 If you're on a POSIX system, Perl's supports the C<POSIX::strtod>
 function.  Its semantics are somewhat cumbersome, so here's a C<getnum>
