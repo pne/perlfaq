@@ -780,7 +780,7 @@ Perl install anyway.
 =head2 How can I compile Perl into Java?
 
 You can also integrate Java and Perl with the
-Perl Resource Kit from O'Reilly and Associates.  See
+Perl Resource Kit from O'Reilly Media.  See
 http://www.oreilly.com/catalog/prkunix/ .
 
 Perl 5.6 comes with Java Perl Lingo, or JPL.  JPL, still in
