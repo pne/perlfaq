@@ -1280,7 +1280,7 @@ If you want the array index, you can iterate through the indices
 and check the array element at each index until you find one
 that satisfies the condition.
 
-	my( $found, $i ) = ( undef, -1 );
+	my( $found, $index ) = ( undef, -1 );
     for( $i = 0; $i < @array; $i++ )
     	{
         if( $array[$i] =~ /Perl/ )
@@ -1455,6 +1455,14 @@ on CPAN).  It's written in XS code and is very efficient.
 	while (my @perm = $p_iterator->next) {
 	   print "next permutation: (@perm)\n";
 	}
+
+For even faster execution, you could do:
+
+   use Algorithm::Permute;
+   my @array = 'a'..'d';
+   Algorithm::Permute::permute {
+      print "next permutation: (@array)\n";
+   } @array;
 
 Here's a little program that generates all permutations of
 all the words on each line of input. The algorithm embodied
