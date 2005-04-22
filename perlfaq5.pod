@@ -129,7 +129,7 @@ with C<undef> in place of the file name.  The C<open()> function
 creates an anonymous temporary file.
 
 	open my $tmp, '+>', undef or die $!;
-	
+
 Otherwise, you can use the File::Temp module.
 
   use File::Temp qw/ tempfile tempdir /;
