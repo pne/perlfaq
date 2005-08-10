@@ -13,6 +13,7 @@ help:
 	@ echo
 	@ echo "    checkurls   -- extract and validate URLs in the perlfaq POD"
 	@ echo "    perlfaq.pod -- create a new perlfaq.pod from the perlfaq POD"
+	@ echo "    split       -- split up the faq answers for usenet autoposter"
 	@ echo "    test        -- run each .pod file through Test::Pod"
 	@ echo
 
@@ -25,6 +26,10 @@ perlfaq.pod: $(FILES)
 checkurls: 
 	${PERL} ${CHECK_URLS} $(FILES)
 	@ touch $@
+
+split:
+	${PERL} bin/splitfaqs ${SPLIT_DIR} ${FILES}
+	touch ${SPLIT_DIR}/*
 	
 test:
 	${PERL} t/pod.t
