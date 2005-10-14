@@ -1212,7 +1212,7 @@ same thing.
 
 =head2 How can I tell whether a certain element is contained in a list or array?
 
-(portions of this answer contributed by Annoo Siegel)
+(portions of this answer contributed by Anno Siegel)
 
 Hearing the word "in" is an I<in>dication that you probably should have
 used a hash, not a list or array, to store your data.  Hashes are
@@ -1266,7 +1266,7 @@ looks like this subroutine:
 		undef;
 	}
 
-If speed is of little concern, the common idiom use grep in scalar context
+If speed is of little concern, the common idiom uses grep in scalar context
 (which returns the number of items that passed its condition) to traverse the
 entire list. This does have the benefit of telling you how many matches it
 found, though.
