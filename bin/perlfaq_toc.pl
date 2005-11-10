@@ -88,7 +88,7 @@ Several people have contributed answers, corrections, and comments.
 
 =head1 Author and Copyright Information
 
-Copyright (c) 1997-2003 Tom Christiansen, Nathan Torkington, and 
+Copyright (c) 1997-2005 Tom Christiansen, Nathan Torkington, and 
 other contributors noted in the answers.
 
 All rights reserved.
