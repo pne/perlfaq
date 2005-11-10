@@ -1,6 +1,6 @@
 =head1 NAME
 
-perlfaq - frequently asked questions about Perl ($Revision$, $Date$)
+perlfaq - frequently asked questions about Perl ($Date$)
 
 =head1 DESCRIPTION
 
@@ -1391,7 +1391,7 @@ How do I read mail?
 
 =item *
 
-How do I find out my hostname/domainname/IP address?
+How do I find out my hostname, domainname, or IP address?
 
 =item *
 
