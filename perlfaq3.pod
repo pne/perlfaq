@@ -85,8 +85,14 @@ with File::Find which is part of the standard library.
     use File::Find;
     my @files;
 
-    find sub { push @files, $File::Find::name if -f _ && /\.pm$/ },
-         @INC;
+    find(
+      sub { 
+      	push @files, $File::Find::name 
+      		if -f $File::Find::name && /\.pm$/ 
+      	},
+      	
+      @INC
+      );
 
 	print join "\n", @files;
 
