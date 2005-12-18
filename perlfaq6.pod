@@ -873,9 +873,9 @@ a valid regular expression, trap the exception this way:
 
     if (eval { $line =~ /$pattern/ }) { }
 
-If all you really want to search for a string, not a pattern,
+If all you really want is to search for a string, not a pattern,
 then you should either use the index() function, which is made for
-string searching, or if you can't be disabused of using a pattern
+string searching, or, if you can't be disabused of using a pattern
 match on a non-pattern, then be sure to use C<\Q>...C<\E>, documented
 in L<perlre>.
 

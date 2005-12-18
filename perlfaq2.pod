@@ -351,9 +351,19 @@ Recommended books on (or mostly on) Perl follow.
 
 =item Special Topics
 
+	Perl Best Practices
+	by Damian Conway
+	ISBN: 0-596-00173-8 [1st edition July 2005]
+	http://www.oreilly.com/catalog/perlbp/
+	
+	Higher Order Perl
+	by Mark-Jason Dominus
+	ISBN: 1558607013 [1st edition March 2005]
+	http://hop.perl.plover.com/
+	
 	Perl 6 Now: The Core Ideas Illustrated with Perl 5
 	by Scott Walters
-	ISBN 1-59059-395-2 [1st edition December 2004
+	ISBN 1-59059-395-2 [1st edition December 2004]
 	http://apress.com/book/bookDisplay.html?bID=355
 
 	Mastering Regular Expressions
