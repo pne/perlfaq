@@ -606,14 +606,14 @@ in perl5.7.3, can get you the fully qualified domain name (FQDN), the host
 name, or the domain name.
 
 	use Net::Domain qw(hostname hostfqdn hostdomain);
-	
+
 	my $host = hostfqdn();
 
 The C<Sys::Hostname> module, included in the standard distribution since
 perl5.6, can also get the hostname.
 
 	use Sys::Hostname;
-	
+
 	$host = hostname();
 
 To get the IP address, you can use the C<gethostbyname> built-in function
@@ -622,8 +622,8 @@ form (a.b.c.d) that most people expect, use the C<inet_ntoa> function
 from the <Socket> module, which also comes with perl.
 
     use Socket;
-    
-    my $address = inet_ntoa( 
+
+    my $address = inet_ntoa(
     	scalar gethostbyname( $host || 'localhost' )
     	);
 

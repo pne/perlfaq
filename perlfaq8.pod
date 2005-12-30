@@ -35,25 +35,26 @@ How you access/control keyboards, screens, and pointing devices
 
 =item Keyboard
 
-    Term::Cap			Standard perl distribution
-    Term::ReadKey		CPAN
-    Term::ReadLine::Gnu		CPAN
-    Term::ReadLine::Perl	CPAN
-    Term::Screen		CPAN
+	Term::Cap               Standard perl distribution
+	Term::ReadKey           CPAN
+	Term::ReadLine::Gnu     CPAN
+	Term::ReadLine::Perl    CPAN
+	Term::Screen            CPAN
 
 =item Screen
 
-    Term::Cap			Standard perl distribution
-    Curses			CPAN
-    Term::ANSIColor		CPAN
+	Term::Cap               Standard perl distribution
+	Curses                  CPAN
+	Term::ANSIColor         CPAN
 
 =item Mouse
 
-    Tk				CPAN
+	Tk                      CPAN
 
 =back
 
-Some of these specific cases are shown below.
+Some of these specific cases are shown as examples in other answers
+in this section of the perlfaq.
 
 =head2 How do I print something out in color?
 

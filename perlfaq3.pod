@@ -85,11 +85,11 @@ with File::Find which is part of the standard library.
     my @files;
 
     find(
-      sub { 
-      	push @files, $File::Find::name 
-      		if -f $File::Find::name && /\.pm$/ 
+      sub {
+      	push @files, $File::Find::name
+      		if -f $File::Find::name && /\.pm$/
       	},
-      	
+
       @INC
       );
 
@@ -941,7 +941,7 @@ solved their problems.
 
 You might not need all the power of XS. The Inline::C module lets
 you put C code directly in your Perl source. It handles all the
-magic to make it work. You still have to learn at least some of 
+magic to make it work. You still have to learn at least some of
 the perl API but you won't have to deal with the complexity of the
 XS support files.
 

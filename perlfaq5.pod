@@ -516,7 +516,7 @@ only version of open() and so it is prevalent in old code and books.
 Unless you have a particular reason to use the two argument form you
 should use the three argument form of open() which does not treat any
 charcters in the filename as special.
-     
+
 	open FILE, "<", "  file  ";  # filename is "   file   "
 	open FILE, ">", ">file";     # filename is ">file"
 
