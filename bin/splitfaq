@@ -1,7 +1,12 @@
 #!/usr/bin/perl
-
+# $Id$
 use strict;
 use warnings;
+
+use Getopt::Std;
+
+my %Opt = ();
+getopts('q', \%Opt);
 
 unless( defined $ARGV[0] )
 	{
@@ -19,10 +24,11 @@ my $faq;
 my ($major, $minor, $revision, $subject);
 
 while (<>) {
-
-	my $old_major = $major;
+	my $old_major = $major || 0;
 	($major) = $ARGV =~ /^perlfaq(\d)/g;
 	
+	next unless defined $major;
+
 	unless( $old_major == $major )
 		{
 		printfaq( $old_major, $minor );
@@ -60,11 +66,12 @@ while (<>) {
 
 sub printfaq {
 	my( $major, $minor ) = @_;
+	return unless( defined $major and defined $minor );
 	
     my $faqname = sprintf("perlfaq.%02d.%02d.txt", $major, $minor);
-    print STDERR "$faqname\n";
+    print STDERR "$faqname\n" unless $Opt{q};
     open (F, "| pod2text > $dir/$faqname")
-	or die "$0: can't open output";
+		or die "$0: can't open output";
     print F $faq;
     close F;
 } 

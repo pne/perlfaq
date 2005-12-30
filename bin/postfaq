@@ -124,7 +124,7 @@ $subject = "$major.$minor $subject";
 
 my @header                   = get_header( $config, $subject );
 
-print "@header", "\n", $message;
+#print "@header", "\n", $message;
 
 $nntp->post( @header, "\n", split /$/m, $message );
 
