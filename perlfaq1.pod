@@ -395,7 +395,7 @@ but the most recommendable way is to upgrade to at least Perl 5.6.1.
 
 =head1 AUTHOR AND COPYRIGHT
 
-Copyright (c) 1997-2005 Tom Christiansen, Nathan Torkington, and
+Copyright (c) 1997-2006 Tom Christiansen, Nathan Torkington, and
 other authors as noted. All rights reserved.
 
 This documentation is free; you can redistribute it and/or modify it
