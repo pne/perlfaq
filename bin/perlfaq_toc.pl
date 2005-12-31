@@ -66,7 +66,7 @@ The perlfaq is an evolving document and you can read the latest version
 at http://faq.perl.org/ . The perlfaq-workers periodically post extracts
 of the latest perlfaq to comp.lang.perl.misc.
 
-You can view the source tree at http://cvs.perl.org/cvsweb/perlfaq/
+You can view the source tree at http://cvs.perl.org/viewcvs/cvs-public/perlfaq/
 (which is outside of the main Perl source tree).  The CVS repository
 notes all changes to the FAQ and holds the latest version of the working
 documents and may vary significantly from the version distributed with
