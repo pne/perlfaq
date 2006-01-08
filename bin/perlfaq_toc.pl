@@ -43,7 +43,7 @@ my @files = map { "perlfaq$_.pod" } 1 .. 9;
 print <<'PREAMBLE';
 =head1 NAME
 
-perlfaq - frequently asked questions about Perl ($Date$)
+perlfaq - frequently asked questions about Perl
 
 =head1 DESCRIPTION
 
@@ -55,50 +55,50 @@ into nine major sections outlined in this document.
 
 The perlfaq comes with the standard Perl distribution, so if you have Perl
 you should have the perlfaq. You should also have the C<perldoc> tool
-that let's you read the perlfaq:
+that let's you read the L<perlfaq>:
 
 	$ perldoc perlfaq
 
-Besides your local system, you can find the perlfaq on the web,
-including at http://perldoc.perl.org/ .
+Besides your local system, you can find the perlfaq on the web, including
+at http://perldoc.perl.org/ .
 
 The perlfaq is an evolving document and you can read the latest version
 at http://faq.perl.org/ . The perlfaq-workers periodically post extracts
 of the latest perlfaq to comp.lang.perl.misc.
 
-You can view the source tree at http://cvs.perl.org/viewcvs/cvs-public/perlfaq/
-(which is outside of the main Perl source tree).  The CVS repository
-notes all changes to the FAQ and holds the latest version of the working
-documents and may vary significantly from the version distributed with
-the latest version of Perl. Check the repository before sending your
-corrections.
+You can view the source tree at
+http://cvs.perl.org/viewcvs/cvs-public/perlfaq/ (which is outside of the
+main Perl source tree).  The CVS repository notes all changes to the FAQ
+and holds the latest version of the working documents and may vary
+significantly from the version distributed with the latest version of
+Perl. Check the repository before sending your corrections.
 
 =head2 How to contribute to the perlfaq
 
-You can mail corrections, additions, and suggestions to
-perlfaq-workers@perl.org . The perlfaq volunteers use this address to
-coordinate their efforts and track the perlfaq development. They
-appreciate your contributions to the FAQ but do not have time to provide
-individual help, so don't use this address to ask FAQs.
+You can mail corrections, additions, and suggestions to 
+C<< <perlfaq-workers AT perl DOT org> >>. The perlfaq volunteers use this
+address to coordinate their efforts and track the perlfaq development.
+They appreciate your contributions to the FAQ but do not have time to
+provide individual help, so don't use this address to ask FAQs.
 
 The perlfaq server posts extracts of the perlfaq to that newsgroup every
 6 hours (or so), and the community of volunteers reviews and updates the
 answers. If you'd like to help review and update the answers, check out
 comp.lang.perl.misc.
 
-=head2 What will happen if you mail your Perl programming problems to the authors
+=head2 What will happen if you mail your Perl programming problems to the authors?
 
-The perlfaq-workers like to keep all traffic on the perlfaq-workers@perl.org
-so that everyone can see the work being done (and the work that needs to 
+The perlfaq-workers like to keep all traffic on the perlfaq-workers list
+so that everyone can see the work being done (and the work that needs to
 be done). The mailing list serves as an official record. If you email the
-authors or maintainers directly, you'll probably get a reply asking you to
-post to the mailing list. If you don't get a reply, it probably means that
-the person never saw the message or didn't have time to deal with it. Posting
-to the list allows the volunteers with time to deal with it when others are
-busy.
+authors or maintainers directly, you'll probably get a reply asking you
+to post to the mailing list. If you don't get a reply, it probably means
+that the person never saw the message or didn't have time to deal with
+it. Posting to the list allows the volunteers with time to deal with it
+when others are busy.
 
-If you have a question that isn't in the FAQ and you would like help with it, 
-try the resources in L<perlfaq2>.
+If you have a question that isn't in the FAQ and you would like help with
+it, try the resources in L<perlfaq2>.
 
 =head1 CREDITS
 

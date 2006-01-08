@@ -1,7 +1,8 @@
-This message is one of several periodic postings to comp.lang.perl.misc
-intended to make it easier for perl programmers to find answers to
-common questions. The core of this message represents an excerpt
-from the documentation provided with Perl.
+This is an excerpt from the latest version perlfaq{$major}.pod, which
+comes with the standard Perl distribution. These postings aim to 
+reduce the number of repeated questions as well as allow the community
+to review and update the answers. The latest version of the complete
+perlfaq is at http://faq.perl.org .
 
 --------------------------------------------------------------------
 
@@ -11,32 +12,12 @@ from the documentation provided with Perl.
 
 --------------------------------------------------------------------
 
-Documents such as this have been called "Answers to Frequently
-Asked Questions" or FAQ for short.  They represent an important
-part of the Usenet tradition.  They serve to reduce the volume of
-redundant traffic on a news group by providing quality answers to
-questions that keep coming up.
+The perlfaq-workers, a group of volunteers, maintain the perlfaq. They
+are not necessarily experts in every domain where Perl might show up,
+so please include as much information as possible and relevant in any
+corrections. The perlfaq-workers also don't have access to every operating
+system or platform, so please include relevant details for corrections 
+to examples that do not work on particular platforms. Working code is
+greatly appreciated.
 
-If you are some how irritated by seeing these postings you are free
-to ignore them or add the sender to your killfile.  If you find
-errors or other problems with these postings please send corrections
-or comments to the posting email address or to the maintainers as
-directed in the perlfaq manual page.
-
-Note that the FAQ text posted by this server may have been modified
-from that distributed in the stable Perl release.  It may have been
-edited to reflect the additions, changes and corrections provided
-by respondents, reviewers, and critics to previous postings of
-these FAQ. Complete text of these FAQ are available on request.
-
-The perlfaq manual page contains the following copyright notice.
-
-  AUTHOR AND COPYRIGHT
-
-    Copyright (c) 1997-2002 Tom Christiansen and Nathan
-    Torkington, and other contributors as noted. All rights 
-    reserved.
-
-This posting is provided in the hope that it will be useful but
-does not represent a commitment or contract of any kind on the part
-of the contributers, authors or their agents.
+If you'd like to help maintain the perlfaq, see the details in perlfaq.pod.
