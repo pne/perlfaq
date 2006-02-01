@@ -111,7 +111,7 @@ a skeleton as its whitewashed bones have fractured or eroded.
 
 There is no perl6.x for the next couple of years.  Stay tuned,
 but don't worry that you'll have to change major versions of Perl
-soon (i.e. before 2006).
+soon (i.e. before 2008).
 
 =item *
 
