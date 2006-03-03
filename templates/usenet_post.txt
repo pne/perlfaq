@@ -15,9 +15,10 @@ perlfaq is at http://faq.perl.org .
 The perlfaq-workers, a group of volunteers, maintain the perlfaq. They
 are not necessarily experts in every domain where Perl might show up,
 so please include as much information as possible and relevant in any
-corrections. The perlfaq-workers also don't have access to every operating
-system or platform, so please include relevant details for corrections 
-to examples that do not work on particular platforms. Working code is
-greatly appreciated.
+corrections. The perlfaq-workers also don't have access to every
+operating system or platform, so please include relevant details for
+corrections to examples that do not work on particular platforms.
+Working code is greatly appreciated.
 
-If you'd like to help maintain the perlfaq, see the details in perlfaq.pod.
+If you'd like to help maintain the perlfaq, see the details in
+perlfaq.pod.
