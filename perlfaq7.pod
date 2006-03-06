@@ -1,6 +1,6 @@
 =head1 NAME
 
-perlfaq7 - General Perl Language Issues ($Revision$, $Date$)
+perlfaq7 - General Perl Language Issues ($Revision$)
 
 =head1 DESCRIPTION
 
@@ -959,6 +959,14 @@ explicitly:
 If you get a message like "perl: command not found", perl is not in
 your PATH, which might also mean that the location of perl is not
 where you expect it so you need to adjust your shebang line.
+
+=head1 REVISION
+
+Revision: $Revision$
+
+Date: $Date$
+
+See L<perlfaq> for source control details and availability.
 
 =head1 AUTHOR AND COPYRIGHT
 

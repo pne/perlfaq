@@ -1,6 +1,6 @@
 =head1 NAME
 
-perlfaq9 - Networking ($Revision$, $Date$)
+perlfaq9 - Networking ($Revision$)
 
 =head1 DESCRIPTION
 
@@ -646,6 +646,14 @@ available from CPAN) is more complex but can put as well as fetch.
 
 Use one of the RPC modules you can find on CPAN (
 http://search.cpan.org/search?query=RPC&mode=all ).
+
+=head1 REVISION
+
+Revision: $Revision$
+
+Date: $Date$
+
+See L<perlfaq> for source control details and availability.
 
 =head1 AUTHOR AND COPYRIGHT
 

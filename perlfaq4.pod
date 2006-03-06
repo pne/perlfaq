@@ -1,6 +1,6 @@
 =head1 NAME
 
-perlfaq4 - Data Manipulation ($Revision$, $Date$)
+perlfaq4 - Data Manipulation ($Revision$)
 
 =head1 DESCRIPTION
 
@@ -2155,6 +2155,14 @@ Get the Business::CreditCard module from CPAN.
 The kgbpack.c code in the PGPLOT module on CPAN does just this.
 If you're doing a lot of float or double processing, consider using
 the PDL module from CPAN instead--it makes number-crunching easy.
+
+=head1 REVISION
+
+Revision: $Revision$
+
+Date: $Date$
+
+See L<perlfaq> for source control details and availability.
 
 =head1 AUTHOR AND COPYRIGHT
 

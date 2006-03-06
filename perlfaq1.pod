@@ -1,6 +1,6 @@
 =head1 NAME
 
-perlfaq1 - General Questions About Perl ($Revision$, $Date$)
+perlfaq1 - General Questions About Perl ($Revision$)
 
 =head1 DESCRIPTION
 
@@ -397,6 +397,14 @@ You might find these links useful:
 =item * http://www.perl.org/advocacy/whyperl.html
 
 =back
+
+=head1 REVISION
+
+Revision: $Revision$
+
+Date: $Date$
+
+See L<perlfaq> for source control details and availability.
 
 =head1 AUTHOR AND COPYRIGHT
 

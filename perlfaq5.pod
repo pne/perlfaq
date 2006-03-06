@@ -1,6 +1,6 @@
 =head1 NAME
 
-perlfaq5 - Files and Formats ($Revision$, $Date$)
+perlfaq5 - Files and Formats ($Revision$)
 
 =head1 DESCRIPTION
 
@@ -1119,6 +1119,14 @@ character C<("little\n", "fluffy\n", "clouds\n")> then it would print:
 If your array contains lines, just print them:
 
 	print @lines;
+
+=head1 REVISION
+
+Revision: $Revision$
+
+Date: $Date$
+
+See L<perlfaq> for source control details and availability.
 
 =head1 AUTHOR AND COPYRIGHT
 

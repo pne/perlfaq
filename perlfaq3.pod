@@ -1,6 +1,6 @@
 =head1 NAME
 
-perlfaq3 - Programming Tools ($Revision$, $Date$)
+perlfaq3 - Programming Tools ($Revision$)
 
 =head1 DESCRIPTION
 
@@ -987,6 +987,14 @@ or
 This module (part of the standard Perl distribution) is designed to
 write a Makefile for an extension module from a Makefile.PL.  For more
 information, see L<ExtUtils::MakeMaker>.
+
+=head1 REVISION
+
+Revision: $Revision$
+
+Date: $Date$
+
+See L<perlfaq> for source control details and availability.
 
 =head1 AUTHOR AND COPYRIGHT
 
