@@ -1,0 +1,6 @@
+#!/usr/bin/perl
+
+# Ensure that every file  gets the same time
+$time = time;
+
+utime $time, $time, @ARGV;

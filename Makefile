@@ -30,16 +30,16 @@ checkurls:
 	@ touch $@
 
 split:
-	${CVS} update -d
+#	${CVS} update -d
 	${PERL} bin/splitfaq ${SPLIT_DIR} ${FILES}
 	rm -f ${SPLIT_DIR}/perlfaq.00.00.txt
-	touch ${SPLIT_DIR}/*
+	bin/touch ${SPLIT_DIR}/*
 	
 splitquiet:
 	@ ${CVS} update -d
 	@ ${PERL} bin/splitfaq -q ${SPLIT_DIR} ${FILES}
 	@ rm -f ${SPLIT_DIR}/perlfaq.00.00.txt
-	@ touch ${SPLIT_DIR}/*  
+	@ bin/touch ${SPLIT_DIR}/*  
 
 test:
 	${PERL} t/pod.t

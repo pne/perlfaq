@@ -20,5 +20,5 @@ operating system or platform, so please include relevant details for
 corrections to examples that do not work on particular platforms.
 Working code is greatly appreciated.
 
-If you'd like to help maintain the perlfaq, see the details in
+If you'd like to help maintain the perlfaq, see the details in 
 perlfaq.pod.
