@@ -407,10 +407,9 @@ week of the year.
 To get the day of year for any date, use the Time::Local module to get
 a time in epoch seconds for the argument to localtime.
 
-	use POSIX qw/strftime/;
-	use Time::Local;
+	use POSIX qw/mktime strftime/;
 	my $week_of_year = strftime "%W",
-		localtime( timelocal( 0, 0, 0, 18, 11, 1987 ) );
+		localtime( mktime( 0, 0, 0, 18, 11, 87 ) );
 
 The Date::Calc module provides two functions to calculate these.
 

@@ -222,6 +222,10 @@ documents, as does enscript at http://people.ssh.fi/mtr/genscript/ .
 
 (contributed by brian d foy)
 
+Ctags uses an index to quickly find things in source code, and many
+popular editors support ctags for several different languages,
+including Perl.
+
 Exuberent ctags supports Perl: http://ctags.sourceforge.net/
 
 You might also try pltags: http://www.mscha.com/pltags.zip
@@ -984,9 +988,12 @@ or
 
 =head2 What's MakeMaker?
 
-This module (part of the standard Perl distribution) is designed to
-write a Makefile for an extension module from a Makefile.PL.  For more
-information, see L<ExtUtils::MakeMaker>.
+(contributed by brian d foy)
+
+The C<ExtUtils::MakeMaker> module, better known simply as "MakeMaker",
+turns a Perl script, typically called C<Makefile.PL>, into a Makefile.
+The unix tool C<make> uses this file to manage dependencies and actions
+to process and install a Perl distribution.
 
 =head1 REVISION
 
