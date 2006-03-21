@@ -792,7 +792,7 @@ context, no lists are constructed.
 
 =head2 How can I match strings with multibyte characters?
 X<regex, and multibyte characters> X<regexp, and multibyte characters>
-X<regular expression, and multibyte characters>
+X<regular expression, and multibyte characters> X<martian> X<encoding, Martian>
 
 Starting from Perl 5.6 Perl has had some level of multibyte character
 support.  Perl 5.8 or later is recommended.  Supported multibyte
@@ -861,31 +861,87 @@ look-behind assertion, you can replace (?<![A-Z]) with (?:^|[^A-Z]).
 It does have the drawback of putting the wrong thing in $-[0] and $+[0],
 but this usually can be worked around.
 
-=head2 How do I match a pattern that is supplied by the user?
+=head2 How do I match a regular expression that's in a variable?
+X<regex, in variable> X<eval> X<regex> X<quotemeta> X<\Q, regex>
+X<\E, regex>, X<qr//>
 
-Well, if it's really a pattern, then just use
+(contributed by brian d foy)
 
-    chomp($pattern = <STDIN>);
-    if ($line =~ /$pattern/) { }
+We don't have to hard-code patterns into the match operator (or
+anything else that works with regular expressions). We can put the
+pattern in a variable for later use.
+ 
+The match operator is a double quote context, so you can interpolate
+your variable just like a double quoted string. In this case, you
+read the regular expression as user input and store it in C<$regex>.
+Once you have the pattern in C<$regex>, you use that variable in the
+match operator.
 
-Alternatively, since you have no guarantee that your user entered
-a valid regular expression, trap the exception this way:
+    chomp( my $regex = <STDIN> );
+    
+    if( $string =~ m/$regex/ ) { ... }
 
-    if (eval { $line =~ /$pattern/ }) { }
+Any regular expression special characters in C<$regex> are still 
+special, and the pattern still has to be valid or Perl will complain.
+For instance, in this pattern there is an unpaired parenthesis.
 
-If all you really want is to search for a string, not a pattern,
-then you should either use the index() function, which is made for
-string searching, or, if you can't be disabused of using a pattern
-match on a non-pattern, then be sure to use C<\Q>...C<\E>, documented
-in L<perlre>.
+	my $regex = "Unmatched ( paren";
+	
+	"Two parens to bind them all" =~ m/$regex/;
+	
+When Perl compiles the regular expression, it treats the parenthesis
+as the start of a memory match. When it doesn't find the closing
+parenthesis, it complains:
 
-    $pattern = <STDIN>;
+	Unmatched ( in regex; marked by <-- HERE in m/Unmatched ( <-- HERE  paren/ at script line 3.                                                               
 
-    open (FILE, $input) or die "Couldn't open input $input: $!; aborting";
-    while (<FILE>) {
-	print if /\Q$pattern\E/;
-    }
-    close FILE;
+You can get around this in several ways depending on our situation. 
+First, if you don't want any of the characters in the string to be
+special, you can escape them with C<quotemeta> before you use the string.
+
+    chomp( my $regex = <STDIN> );
+  	$regex = quotemeta( $regex );
+  	
+    if( $string =~ m/$regex/ ) { ... }
+
+You can also do this directly in the match operator using the C<\Q>
+and C<\E> sequences. The C<\Q> tells Perl where to start escaping
+special characters, and the C<\E> tells it where to stop (see L<perlop>
+for more details).
+
+    chomp( my $regex = <STDIN> );
+  	
+    if( $string =~ m/\Q$regex\E/ ) { ... }
+
+Alternately, you can use C<qr//>, the regular expression quote operator (see
+L<perlop> for more details).  It quotes and perhaps compiles the pattern, 
+and you can apply regular expression flags to the pattern.
+
+    chomp( my $input = <STDIN> );
+  	
+    my $regex = qr/$input/is;
+    
+    $string =~ m/$regex/  # same as m/$input/is; 
+
+You might also want to trap any errors by wrapping an C<eval> block
+around the whole thing.
+
+    chomp( my $input = <STDIN> );
+  	
+    eval { 
+    	if( $string =~ m/\Q$input\E/ ) { ... } 
+    	};
+    warn $@ if $@;
+    
+Or...
+
+	my $regex = eval { qr/$input/is };
+	if( defined $regex ) {
+		$string =~ m/$regex/;
+		}
+	else {
+		warn $@;
+		}
 
 =head1 REVISION
 
