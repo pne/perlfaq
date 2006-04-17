@@ -967,7 +967,7 @@ FIONREAD requires a filehandle connected to a stream, meaning that sockets,
 pipes, and tty devices work, but I<not> files.
 
 =head2 How do I do a C<tail -f> in perl?
-X<tail>
+X<tail> X<IO::Handle> X<File::Tail> X<clearerr>
 
 First try
 
@@ -975,7 +975,7 @@ First try
 
 The statement C<seek(GWFILE, 0, 1)> doesn't change the current position,
 but it does clear the end-of-file condition on the handle, so that the
-next <GWFILE> makes Perl try again to read something.
+next C<< <GWFILE> >> makes Perl try again to read something.
 
 If that doesn't work (it relies on features of your stdio implementation),
 then you need something more like this:
@@ -988,12 +988,11 @@ then you need something more like this:
 	  seek(GWFILE, $curpos, 0);  # seek to where we had been
 	}
 
-If this still doesn't work, look into the POSIX module.  POSIX defines
-the clearerr() method, which can remove the end of file condition on a
-filehandle.  The method: read until end of file, clearerr(), read some
-more.  Lather, rinse, repeat.
+If this still doesn't work, look into the C<clearerr> method
+from C<IO::Handle>, which resets the error and end-of-file states
+on the handle.
 
-There's also a File::Tail module from CPAN.
+There's also a C<File::Tail> module from CPAN.
 
 =head2 How do I dup() a filehandle in Perl?
 X<dup>
