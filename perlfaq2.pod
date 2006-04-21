@@ -314,7 +314,7 @@ Recommended books on (or mostly on) Perl follow.
 	Elements of Programming with Perl
 	by Andrew L. Johnson
 	ISBN 1-884777-80-5 [1st edition October 1999]
-	http://www.manning.com/Johnson/
+	http://www.manning.com/johnson/
 
 	Learning Perl
 	by Randal L. Schwartz, Tom Phoenix, and brian d foy
@@ -380,7 +380,7 @@ Recommended books on (or mostly on) Perl follow.
 	Damian Conway
 	    with foreword by Randal L. Schwartz
 	ISBN 1-884777-79-1 [1st edition August 1999]
-	http://www.manning.com/Conway/
+	http://www.manning.com/conway/
 
 	Data Munging with Perl
 	Dave Cross

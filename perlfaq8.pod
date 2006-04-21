@@ -998,8 +998,17 @@ Good question.  Sometimes C<-t STDIN> and C<-t STDOUT> can give clues,
 sometimes not.
 
     if (-t STDIN && -t STDOUT) {
-	print "Now what? ";
-    }
+		print "Now what? ";
+	    }
+
+The C<IO::Interactive> module provides some convenience functions. Its
+C<is_interactive()> gives you the right answer while handling the
+special cases behind-the-scenes. The C<interactive> function returns
+C<STDOUT> if the script is interactive and a dummy filehandle
+otherwise. This way, you never have to worry a about testing anything:
+
+	use IO::Interactive;
+	print {interactive()} "This prints only when interactive";
 
 On POSIX systems, you can test whether your own process group matches
 the current process group of your controlling terminal as follows:

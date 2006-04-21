@@ -427,7 +427,7 @@ http://www.primate.wisc.edu/software/csh-tcsh-book/
 
 =item Zsh
 
-ftp://ftp.blarg.net/users/amol/zsh/ , see also http://www.zsh.org/
+http://www.zsh.org/
 
 =back
 
@@ -817,9 +817,8 @@ Windows and unix platforms.
 
 =head2 How can I compile Perl into Java?
 
-You can also integrate Java and Perl with the
-Perl Resource Kit from O'Reilly Media.  See
-http://www.oreilly.com/catalog/prkunix/ .
+You can integrate Java and Perl with the Perl Resource Kit from
+O'Reilly Media.  See http://www.oreilly.com/catalog/prkunix/ .
 
 Perl 5.6 comes with Java Perl Lingo, or JPL.  JPL, still in
 development, allows Perl code to be called from Java.  See jpl/README
