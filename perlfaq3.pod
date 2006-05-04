@@ -114,14 +114,14 @@ perl finds it.
 
 Before you do anything else, you can help yourself by ensuring that
 you let Perl tell you about problem areas in your code. By turning
-on warnings and strictures, you can head off many problems before 
+on warnings and strictures, you can head off many problems before
 they get too big. You can find out more about these in L<strict>
 and L<warnings>.
 
 	#!/usr/bin/perl
 	use strict;
 	use warnings;
-	
+
 Beyond that, the simplest debugger is the C<print> function. Use it
 to look at values as you run your program:
 
@@ -131,7 +131,7 @@ The C<Data::Dumper> module can pretty-print Perl data structures:
 
 	use Data::Dumper( Dump );
 	print STDERR "The hash is " . Dump( \%hash ) . "\n";
-	
+
 Perl comes with an interactive debugger, which you can start with the
 C<-d> switch. It's fully explained in L<perldebug>.
 

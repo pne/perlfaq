@@ -1014,9 +1014,9 @@ On POSIX systems, you can test whether your own process group matches
 the current process group of your controlling terminal as follows:
 
     use POSIX qw/getpgrp tcgetpgrp/;
-    
+
     # Some POSIX systems, such as Linux, can be
-    # without a /dev/tty at boot time. 
+    # without a /dev/tty at boot time.
     if (!open(TTY, "/dev/tty")) {
         print "no tty\n";
     } else {

@@ -60,7 +60,7 @@ users the informal support will more than suffice.  See the answer to
 
 There is often a matter of opinion and taste, and there isn't any one
 answer that fits anyone.  In general, you want to use either the current
-stable release, or the stable release immediately prior to that one. 
+stable release, or the stable release immediately prior to that one.
 Currently, those are perl5.8.x and perl5.6.x, respectively.
 
 Beyond that, you have to consider several things and decide which is best
@@ -373,7 +373,7 @@ In general, the benefit of a language is closely related to the skill of
 the people using that language. If you or your team can be more faster,
 better, and stronger through Perl, you'll deliver more value. Remember,
 people often respond better to what they get out of it. If you run
-into resistance, figure out what those people get out of the other 
+into resistance, figure out what those people get out of the other
 choice and how Perl might satisfy that requirement.
 
 You don't have to worry about finding or paying for Perl; it's freely

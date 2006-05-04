@@ -170,7 +170,7 @@ temporary files in one process, use a counter:
 
 	if (defined(fileno(FH))
 		return (*FH, $base_name);
-	    } 
+	    }
 	else {
 		return ();
 	    }
@@ -209,7 +209,7 @@ Storing the keys in an array means it's easy to operate on them as a
 group or loop over them with for. It also avoids polluting the program
 with global variables and using symbolic references.
 
-=head2 How can I make a filehandle local to a subroutine?  How do I pass filehandles between subroutines?  How do I make an array of filehandles? 
+=head2 How can I make a filehandle local to a subroutine?  How do I pass filehandles between subroutines?  How do I make an array of filehandles?
 X<filehandle, local> X<filehandle, passing> X<filehandle, reference>
 
 As of perl5.6, open() autovivifies file and directory handles
@@ -227,12 +227,12 @@ and use them in the place of named handles.
 
 If you like, you can store these filehandles in an array or a hash.
 If you access them directly, they aren't simple scalars and you
-need to give C<print> a little help by placing the filehandle 
+need to give C<print> a little help by placing the filehandle
 reference in braces. Perl can only figure it out on its own when
 the filehandle reference is a simple scalar.
 
 	my @fhs = ( $fh1, $fh2, $fh3 );
-	
+
 	for( $i = 0; $i <= $#fhs; $i++ ) {
 		print {$fhs[$i]} "just another Perl answer, \n";
 		}
@@ -870,7 +870,7 @@ turns off echo processing as well.
 		$term->setcc(VTIME, 1);
 		$term->setattr($fd_stdin, TCSANOW);
 		}
-	
+
 	sub cooked {
 		$term->setlflag($oterm);
 		$term->setcc(VTIME, 0);

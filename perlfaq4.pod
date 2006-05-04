@@ -117,7 +117,7 @@ alternation:
 
 Don't blame Perl.  It's the same as in C.  IEEE says we have to do
 this. Perl numbers whose absolute values are integers under 2**31 (on
-32 bit machines) will work pretty much like mathematical integers. 
+32 bit machines) will work pretty much like mathematical integers.
 Other numbers are not guaranteed.
 
 =head2 How do I convert between numeric representations/bases/radixes?
@@ -659,7 +659,7 @@ really does work:
 	# $_ contains the string to parse
 	# BEGIN and END are the opening and closing markers for the
 	# nested text.
-	
+
 	@( = ('(','');
 	@) = (')','');
 	($re=$_)=~s/((BEGIN)|(END)|.)/$)[!$3]\Q$1\E$([!$2]/gs;
@@ -931,15 +931,15 @@ C<$pad_len>.
 	# Left padding a string with blanks (no truncation):
 	$padded = sprintf("%${pad_len}s", $text);
 	$padded = sprintf("%*s", $pad_len, $text);  # same thing
-	
+
 	# Right padding a string with blanks (no truncation):
 	$padded = sprintf("%-${pad_len}s", $text);
 	$padded = sprintf("%-*s", $pad_len, $text); # same thing
-	
+
 	# Left padding a number with 0 (no truncation):
 	$padded = sprintf("%0${pad_len}d", $num);
 	$padded = sprintf("%0*d", $pad_len, $num); # same thing
-	
+
 	# Right padding a string with blanks using pack (will truncate):
 	$padded = pack("A$pad_len",$text);
 
@@ -1192,7 +1192,7 @@ elements.
 	my %hash   = map { $_, 1 } @array;
 	# or a hash slice: @hash{ @array } = ();
 	# or a foreach: $hash{$_} = 1 foreach ( @array );
-	
+
 	my @unique = keys %hash;
 
 If you want to use a module, try the C<uniq> function from
@@ -1201,7 +1201,7 @@ preserving their order in the list. In scalar context, it returns the
 number of unique elements.
 
 	use List::MoreUtils qw(uniq);
-	
+
 	my @unique = uniq( 1, 2, 3, 4, 4, 5, 6, 5, 7 ); # 1,2,3,4,5,6,7
 	my $unique = uniq( 1, 2, 3, 4, 4, 5, 6, 5, 7 ); # 7
 
@@ -1321,7 +1321,7 @@ stringwise comparison, and does not distinguish defined versus
 undefined empty strings.  Modify if you have other needs.
 
 	$are_equal = compare_arrays(\@frogs, \@toads);
-	
+
 	sub compare_arrays {
 		my ($first, $second) = @_;
 		no warnings;  # silence spurious -w undef complaints
@@ -1347,14 +1347,14 @@ This approach also works for comparing hashes.  Here we'll demonstrate
 two different answers:
 
 	use FreezeThaw qw(cmpStr cmpStrHard);
-	
+
 	%a = %b = ( "this" => "that", "extra" => [ "more", "stuff" ] );
 	$a{EXTRA} = \%b;
 	$b{EXTRA} = \%a;
-	
+
 	printf "a and b contain %s hashes\n",
 	cmpStr(\%a, \%b) == 0 ? "the same" : "different";
-	
+
 	printf "a and b contain %s hashes\n",
 	cmpStrHard(\%a, \%b) == 0 ? "the same" : "different";
 
@@ -1429,14 +1429,14 @@ You could add to the list this way:
 	for $value ( 2 .. 10 ) {
 		$tail = append($tail, $value);
 		}
-	
+
 	sub append {
 		my($list, $value) = @_;
 		my $node = { VALUE => $value };
 		if ($list) {
 			$node->{LINK} = $list->{LINK};
 			$list->{LINK} = $node;
-			} 
+			}
 		else {
 			$_[0] = $node;      # replace caller's version
 			}
@@ -1456,12 +1456,12 @@ lists, or you could just do something like this with an array:
 You can also use C<Tie::Cycle>:
 
 	use Tie::Cycle;
-	
+
 	tie my $cycle, 'Tie::Cycle', [ qw( FFFFFF 000000 FFFF00 ) ];
-	
+
 	print $cycle; # FFFFFF
 	print $cycle; # 000000
-	print $cycle; # FFFF00                                           
+	print $cycle; # FFFF00
 
 =head2 How do I shuffle an array randomly?
 
@@ -1504,7 +1504,7 @@ randomly picking another element to swap the current element with
 		}
 
 This is bad because splice is already O(N), and since you do it N
-times, you just invented a quadratic algorithm; that is, O(N**2). 
+times, you just invented a quadratic algorithm; that is, O(N**2).
 This does not scale, although Perl is so efficient that you probably
 won't notice this until you have rather largish arrays.
 
@@ -1632,7 +1632,7 @@ that's come to be known as the Schwartzian Transform:
 
 If you need to sort on several fields, the following paradigm is useful.
 
-	@sorted = sort { 
+	@sorted = sort {
 		field1($a) <=> field1($b) ||
 		field2($a) cmp field2($b) ||
 		field3($a) cmp field3($b)
@@ -1681,7 +1681,7 @@ C<@ints> array:
 				push @ints, $i if vec($vec, ++$i, 1);
 				push @ints, $i if vec($vec, ++$i, 1);
 				}
-			} 
+			}
 		else {
 			# This method is a fast general algorithm
 			use integer;
@@ -1689,7 +1689,7 @@ C<@ints> array:
 			push @ints, 0 if $bits =~ s/^(\d)// && $1;
 			push @ints, pos $bits while($bits =~ /1/g);
 			}
-	
+
 		return \@ints;
 		}
 
@@ -1721,18 +1721,18 @@ Here's a more extensive illustration using vec():
 	$is_set = vec($vector, 23, 1);
 	print "Its 23rd bit is ", $is_set ? "set" : "clear", ".\n";
 	pvec($vector);
-	
+
 	set_vec(1,1,1);
 	set_vec(3,1,1);
 	set_vec(23,1,1);
-	
+
 	set_vec(3,1,3);
 	set_vec(3,2,3);
 	set_vec(3,4,3);
 	set_vec(3,4,7);
 	set_vec(3,8,3);
 	set_vec(3,8,7);
-	
+
 	set_vec(0,32,17);
 	set_vec(1,32,17);
 
@@ -1749,7 +1749,7 @@ Here's a more extensive illustration using vec():
 		my $bits = unpack("b*", $vector);
 		my $i = 0;
 		my $BASE = 8;
-	
+
 		print "vector length in bytes: ", length($vector), "\n";
 		@bytes = unpack("A8" x length($vector), $bits);
 		print "bits are: @bytes\n\n";
@@ -2125,7 +2125,7 @@ C<getnum> if you just want to say, "Is this a float?"
 		my($num, $unparsed) = strtod($str);
 		if (($str eq '') || ($unparsed != 0) || $!) {
 				return undef;
-			} 
+			}
 		else {
 			return $num;
 			}
