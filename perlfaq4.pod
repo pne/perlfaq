@@ -829,7 +829,7 @@ case transformations:
 
 =head2 How can I split a [character] delimited string except when inside [character]?
 
-Several modules can handle this sort of pasing---C<Text::Balanced>,
+Several modules can handle this sort of parsing---C<Text::Balanced>,
 C<Text::CSV>, C<Text::CSV_XS>, and C<Text::ParseWords>, among others.
 
 Take the example case of trying to split a string that is
