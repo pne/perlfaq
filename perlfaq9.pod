@@ -311,7 +311,7 @@ an absolute URLpath.
 
 To enable authentication for your web server, you need to configure
 your web server.  The configuration is different for different sorts
-of web servers---apache does it differently from iPlanet which does
+of web servers--apache does it differently from iPlanet which does
 it differently from IIS.  Check your web server documentation for
 the details for your particular server.
 
@@ -404,7 +404,7 @@ if it is a deliverable address (i.e. that mail to the address
 will not bounce).  Modules like Mail::CheckUser and Mail::EXPN
 try to interact with the domain name system or particular
 mail servers to learn even more, but their methods do not
-work everywhere---especially for security conscious administrators.
+work everywhere--especially for security conscious administrators.
 
 Many are tempted to try to eliminate many frequently-invalid
 mail addresses with a simple regex, such as

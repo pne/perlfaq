@@ -942,7 +942,7 @@ If you see "bad interpreter - no such file or directory", the first
 line in your perl script (the "shebang" line) does not contain the
 right path to perl (or any other program capable of running scripts).
 Sometimes this happens when you move the script from one machine to
-another and each machine has a different path to perl---/usr/bin/perl
+another and each machine has a different path to perl--/usr/bin/perl
 versus /usr/local/bin/perl for instance. It may also indicate
 that the source machine has CRLF line terminators and the
 destination machine has LF only: the shell tries to find

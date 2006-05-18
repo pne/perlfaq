@@ -255,36 +255,36 @@ substitution have the same case, letter by letter, as the original.
 If the substitution has more characters than the string being substituted,
 the case of the last character is used for the rest of the substitution.
 
-    # Original by Nathan Torkington, massaged by Jeffrey Friedl
-    #
-    sub preserve_case($$)
-    {
-        my ($old, $new) = @_;
-        my ($state) = 0; # 0 = no change; 1 = lc; 2 = uc
-        my ($i, $oldlen, $newlen, $c) = (0, length($old), length($new));
-        my ($len) = $oldlen < $newlen ? $oldlen : $newlen;
+	# Original by Nathan Torkington, massaged by Jeffrey Friedl
+	#
+	sub preserve_case($$)
+	{
+		my ($old, $new) = @_;
+		my ($state) = 0; # 0 = no change; 1 = lc; 2 = uc
+		my ($i, $oldlen, $newlen, $c) = (0, length($old), length($new));
+		my ($len) = $oldlen < $newlen ? $oldlen : $newlen;
 
-        for ($i = 0; $i < $len; $i++) {
-            if ($c = substr($old, $i, 1), $c =~ /[\W\d_]/) {
-                $state = 0;
-            } elsif (lc $c eq $c) {
-                substr($new, $i, 1) = lc(substr($new, $i, 1));
-                $state = 1;
-            } else {
-                substr($new, $i, 1) = uc(substr($new, $i, 1));
-                $state = 2;
-            }
-        }
-        # finish up with any remaining new (for when new is longer than old)
-        if ($newlen > $oldlen) {
-            if ($state == 1) {
-                substr($new, $oldlen) = lc(substr($new, $oldlen));
-            } elsif ($state == 2) {
-                substr($new, $oldlen) = uc(substr($new, $oldlen));
-            }
-        }
-        return $new;
-    }
+		for ($i = 0; $i < $len; $i++) {
+			if ($c = substr($old, $i, 1), $c =~ /[\W\d_]/) {
+				$state = 0;
+			} elsif (lc $c eq $c) {
+				substr($new, $i, 1) = lc(substr($new, $i, 1));
+				$state = 1;
+			} else {
+				substr($new, $i, 1) = uc(substr($new, $i, 1));
+				$state = 2;
+			}
+		}
+		# finish up with any remaining new (for when new is longer than old)
+		if ($newlen > $oldlen) {
+			if ($state == 1) {
+				substr($new, $oldlen) = lc(substr($new, $oldlen));
+			} elsif ($state == 2) {
+				substr($new, $oldlen) = uc(substr($new, $oldlen));
+			}
+		}
+		return $new;
+	}
 
 =head2 How can I make C<\w> match national character sets?
 X<\w>
@@ -548,7 +548,7 @@ the regular expression for every iteration of the foreach()
 loop since it has no way to know what $pattern will be.
 
 	@patterns = qw( foo bar baz );
-
+	
 	LINE: while( <DATA> )
 		{
 		foreach $pattern ( @patterns )
@@ -750,15 +750,15 @@ when you want to try a different match if one fails,
 such as in a tokenizer. Jeffrey Friedl offers this example
 which works in 5.004 or later.
 
-    while (<>) {
-      chomp;
-      PARSER: {
-           m/ \G( \d+\b    )/gcx   && do { print "number: $1\n";  redo; };
-           m/ \G( \w+      )/gcx   && do { print "word:   $1\n";  redo; };
-           m/ \G( \s+      )/gcx   && do { print "space:  $1\n";  redo; };
-           m/ \G( [^\w\d]+ )/gcx   && do { print "other:  $1\n";  redo; };
-      }
-    }
+	while (<>) {
+		chomp;
+		PARSER: {
+			m/ \G( \d+\b    )/gcx   && do { print "number: $1\n";  redo; };
+			m/ \G( \w+      )/gcx   && do { print "word:   $1\n";  redo; };
+			m/ \G( \s+      )/gcx   && do { print "space:  $1\n";  redo; };
+			m/ \G( [^\w\d]+ )/gcx   && do { print "other:  $1\n";  redo; };
+		}
+	}
 
 For each line, the PARSER loop first tries to match a series
 of digits followed by a word boundary.  This match has to
@@ -833,7 +833,7 @@ looks like it is because "SG" is next to "XX", but there's no real
 Here are a few ways, all painful, to deal with it:
 
 	# Make sure adjacent "martian" bytes are no longer adjacent.
-	$martian =~ s/([A-Z][A-Z])/ $1 /g;
+	$martian =~ s/([A-Z][A-Z])/ $1 /g; 
 
 	print "found GX!\n" if $martian =~ /GX/;
 
@@ -877,7 +877,7 @@ X<\E, regex>, X<qr//>
 We don't have to hard-code patterns into the match operator (or
 anything else that works with regular expressions). We can put the
 pattern in a variable for later use.
-
+ 
 The match operator is a double quote context, so you can interpolate
 your variable just like a double quoted string. In this case, you
 read the regular expression as user input and store it in C<$regex>.
@@ -885,24 +885,24 @@ Once you have the pattern in C<$regex>, you use that variable in the
 match operator.
 
 	chomp( my $regex = <STDIN> );
-
+    
 	if( $string =~ m/$regex/ ) { ... }
 
-Any regular expression special characters in C<$regex> are still
+Any regular expression special characters in C<$regex> are still 
 special, and the pattern still has to be valid or Perl will complain.
 For instance, in this pattern there is an unpaired parenthesis.
 
 	my $regex = "Unmatched ( paren";
-
+	
 	"Two parens to bind them all" =~ m/$regex/;
-
+	
 When Perl compiles the regular expression, it treats the parenthesis
 as the start of a memory match. When it doesn't find the closing
 parenthesis, it complains:
 
-	Unmatched ( in regex; marked by <-- HERE in m/Unmatched ( <-- HERE  paren/ at script line 3.
+	Unmatched ( in regex; marked by <-- HERE in m/Unmatched ( <-- HERE  paren/ at script line 3.                                                               
 
-You can get around this in several ways depending on our situation.
+You can get around this in several ways depending on our situation. 
 First, if you don't want any of the characters in the string to be
 special, you can escape them with C<quotemeta> before you use the string.
 
@@ -921,25 +921,25 @@ for more details).
 	if( $string =~ m/\Q$regex\E/ ) { ... }
 
 Alternately, you can use C<qr//>, the regular expression quote operator (see
-L<perlop> for more details).  It quotes and perhaps compiles the pattern,
+L<perlop> for more details).  It quotes and perhaps compiles the pattern, 
 and you can apply regular expression flags to the pattern.
 
 	chomp( my $input = <STDIN> );
-
+  	
 	my $regex = qr/$input/is;
 
-	$string =~ m/$regex/  # same as m/$input/is;
+	$string =~ m/$regex/  # same as m/$input/is; 
 
 You might also want to trap any errors by wrapping an C<eval> block
 around the whole thing.
 
 	chomp( my $input = <STDIN> );
-
-	eval {
-		if( $string =~ m/\Q$input\E/ ) { ... }
+  	
+	eval { 
+		if( $string =~ m/\Q$input\E/ ) { ... } 
 		};
 	warn $@ if $@;
-
+    
 Or...
 
 	my $regex = eval { qr/$input/is };

@@ -556,7 +556,7 @@ syscall(), you can use the syscall function (documented in
 L<perlfunc>).
 
 Remember to check the modules that came with your distribution, and
-CPAN as well---someone may already have written a module to do it. On
+CPAN as well--someone may already have written a module to do it. On
 Windows, try Win32::API.  On Macs, try Mac::Carbon.  If no module
 has an interface to the C function, you can inline a bit of C in your
 Perl source with Inline::C.

@@ -342,7 +342,7 @@ once at the start of your program to seed the random number generator.
 	 BEGIN { srand() if $] < 5.004 }
 
 5.004 and later automatically call C<srand> at the beginning.  Don't
-call C<srand> more than once---you make your numbers less random,
+call C<srand> more than once--you make your numbers less random,
 rather than more.
 
 Computers are good at being predictable and bad at being random
@@ -829,7 +829,7 @@ case transformations:
 
 =head2 How can I split a [character] delimited string except when inside [character]?
 
-Several modules can handle this sort of parsing---C<Text::Balanced>,
+Several modules can handle this sort of parsing--C<Text::Balanced>,
 C<Text::CSV>, C<Text::CSV_XS>, and C<Text::ParseWords>, among others.
 
 Take the example case of trying to split a string that is
@@ -1015,11 +1015,12 @@ variables as entries in some special hash.  For example:
 
 =head2 What's wrong with always quoting "$vars"?
 
-The problem is that those double-quotes force stringification--
-coercing numbers and references into strings--even when you
-don't want them to be strings.  Think of it this way: double-quote
-expansion is used to produce new strings.  If you already
-have a string, why do you need more?
+The problem is that those double-quotes force
+stringification--coercing numbers and references into
+strings--even when you don't want them to be strings.  Think
+of it this way: double-quote expansion is used to produce
+new strings.  If you already have a string, why do you need
+more?
 
 If you get used to writing odd things like these:
 
