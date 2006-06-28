@@ -796,7 +796,7 @@ more thorough solution (Suggested by brian d foy):
 				   )
 				/\U$1/xg;
 
-	$string =~ /([\w']+)/\u\L$1/g;
+	$string =~ s/([\w']+)/\u\L$1/g;
 
 To make the whole line upper case:
 
