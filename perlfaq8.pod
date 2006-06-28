@@ -392,14 +392,13 @@ first child, and the init daemon will wait() for your grandchild once
 it exits.
 
 	unless ($pid = fork) {
-		unless (fork) {
-			exec "what you really wanna do";
-			die "exec failed!";
-			}
-		exit 0;
-		}
-	waitpid($pid,0);
-
+	    unless (fork) {
+		exec "what you really wanna do";
+		die "exec failed!";
+	    }
+	    exit 0;
+	}
+	waitpid($pid, 0);
 
 See L<perlipc/"Signals"> for other examples of code to do this.
 Zombies are not an issue with C<system("prog &")>.
@@ -517,7 +516,7 @@ For example, you can use this to make sure your filter program
 managed to finish its output without filling up the disk:
 
 	END {
-	close(STDOUT) || die "stdout close failed: $!";
+	    close(STDOUT) || die "stdout close failed: $!";
 	}
 
 The END block isn't called when untrapped signals kill the program,
@@ -831,13 +830,13 @@ You can also:
 
 	my @ok = ();
 	if (open(GREP, "-|")) {
-		while (<GREP>) {
+	    while (<GREP>) {
 		chomp;
-			push(@ok, $_);
-		}
-	close GREP;
+		push(@ok, $_);
+	    }
+	    close GREP;
 	} else {
-		exec 'grep', @opts, $search_string, @filenames;
+	    exec 'grep', @opts, $search_string, @filenames;
 	}
 
 Just as with system(), no shell escapes happen when you exec() a list.
@@ -900,15 +899,15 @@ If all you want to do is pretend to be telnet but don't need
 the initial telnet handshaking, then the standard dual-process
 approach will suffice:
 
-	use IO::Socket; 	    	# new in 5.004
+	use IO::Socket;             # new in 5.004
 	$handle = IO::Socket::INET->new('www.perl.com:80')
-		|| die "can't connect to port 80 on www.perl.com: $!";
+	    or die "can't connect to port 80 on www.perl.com: $!";
 	$handle->autoflush(1);
-	if (fork()) { 	    	# XXX: undef means failure
-	select($handle);
-	print while <STDIN>;    # everything from stdin to socket
+	if (fork()) {               # XXX: undef means failure
+	    select($handle);
+	    print while <STDIN>;    # everything from stdin to socket
 	} else {
-	print while <$handle>;  # everything from socket to stdout
+	    print while <$handle>;  # everything from socket to stdout
 	}
 	close $handle;
 	exit;
