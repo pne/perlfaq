@@ -762,11 +762,12 @@ You can try using encryption via source filters (Starting from Perl
 5.8 the Filter::Simple and Filter::Util::Call modules are included in
 the standard distribution), but any decent programmer will be able to
 decrypt it.  You can try using the byte code compiler and interpreter
-described below, but the curious might still be able to de-compile it.
-You can try using the native-code compiler described below, but
-crackers might be able to disassemble it.  These pose varying degrees
-of difficulty to people wanting to get at your code, but none can
-definitively conceal it (true of every language, not just Perl).
+described later in L<perlfaq3>, but the curious might still be able to
+de-compile it. You can try using the native-code compiler described
+later, but crackers might be able to disassemble it.  These pose
+varying degrees of difficulty to people wanting to get at your code,
+but none can definitively conceal it (true of every language, not just
+Perl).
 
 It is very easy to recover the source of Perl programs.  You simply
 feed the program to the perl interpreter and use the modules in

@@ -152,8 +152,8 @@ work, try looking in /usr/local/lib/perl5/pod for documentation.
 If all else fails, consult http://perldoc.perl.org/ which has the
 complete documentation in HTML and PDF format.
 
-Many good books have been written about Perl--see the section below
-for more details.
+Many good books have been written about Perl--see the section later in
+L<perlfaq2> for more details.
 
 Tutorial documents are included in current or upcoming Perl releases
 include L<perltoot> for objects or L<perlboot> for a beginner's
