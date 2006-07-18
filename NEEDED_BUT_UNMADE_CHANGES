@@ -1,0 +1,52 @@
+#!/usr/bin/perl
+
+=pod
+
+This document sits aside the perlfaq files as a scratchpad for things
+that should change, but for some reason haven't. Please use this 
+syntax (and leave the committer annotation to subversion):
+
+	<severity>perlfaq<number> - <comment>
+
+	Severity
+
+		! - important change needed soon 
+		? - something that might need work, but not sure
+		. - change this at some point, but no big deal
+
+		& - needs a code change
+		" - needs a prose change
+
+		\ - backwards compatibility change (e.g. for 5.6)
+		/ - forwards compatibility change (e.g. for 5.10)
+
+		# - resolved, but keep in list anyway just in case
+
+		- - candidate for deletion
+		+ - candidate for addition
+
+For example:
+
+
+Important change to text:
+
+	!"perlfaq5 - The question says foo, but should say bar
+
+Is that code right:
+
+	?&perlfaq4 - Does that really calculate foo?
+		
+Delete this question:
+
+	-perlfaq3 - Question "How do I foo?" no longer needed with Perl5
+
+Add this question
+
+	+perlfaq1 - Add "Why Doens't anyone ever listen to me?"
+
+=cut
+
+# put some parsing, reporting code here
+
+__END__
+?perlfaq7 - remove Switch.pm mention
