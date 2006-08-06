@@ -252,30 +252,10 @@ And for more advanced information on writing larger programs,
 presented in the same style as the Llama book, continue your education
 with the Alpaca book:
 
-	Learning Perl Objects, References, and Modules (the "Alpaca Book")
-	by Randal L. Schwartz, with Tom Phoenix (foreword by Damian Conway)
-	ISBN 0-596-00478-8 [1st edition June 2003]
+	Intermediate Perl (the "Alpaca Book")
+	by Randal L. Schwartz and brian d foy, with Tom Phoenix (foreword by Damian Conway)
+	ISBN 0-596-10206-2 [1st edition March 2006]
 	http://www.oreilly.com/catalog/lrnperlorm/
-
-If you're not an accidental programmer, but a more serious and
-possibly even degreed computer scientist who doesn't need as much
-hand-holding as we try to provide in the Llama, please check out the
-delightful book
-
-	Perl: The Programmer's Companion
-	by Nigel Chapman
-	ISBN 0-471-97563-X [1997, 3rd printing Spring 1998]
-	http://www.wiley.com/compbooks/catalog/97563-X.htm
-	http://www.wiley.com/compbooks/chapman/perl/perltpc.html (errata etc)
-
-If you are more at home in Windows the following is available
-(though unfortunately rather dated).
-
-	Learning Perl on Win32 Systems (the "Gecko Book")
-	by Randal L. Schwartz, Erik Olson, and Tom Christiansen,
-	    with foreword by Larry Wall
-	ISBN 1-56592-324-3 [1st edition August 1997]
-	http://www.oreilly.com/catalog/lperlwin/
 
 Addison-Wesley ( http://www.awlonline.com/ ) and Manning
 ( http://www.manning.com/ ) are also publishers of some fine Perl books
@@ -321,9 +301,9 @@ Recommended books on (or mostly on) Perl follow.
 	ISBN 0-596-10105-8 [4th edition July 2005]
 	http://www.oreilly.com/catalog/learnperl4/
 
-	Learning Perl Objects, References, and Modules
-	by Randal L. Schwartz, with Tom Phoenix (foreword by Damian Conway)
-	ISBN 0-596-00478-8 [1st edition June 2003]
+	Intermediate Perl (the "Alpaca Book")
+	by Randal L. Schwartz and brian d foy, with Tom Phoenix (foreword by Damian Conway)
+	ISBN 0-596-10206-2 [1st edition March 2006]
 	http://www.oreilly.com/catalog/lrnperlorm/
 
 =item Task-Oriented

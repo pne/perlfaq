@@ -1867,24 +1867,28 @@ we can provide a secondary sort on the hash key.
 		} keys %hash;
 
 =head2 How can I always keep my hash sorted?
+X<hash tie sort DB_File Tie::IxHash>
 
-You can look into using the DB_File module and tie() using the
-$DB_BTREE hash bindings as documented in L<DB_File/"In Memory Databases">.
-The Tie::IxHash module from CPAN might also be instructive.
+You can look into using the C<DB_File> module and C<tie()> using the
+C<$DB_BTREE> hash bindings as documented in L<DB_File/"In Memory
+Databases">. The C<Tie::IxHash> module from CPAN might also be
+instructive. Although this does keep your hash sorted, you might not
+like the slow down you suffer from the tie interface. Are you sure you
+need to do this? :)
 
 =head2 What's the difference between "delete" and "undef" with hashes?
 
 Hashes contain pairs of scalars: the first is the key, the
 second is the value.  The key will be coerced to a string,
 although the value can be any kind of scalar: string,
-number, or reference.  If a key $key is present in
+number, or reference.  If a key C<$key> is present in
 %hash, C<exists($hash{$key})> will return true.  The value
 for a given key can be C<undef>, in which case
 C<$hash{$key}> will be C<undef> while C<exists $hash{$key}>
 will return true.  This corresponds to (C<$key>, C<undef>)
 being in the hash.
 
-Pictures help...  here's the %hash table:
+Pictures help...  here's the C<%hash> table:
 
 	  keys  values
 	+------+------+

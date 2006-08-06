@@ -943,9 +943,8 @@ A good place to start is L<perltoot>, and you can use L<perlobj>,
 L<perlboot>, L<perltoot>, L<perltooc>, and L<perlbot> for reference.
 
 A good book on OO on Perl is the "Object-Oriented Perl"
-by Damian Conway from Manning Publications, or "Learning Perl
-References, Objects, & Modules" by Randal Schwartz and Tom
-Phoenix from O'Reilly Media.
+by Damian Conway from Manning Publications, or "Intermediate Perl" 
+by Randal Schwartz, brian d foy, and Tom Phoenix from O'Reilly Media.
 
 =head2 Where can I learn about linking C with Perl?
 
