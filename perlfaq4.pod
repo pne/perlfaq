@@ -2073,19 +2073,14 @@ what you want. It handles that extra work.
 
 =head2 How do I handle binary data correctly?
 
-Perl is binary clean, so this shouldn't be a problem.  For example,
-this works fine (assuming the files are found):
+Perl is binary clean, so it can handle binary data just fine.
+On Windows or DOS, however, you have to use C<binmode> for binary 
+files to avoid conversions for line endings. In general, you should
+use C<binmode> any time you want to work with binary data.
 
-	if (`cat /vmunix` =~ /gzip/) {
-		print "Your kernel is GNU-zip enabled!\n";
-		}
+Also see L<perlfunc/"binmode"> or L<perlopentut>.
 
-On less elegant (read: Byzantine) systems, however, you have
-to play tedious games with "text" versus "binary" files.  See
-L<perlfunc/"binmode"> or L<perlopentut>.
-
-If you're concerned about 8-bit ASCII data, then see L<perllocale>.
-
+If you're concerned about 8-bit textual data then see L<perllocale>.
 If you want to deal with multibyte characters, however, there are
 some gotchas.  See the section on Regular Expressions.
 
