@@ -503,10 +503,11 @@ B<rep ps axu> similar to B<top>.
 
 =head2 How can I use X or Tk with Perl?
 
-Tk is a completely Perl-based, object-oriented interface to the Tk toolkit
-that doesn't force you to use Tcl just to get at Tk.  Sx is an interface
-to the Athena Widget set.  Both are available from CPAN.  See the
-directory http://www.cpan.org/modules/by-category/08_User_Interfaces/
+The Tk.pm module is a completely Perl-based, object-oriented interface
+to the Tk toolkit that doesn't force you to use Tcl just to get at Tk.
+Sx is an interface to the Athena Widget set.  Both are available from
+CPAN.  See the directory
+http://www.cpan.org/modules/by-category/08_User_Interfaces/
 
 Invaluable for Perl/Tk programming are the Perl/Tk FAQ at
 http://phaseit.net/claird/comp.lang.perl.tk/ptkFAQ.html , the Perl/Tk Reference
