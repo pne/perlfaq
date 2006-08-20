@@ -624,7 +624,7 @@ as well.
 In most cases, it is probably easier to simply use string concatenation,
 which also forces scalar context.
 
-	print "The time is " . localtime . ".\n";
+	print "The time is " . localtime() . ".\n";
 
 =head2 How do I find matching/nesting anything?
 
