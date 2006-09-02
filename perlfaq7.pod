@@ -282,7 +282,7 @@ variable's value this way, but now it's much harder.  Take this code:
 
     my $f = 'foo';
     sub T {
-      while ($i++ < 3) { my $f = $f; $f .= $i; print $f, "\n" }
+      while ($i++ < 3) { my $f = $f; $f .= "bar"; print $f, "\n" }
     }
     T;
     print "Finally $f\n";
