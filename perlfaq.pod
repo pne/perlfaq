@@ -345,10 +345,6 @@ How can I compile my Perl program into byte code or C?
 
 =item *
 
-How can I compile Perl into Java?
-
-=item *
-
 How can I get C<#!perl> to work on [MS-DOS,NT,...]?
 
 =item *

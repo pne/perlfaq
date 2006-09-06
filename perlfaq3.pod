@@ -817,15 +817,6 @@ Perl2Exe ( http://www.indigostar.com/perl2exe.htm ) is a command line
 program for converting perl scripts to executable files.  It targets both
 Windows and unix platforms.
 
-=head2 How can I compile Perl into Java?
-
-You can integrate Java and Perl with the Perl Resource Kit from
-O'Reilly Media.  See http://www.oreilly.com/catalog/prkunix/ .
-
-Perl 5.6 comes with Java Perl Lingo, or JPL.  JPL, still in
-development, allows Perl code to be called from Java.  See jpl/README
-in the Perl source tree.
-
 =head2 How can I get C<#!perl> to work on [MS-DOS,NT,...]?
 
 For OS/2 just use
