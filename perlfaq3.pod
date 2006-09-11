@@ -800,12 +800,6 @@ The Perl Archive Toolkit ( http://par.perl.org/ ) is Perl's
 analog to Java's JAR.  It's freely available and on CPAN (
 http://search.cpan.org/dist/PAR/ ).
 
-The B::* namespace, often called "the Perl compiler", but is really a way
-for Perl programs to peek at its innards rather than create pre-compiled
-versions of your program.  However. the B::Bytecode module can turn your
-script  into a bytecode format that could be loaded later by the
-ByteLoader module and executed as a regular Perl script.
-
 There are also some commercial products that may work for you, although
 you have to buy a license for them.
 
