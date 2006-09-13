@@ -458,7 +458,7 @@ How do I find yesterday's date?
 
 =item *
 
-Does Perl have a Year 2000 problem?  Is Perl Y2K compliant?
+Does Perl have a Year 2000 problem? Is Perl Y2K compliant?
 
 =item *
 
@@ -1323,7 +1323,7 @@ How do I download a file from the user's machine?  How do I open a file on anoth
 
 =item *
 
-How do I make a pop-up menu in HTML?
+How do I make an HTML pop-up menu with Perl?
 
 =item *
 

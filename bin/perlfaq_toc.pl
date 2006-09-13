@@ -67,15 +67,15 @@ at http://faq.perl.org/ . The perlfaq-workers periodically post extracts
 of the latest perlfaq to comp.lang.perl.misc.
 
 You can view the source tree at
-http://cvs.perl.org/viewcvs/cvs-public/perlfaq/ (which is outside of the
-main Perl source tree).  The CVS repository notes all changes to the FAQ
+https://svn.perl.org/modules/perlfaq/trunk/ (which is outside of the
+main Perl source tree).  The SVN repository notes all changes to the FAQ
 and holds the latest version of the working documents and may vary
 significantly from the version distributed with the latest version of
 Perl. Check the repository before sending your corrections.
 
 =head2 How to contribute to the perlfaq
 
-You can mail corrections, additions, and suggestions to 
+You can mail corrections, additions, and suggestions to
 C<< <perlfaq-workers AT perl DOT org> >>. The perlfaq volunteers use this
 address to coordinate their efforts and track the perlfaq development.
 They appreciate your contributions to the FAQ but do not have time to
