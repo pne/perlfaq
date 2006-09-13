@@ -143,10 +143,10 @@ Here's another example of using C<..>:
 
 	while (<>) {
 		$in_header =   1  .. /^$/;
-		$in_body   = /^$/ .. eof();
+		$in_body   = /^$/ .. eof;
 	# now choose between them
 	} continue {
-		reset if eof();		# fix $.
+		$. = 0 if eof;	# fix $.
 	}
 
 =head2 I put a regular expression into $/ but it didn't work. What's wrong?
