@@ -877,13 +877,13 @@ or Plan9 systems.  You might also have to change a single % to a %%.
 
 For example:
 
-    # Unix
+    # Unix (including Mac OS X)
     perl -e 'print "Hello world\n"'
 
     # DOS, etc.
     perl -e "print \"Hello world\n\""
 
-    # Mac
+    # Mac Classic
     print "Hello world\n"
      (then Run "Myscript" or Shift-Command-R)
 

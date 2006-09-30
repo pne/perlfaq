@@ -958,25 +958,39 @@ Left and right padding with any character, modifying C<$text> directly:
 
 =head2 How do I extract selected columns from a string?
 
-Use C<substr()> or C<unpack()>, both documented in L<perlfunc>.
-If you prefer thinking in terms of columns instead of widths,
-you can use this kind of thing:
+(contributed by brian d foy)
 
-	# determine the unpack format needed to split Linux ps output
-	# arguments are cut columns
-	my $fmt = cut2fmt(8, 14, 20, 26, 30, 34, 41, 47, 59, 63, 67, 72);
+If you know where the columns that contain the data, you can
+use C<substr> to extract a single column.
 
-	sub cut2fmt {
-		my(@positions) = @_;
-		my $template  = '';
-		my $lastpos   = 1;
-		for my $place (@positions) {
-			$template .= "A" . ($place - $lastpos) . " ";
-			$lastpos   = $place;
-			}
-		$template .= "A*";
-		return $template;
-		}
+	my $column = substr( $line, $start_column, $length );
+
+You can use C<split> if the columns are separated by whitespace or
+some other delimiter, as long as whitespace or the delimiter cannot
+appear as part of the data.
+
+	my $line    = ' fred barney   betty   ';
+	my @columns = split /\s+/, $line; 
+		# ( '', 'fred', 'barney', 'betty' );
+
+	my $line    = 'fred||barney||betty';
+	my @columns = split /\|/, $line;  
+		# ( 'fred', '', 'barney', '', 'betty' );
+
+If you want to work with comma-separated values, don't do this since
+that format is a bit more complicated. Use one of the modules that
+handle that fornat, such as C<Text::CSV>, C<Text::CSV_XS>, or
+C<Text::CSV_PP>.
+
+If you want to break apart an entire line of fixed columns, you can use
+C<unpack> with the A (ASCII) format. by using a number after the format
+specifier, you can denote the column width. See the C<pack> and C<unpack>
+entries in L<perlfunc> for more details.
+
+	my @fields = unpack( $line, "A8 A8 A8 A16 A4" );
+
+Note that spaces in the format argument to C<unpack> do not denote literal 
+spaces. If you have space separated data, you may want C<split> instead.
 
 =head2 How do I find the soundex value of a string?
 
@@ -1014,11 +1028,10 @@ variables as entries in some special hash.  For example:
 =head2 What's wrong with always quoting "$vars"?
 
 The problem is that those double-quotes force
-stringification--coercing numbers and references into
-strings--even when you don't want them to be strings.  Think
-of it this way: double-quote expansion is used to produce
-new strings.  If you already have a string, why do you need
-more?
+stringification--coercing numbers and references into strings--even
+when you don't want them to be strings.  Think of it this way:
+double-quote expansion is used to produce new strings.  If you already
+have a string, why do you need more?
 
 If you get used to writing odd things like these:
 
