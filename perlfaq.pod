@@ -707,7 +707,7 @@ How do I flush/unbuffer an output filehandle?  Why must I do this?
 
 =item *
 
-How do I change one line in a file/delete a line in a file/insert a line in the middle of a file/append to the beginning of a file?
+How do I change, delete, or insert a line in a file, or append to the beginning of a file?
 
 =item *
 

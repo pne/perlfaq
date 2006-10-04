@@ -970,11 +970,11 @@ some other delimiter, as long as whitespace or the delimiter cannot
 appear as part of the data.
 
 	my $line    = ' fred barney   betty   ';
-	my @columns = split /\s+/, $line; 
+	my @columns = split /\s+/, $line;
 		# ( '', 'fred', 'barney', 'betty' );
 
 	my $line    = 'fred||barney||betty';
-	my @columns = split /\|/, $line;  
+	my @columns = split /\|/, $line;
 		# ( 'fred', '', 'barney', '', 'betty' );
 
 If you want to work with comma-separated values, don't do this since
@@ -989,7 +989,7 @@ entries in L<perlfunc> for more details.
 
 	my @fields = unpack( $line, "A8 A8 A8 A16 A4" );
 
-Note that spaces in the format argument to C<unpack> do not denote literal 
+Note that spaces in the format argument to C<unpack> do not denote literal
 spaces. If you have space separated data, you may want C<split> instead.
 
 =head2 How do I find the soundex value of a string?
@@ -2087,7 +2087,7 @@ what you want. It handles that extra work.
 =head2 How do I handle binary data correctly?
 
 Perl is binary clean, so it can handle binary data just fine.
-On Windows or DOS, however, you have to use C<binmode> for binary 
+On Windows or DOS, however, you have to use C<binmode> for binary
 files to avoid conversions for line endings. In general, you should
 use C<binmode> any time you want to work with binary data.
 

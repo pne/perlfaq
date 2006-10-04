@@ -191,7 +191,7 @@ examples and details.
 (contributed by brian d foy)
 
 The CGI.pm module (which comes with Perl) has functions to create
-the HTML form widgets. See the CGI.pm documentation for more 
+the HTML form widgets. See the CGI.pm documentation for more
 examples.
 
 	use CGI qw/:standard/;
@@ -205,7 +205,7 @@ examples.
 			-values => [ qw( Llama Alpaca Camel Ram ) ]
 			),
         submit,
- 
+
  		end_form,
         end_html;
 
