@@ -422,7 +422,8 @@ whitespace and comments.  Here it is expanded, courtesy of Fred Curtis.
        )
      }{defined $2 ? $2 : ""}gxse;
 
-A slight modification also removes C++ comments:
+A slight modification also removes C++ comments, as long as they are not
+spread over multiple lines using a continuation character):
 
 	s#/\*[^*]*\*+([^/*][^*]*\*+)*/|//[^\n]*|("(\\.|[^"\\])*"|'(\\.|[^'\\])*'|.[^/"'\\]*)#defined $2 ? $2 : ""#gse;
 
