@@ -600,7 +600,9 @@ anonymous array. In this case, we call the function in list context.
 If we want to call the function in scalar context, we have to do a bit
 more work. We can really have any code we like inside the braces, so
 we simply have to end with the scalar reference, although how you do
-that is up to you, and you can use code inside the braces.
+that is up to you, and you can use code inside the braces. Note that
+the use of parens creates a list context, so we need C<scalar> to
+force the scalar context on the function:
 
 	print "The time is ${\(scalar localtime)}.\n"
 
