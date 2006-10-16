@@ -1004,29 +1004,45 @@ C<Text::Metaphone>, and C<Text::DoubleMetaphone> modules.
 
 =head2 How can I expand variables in text strings?
 
-Let's assume that you have a string that contains placeholder
-variables.
+(contributed by brian d foy)
 
-	$text = 'this has a $foo in it and a $bar';
+For example, I'll use a string that has two Perl scalar variables
+in it. In this example, I want to expand C<$foo> and C<$bar> to
+their variable's values.
 
-You can use a substitution with a double evaluation.  The
-first /e turns C<$1> into C<$foo>, and the second /e turns
-C<$foo> into its value.  You may want to wrap this in an
-C<eval>: if you try to get the value of an undeclared variable
-while running under C<use strict>, you get a fatal error.
+	my $foo = 'Fred';
+	my $bar = 'Barney';
+	$string = 'Say hello to $foo and $bar';
 
-	eval { $text =~ s/(\$\w+)/$1/eeg };
-	die if $@;
+One way I can do this involves the substitution operator and a double
+C</e> flag.  The first C</e> evaluates C<$1> on the replacement side and
+turns it into C<$foo>. The second /e starts with C<$foo> and replaces
+it with its value. C<$foo>, then, turns into 'Fred', and that's finally
+what's left in the string.
 
-It's probably better in the general case to treat those
-variables as entries in some special hash.  For example:
+	$string =~ s/(\$\w+)/$1/eeg; # 'Say hello to Fred and Barney'
+	
+The C</e> will also silently ignore violations of strict, replacing
+undefined variable names with the empty string.
 
-	%user_defs = (
-		foo  => 23,
-		bar  => 19,
+I could also pull the values from a hash instead of evaluating 
+variable names. Using a single C</e>, I can check the hash to ensure
+the value exists, and if it doesn't, I can replace the missing value
+with a marker, in this case C<???> to signal that I missed something:
+
+	my $string = 'This has $foo and $bar';
+	
+	my %Replacements = (
+		foo  => 'Fred',
 		);
-	$text =~ s/\$(\w+)/$user_defs{$1}/g;
-
+		
+	# $string =~ s/\$(\w+)/$Replacements{$1}/g;
+	$string =~ s/\$(\w+)/
+		exists $Replacements{$1} ? $Replacements{$1} : '???'
+		/eg;
+		
+	print $string;
+	
 =head2 What's wrong with always quoting "$vars"?
 
 The problem is that those double-quotes force
