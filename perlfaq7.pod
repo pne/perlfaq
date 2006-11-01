@@ -279,7 +279,7 @@ package:
 
     BEGIN {
         my $id = 0;
-        sub next_id( ++$id );
+        sub next_id { ++$id }
     }
 
 This is discussed in more detail in L<perlsub>, see the entry on
