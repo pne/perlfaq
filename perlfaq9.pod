@@ -407,6 +407,8 @@ of the task.  It's much easier and less hassle to use CGI.pm.
 
 =head2 How do I check a valid mail address?
 
+(partly contributed by Aaron Sherman)
+
 This isn't as simple a question as it sounds.  There are two parts:
 
 a) How do I verify that an email address is correctly formatted?
@@ -428,39 +430,30 @@ folding whitespace, or any other obsolete or non-essential elements.
 This I<just> matches the address itself:
 
 
-    my $atom = qr{[\w!\#$\%&'*+/=?\^`{}~\-]+};
-    my $dot_atom = qr{$atom(?:\.$atom)*};
-    my $quoted = qr{"(?:\\[^\r\n]|[^\\"])*"};
-    my $local = qr{(?:$dot_atom|$quoted)};
+    my $atom       = qr{[\w!\#$\%&'*+/=?\^`{}~\-]+};
+    my $dot_atom   = qr{$atom(?:\.$atom)*};
+    my $quoted     = qr{"(?:\\[^\r\n]|[^\\"])*"};
+    my $local      = qr{(?:$dot_atom|$quoted)};
     my $domain_lit = qr{\[(?:\\\S|[\x21-\x5a\x5e-\x7e])*\]};
-    my $domain = qr{(?:$dot_atom|$domain_lit)};
-    my $addr_spec = qr{$local\@$domain};
+    my $domain     = qr{(?:$dot_atom|$domain_lit)};
+    my $addr_spec  = qr{$local\@$domain};
 
 Just match an address against C</^${addr_spec}$/> to see if it follows
-the RFC2822 specification.  However, because it is impossible to be sure
-that such a correctly formed address is actually the correct way to
-reach a particular person or even has a mailbox associated with it, you
-must be very careful about how you use this.
+the RFC2822 specification.  However, because it is impossible to be
+sure that such a correctly formed address is actually the correct way
+to reach a particular person or even has a mailbox associated with it,
+you must be very careful about how you use this.
 
 Our best advice for verifying a person's mail address is to have them
-enter their address twice, just as you normally do to change a password.
-This usually weeds out typos.  If both versions match, send
-mail to that address with a personal message that looks somewhat like:
-
-    Dear someuser@host.com,
-
-    Please confirm the mail address you gave us Wed May  6 09:38:41
-    MDT 1998 by replying to this message.  Include the string
-    "Rumpelstiltskin" in that reply, but spelled in reverse; that is,
-    start with "Nik...".  Once this is done, your confirmed address will
-    be entered into our records.
-
-If you get the message back and they've followed your directions,
-you can be reasonably assured that it's real.
+enter their address twice, just as you normally do to change a
+password. This usually weeds out typos. If both versions match, send
+mail to that address with a personal message. If you get the message
+back and they've followed your directions, you can be reasonably
+assured that it's real.
 
 A related strategy that's less open to forgery is to give them a PIN
 (personal ID number).  Record the address and PIN (best that it be a
-random one) for later processing.  In the mail you send, ask them to
+random one) for later processing. In the mail you send, ask them to
 include the PIN in their reply.  But if it bounces, or the message is
 included via a "vacation" script, it'll be there anyway.  So it's
 best to ask them to mail back a slight alteration of the PIN, such as

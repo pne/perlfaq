@@ -801,7 +801,7 @@ then that is what you should do.
 
 If you know you are only going to use a system that does correctly
 implement appending (i.e. not Win32) then you can omit the seek() from
-the above code.
+the code in the previous answer.
 
 If you know you are only writing code to run on an OS and filesystem that
 does implement append mode correctly (a local filesystem on a modern
