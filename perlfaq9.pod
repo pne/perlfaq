@@ -429,8 +429,7 @@ following will match valid RFC-2822 addresses that do not have comments,
 folding whitespace, or any other obsolete or non-essential elements.
 This I<just> matches the address itself:
 
-
-    my $atom       = qr{[\w!\#$\%&'*+/=?\^`{}~\-]+};
+    my $atom       = qr{[a-zA-Z0-9_!#\$\%&'*+/=?\^`{}~|\-]+};
     my $dot_atom   = qr{$atom(?:\.$atom)*};
     my $quoted     = qr{"(?:\\[^\r\n]|[^\\"])*"};
     my $local      = qr{(?:$dot_atom|$quoted)};
