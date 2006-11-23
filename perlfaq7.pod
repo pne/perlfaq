@@ -468,11 +468,11 @@ C<counter>.
         sub counter { $count++ }
     }
 
-    my $start = count();
+    my $start = counter();
 
-    .... # code that calls count();
+    .... # code that calls counter();
 
-    my $end = count();
+    my $end = counter();
 
 In the previous example, you created a function-private variable
 because only one function remembered its reference. You could define
