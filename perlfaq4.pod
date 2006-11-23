@@ -1799,15 +1799,57 @@ in the 5.004 release or later of Perl for more detail.
 
 =head2 How do I process an entire hash?
 
-Use the each() function (see L<perlfunc/each>) if you don't care
-whether it's sorted:
+(contributed by brian d foy)
 
-	while ( ($key, $value) = each %hash) {
-		print "$key = $value\n";
+There are a couple of ways that you can process an entire hash. You
+can get a list of keys, then go through each key, or grab a one
+key-value pair at a time.
+
+To go through all of the keys, use the C<keys> function. This extracts
+all of the keys of the hash and gives them back to you as a list. You
+can then get the value through the particular key you're processing:
+
+	foreach my $key ( keys %hash ) {
+		my $value = $hash{$key}
+		...
 		}
 
-If you want it sorted, you'll have to use foreach() on the result of
-sorting the keys as shown in an earlier question.
+Once you have the list of keys, you can process that list before you
+process the hashh elements. For instance, you can sort the keys so you
+can process them in lexical order:
+
+	foreach my $key ( sort keys %hash ) {
+		my $value = $hash{$key}
+		...
+		}
+
+Or, you might want to only process some of the items. If you only want
+to deal with the keys that start with C<text:>, you can select just
+those using C<grep>:
+
+	foreach my $key ( grep /^text:/, keys %hash ) {
+		my $value = $hash{$key}
+		...
+		}
+
+If the hash is very large, you might not want to create a long list of
+keys. To save some memory, you can grab on key-value pair at a time using
+C<each()>, which returns a pair you haven't seen yet:
+
+	while( my( $key, $value ) = each( %hash ) ) {
+		...
+		}
+
+The C<each> operator returns the pairs in apparently random order, so if
+ordering matters to you, you'll have to stick with the C<keys> method.
+
+The C<each()> operator can be a bit tricky though. You can't add or
+delete keys of the hash while you're using it without possibly
+skipping or re-processing some pairs after Perl internally rehashes
+all of the elements. Additionally, a hash has only one iterator, so if
+you use C<keys>, C<values>, or C<each> on the same hash, you can reset
+the iterator and mess up your processing. See the C<each> entry in
+L<perlfunc> for more details.
 
 =head2 What happens if I add or remove keys from a hash while iterating over it?
 
