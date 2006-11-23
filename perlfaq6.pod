@@ -684,14 +684,14 @@ string where the last match left off.  The regular
 expression engine cannot skip over any characters to find
 the next match with this anchor, so C<\G> is similar to the
 beginning of string anchor, C<^>.  The C<\G> anchor is typically
-used with the C<g> flag.  It uses the value of pos()
+used with the C<g> flag.  It uses the value of C<pos()>
 as the position to start the next match.  As the match
-operator makes successive matches, it updates pos() with the
+operator makes successive matches, it updates C<pos()> with the
 position of the next character past the last match (or the
 first character of the next match, depending on how you like
-to look at it). Each string has its own pos() value.
+to look at it). Each string has its own C<pos()> value.
 
-Suppose you want to match all of consective pairs of digits
+Suppose you want to match all of consecutive pairs of digits
 in a string like "1122a44" and stop matching when you
 encounter non-digits.  You want to match C<11> and C<22> but
 the letter <a> shows up between C<22> and C<44> and you want
@@ -701,7 +701,7 @@ the C<a> and still matches C<44>.
 	$_ = "1122a44";
 	my @pairs = m/(\d\d)/g;   # qw( 11 22 44 )
 
-If you use the \G anchor, you force the match after C<22> to
+If you use the C<\G> anchor, you force the match after C<22> to
 start with the C<a>.  The regular expression cannot match
 there since it does not find a digit, so the next match
 fails and the match operator returns the pairs it already
@@ -719,7 +719,7 @@ still need the C<g> flag.
 		print "Found $1\n";
 		}
 
-After the match fails at the letter C<a>, perl resets pos()
+After the match fails at the letter C<a>, perl resets C<pos()>
 and the next match on the same string starts at the beginning.
 
 	$_ = "1122a44";
@@ -730,13 +730,13 @@ and the next match on the same string starts at the beginning.
 
 	print "Found $1 after while" if m/(\d\d)/g; # finds "11"
 
-You can disable pos() resets on fail with the C<c> flag.
-Subsequent matches start where the last successful match
-ended (the value of pos()) even if a match on the same
-string as failed in the meantime. In this case, the match
-after the while() loop starts at the C<a> (where the last
-match stopped), and since it does not use any anchor it can
-skip over the C<a> to find "44".
+You can disable C<pos()> resets on fail with the C<c> flag, documented
+in L<perlop> and L<perlreref>. Subsequent matches start where the last
+successful match ended (the value of C<pos()>) even if a match on the
+same string has failed in the meantime. In this case, the match after
+the C<while()> loop starts at the C<a> (where the last match stopped),
+and since it does not use any anchor it can skip over the C<a> to find
+C<44>.
 
 	$_ = "1122a44";
 	while( m/\G(\d\d)/gc )
@@ -761,7 +761,7 @@ which works in 5.004 or later.
 		}
 	}
 
-For each line, the PARSER loop first tries to match a series
+For each line, the C<PARSER> loop first tries to match a series
 of digits followed by a word boundary.  This match has to
 start at the place the last match left off (or the beginning
 of the string on the first match). Since C<m/ \G( \d+\b
