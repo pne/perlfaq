@@ -68,6 +68,15 @@ What you need to do is get a binary version of gcc for your system
 first.  Consult the Usenet FAQs for your operating system for
 information on where to get such a binary version.
 
+You might look around the net for a pre-built binary of Perl (or a 
+C compiler!) that meets your needs, though:
+
+For Windows, Vanilla Perl (http://vanillaperl.com/) comes with a 
+bundled C compiler.
+
+For Sun systems, SunFreeware.com provides binaries of most popular 
+applications, including compilers and Perl.
+
 =head2 I copied the perl binary from one machine to another, but scripts don't work.
 
 That's probably because you forgot libraries, or library paths differ.
