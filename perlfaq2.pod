@@ -72,7 +72,8 @@ You might look around the net for a pre-built binary of Perl (or a
 C compiler!) that meets your needs, though:
 
 For Windows, Vanilla Perl (http://vanillaperl.com/) comes with a 
-bundled C compiler.
+bundled C compiler. ActivePerl is a pre-compiled version of Perl
+ready-to-use.
 
 For Sun systems, SunFreeware.com provides binaries of most popular 
 applications, including compilers and Perl.
