@@ -804,8 +804,9 @@ this code could and probably should be written as
 	system("cat /etc/termcap") == 0
 	or die "cat program failed!";
 
-which will get the output quickly (as it is generated, instead of only
-at the end) and also check the return value.
+which will echo the cat command's output as it is generated, instead
+of waiting until the program has completed to print it out. It also
+checks the return value.
 
 C<system> also provides direct control over whether shell wildcard
 processing may take place, whereas backticks do not.
