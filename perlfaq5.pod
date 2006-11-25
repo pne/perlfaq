@@ -1160,9 +1160,17 @@ a copied one.
 Error checking, as always, has been left as an exercise for the reader.
 
 =head2 How do I close a file descriptor by number?
-X<file, closing file descriptors>
+X<file, closing file descriptors> X<POSIX> X<close>
 
-This should rarely be necessary, as the Perl close() function is to be
+If, for some reason, you have a file descriptor instead of a
+filehandle (perhaps you used C<POSIX::open>), you can use the
+C<close()> function from the C<POSIX> module:
+
+	use POSIX ();
+	
+	POSIX::close( $fd );
+	
+This should rarely be necessary, as the Perl Cclose()> function is to be
 used for things that Perl opened itself, even if it was a dup of a
 numeric descriptor as with MHCONTEXT above.  But if you really have
 to, you may be able to do this:
@@ -1171,12 +1179,11 @@ to, you may be able to do this:
 	$rc = syscall(&SYS_close, $fd + 0);  # must force numeric
 	die "can't sysclose $fd: $!" unless $rc == -1;
 
-Or, just use the fdopen(3S) feature of open():
+Or, just use the fdopen(3S) feature of C<open()>:
 
 	{
-	local *F;
-	open F, "<&=$fd" or die "Cannot reopen fd=$fd: $!";
-	close F;
+	open my( $fh ), "<&=$fd" or die "Cannot reopen fd=$fd: $!";
+	close $fh;
 	}
 
 =head2 Why can't I use "C:\temp\foo" in DOS paths?  Why doesn't `C:\temp\foo.exe` work?
