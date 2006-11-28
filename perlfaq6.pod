@@ -338,32 +338,63 @@ The use of C<\Q> causes the <.> in the regex to be treated as a
 regular character, so that C<P.> matches a C<P> followed by a dot.
 
 =head2 What is C</o> really for?
-X</o>
+X</o, regular expressions> X<compile, regular expressions>
 
-Using a variable in a regular expression match forces a re-evaluation
-(and perhaps recompilation) each time the regular expression is
-encountered.  The C</o> modifier locks in the regex the first time
-it's used.  This always happens in a constant regular expression, and
-in fact, the pattern was compiled into the internal format at the same
-time your entire program was.
+(contributed by brian d foy)
 
-Use of C</o> is irrelevant unless variable interpolation is used in
-the pattern, and if so, the regex engine will neither know nor care
-whether the variables change after the pattern is evaluated the I<very
-first> time.
+The C</o> option for regular expressions (documented in L<perlop> and
+L<perlreref>) tells Perl to compile the regular expression only once.
+This is only useful when the pattern contains a variable. Perls 5.6
+and later handle this automatically if the pattern does not change.
 
-C</o> is often used to gain an extra measure of efficiency by not
-performing subsequent evaluations when you know it won't matter
-(because you know the variables won't change), or more rarely, when
-you don't want the regex to notice if they do.
+Since the match operator C<m//>, the substitution operator C<s///>,
+and the regular expression quoting operator C<qr//> are double-quotish
+constructs, you can interpolate variables into the pattern. See the
+answer to "How can I quote a variable to use in a regex?" for more
+details.
 
-For example, here's a "paragrep" program:
+This example takes a regular expression from the argument list and
+prints the lines of input that match it:
 
-	$/ = '';  # paragraph mode
-	$pat = shift;
-	while (<>) {
-		print if /$pat/o;
-	}
+	my $pattern = shift @ARGV;
+	
+	while( <> ) {
+		print if m/$pattern/;
+		}
+
+Versions of Perl prior to 5.6 would recompile the regular expression
+for each iteration, even if C<$pattern> had not changed. The C</o>
+would prevent this by telling Perl to compile the pattern the first
+time, then reuse that for subsequent iterations:
+
+	my $pattern = shift @ARGV;
+	
+	while( <> ) {
+		print if m/$pattern/o; # useful for Perl < 5.6
+		}
+
+In versions 5.6 and later, Perl won't recompile the regular expression
+if the variable hasn't changed, so you probably don't need the C</o>
+option. It doesn't hurt, but it doesn't help either. If you want any
+version of Perl to compile the regular expression only once even if
+the variable changes (thus, only using its initial value), you still
+need the C</o>.
+
+You can watch Perl's regular expression engine at work to verify for
+yourself if Perl is recompiling a regular expression. The C<use re
+'debug'> pragma (comes with Perl 5.005 and later) shows the details.
+With Perls before 5.6, you should see C<re> reporting that its
+compiling the regular expression on each iteration. With Perl 5.6 or
+later, you should only see C<re> report that for the first iteration.
+
+	use re 'debug';
+	
+	$regex = 'Perl';
+	foreach ( qw(Perl Java Ruby Python) ) {
+		print STDERR "-" x 73, "\n";
+		print STDERR "Trying $_...\n";
+		print STDERR "\t$_ is good!\n" if m/$regex/;
+		}
 
 =head2 How do I use a regular expression to strip C style comments from a file?
 
