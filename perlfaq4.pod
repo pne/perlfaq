@@ -498,7 +498,7 @@ function.
 
 	my @date_time = Add_Delta_DHMS( Today_and_Now(), -1, 0, 0, 0 );
 
-	print "@date\n";
+	print "@date_time\n";
 
 Most people try to use the time rather than the calendar to figure out
 dates, but that assumes that days are twenty-four hours each.  For
