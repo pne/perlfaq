@@ -491,7 +491,7 @@ give you the same time of day, only the day before.
 
 	print "Yesterday was $yesterday\n";
 
-You can also use the C<Date::Calc> module using its Today_and_Now
+You can also use the C<Date::Calc> module using its C<Today_and_Now>
 function.
 
 	use Date::Calc qw( Today_and_Now Add_Delta_DHMS );
