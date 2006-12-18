@@ -362,17 +362,16 @@ pseudorandom generator than comes with your operating system, look at
 
 =head2 How do I get a random number between X and Y?
 
-To get a random number between two values, you can use the
-C<rand()> builtin to get a random number between 0 and
+To get a random number between two values, you can use the C<rand()>
+builtin to get a random number between 0 and 1. From there, you shift
+that into the range that you want.
 
-C<rand($x)> returns a number such that
-C<< 0 <= rand($x) < $x >>. Thus what you want to have perl
-figure out is a random number in the range from 0 to the
-difference between your I<X> and I<Y>.
+C<rand($x)> returns a number such that C<< 0 <= rand($x) < $x >>. Thus
+what you want to have perl figure out is a random number in the range
+from 0 to the difference between your I<X> and I<Y>.
 
-That is, to get a number between 10 and 15, inclusive, you
-want a random number between 0 and 5 that you can then add
-to 10.
+That is, to get a number between 10 and 15, inclusive, you want a
+random number between 0 and 5 that you can then add to 10.
 
 	my $number = 10 + int rand( 15-10+1 );
 
