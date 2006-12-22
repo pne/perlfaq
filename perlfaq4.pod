@@ -17,7 +17,7 @@ exactly.  Some real numbers lose precision in the process.  This is a
 problem with how computers store numbers and affects all computer
 languages, not just Perl.
 
-L<perlnumber> show the gory details of number representations and
+L<perlnumber> shows the gory details of number representations and
 conversions.
 
 To limit the number of decimal places in your numbers, you can use the
