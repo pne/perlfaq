@@ -117,17 +117,25 @@ be sure that you're supposed to do that on every line!
    close $out;
 
 To change only a particular line, the input line number, C<$.>, is
-useful. Use C<next> to skip all lines up to line 5, make a change and
-print the result, then stop further processing with C<last>.
+useful. First read and print the lines up to the one you  want to
+change. Next, read the single line you want to change, change it, and
+print it. After that, read the rest of the lines and print those:
 
-	while( <$in> )
+	while( <$in> )   # print the lines before the change
 		{
-		next unless $. == 5;
-		s/\b(perl)\b/Perl/g;
 		print $out $_;
-		last;
+		last if $. == 4; # line number before change
 		}
 
+	my $line = <$in>;
+	$line =~ s/\b(perl)\b/Perl/g;
+	print $out $line;
+
+	while( <$in> )   # print the rest of the lines
+		{
+		print $out $_;
+		}
+		
 To skip lines, use the looping controls. The C<next> in this example
 skips comment lines, and the C<last> stops all processing once it
 encounters either C<__END__> or C<__DATA__>.
