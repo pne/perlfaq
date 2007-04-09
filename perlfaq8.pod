@@ -1232,9 +1232,46 @@ See Perl's L<lib> for more information.
 
 =head2 How do I add the directory my program lives in to the module/library search path?
 
+(contributed by brian d foy)
+
+If you know the directory already, you can add it to C<@INC> as you would
+for any other directory. You might <use lib> if you know the directory
+at compile time:
+
+	use lib $directory;
+	
+The trick in this task is to find the directory. Before your script does
+anything else (such as a C<chdir>), you can get the current working
+directory with the C<Cwd> module, which comes with Perl:
+
+	BEGIN {
+		use Cwd;
+		our $directory = cwd;
+		}
+	
+	use lib $directory;
+	
+You can do a similar thing with the value of C<$0>, which holds the
+script name. That might hold a relative path, but C<rel2abs> can turn
+it into an absolute path. Once you have the 
+
+	BEGIN {	
+		use File::Spec::Functions qw(rel2abs);
+		use File::Basename qw(dirname);
+		
+		my $path   = rel2abs( $0 );
+		our $directory = dirname( $path );
+		}
+		
+	use lib $directory;
+
+The C<FindBin> module, which comes with Perl, might work. It searches
+through C<$ENV{PATH}> (so your script has to be in one of those
+directories). You can then use that directory (in C<$FindBin::Bin>)
+to locate nearby directories you want to add:
+
 	use FindBin;
-	use lib "$FindBin::Bin";
-	use your_own_modules;
+	use lib "$FindBin::Bin/../lib";
 
 =head2 How do I add a directory to my include path (@INC) at runtime?
 
