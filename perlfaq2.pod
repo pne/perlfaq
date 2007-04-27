@@ -407,7 +407,8 @@ Recommended books on (or mostly on) Perl follow.
 
 I<The Perl Review> ( http://www.theperlreview.com ) focuses on Perl
 almost completely (although it sometimes sneaks in an article about
-another language).
+another language). There's also I<$foo Magazin>, a german magazine
+dedicated to Perl, at ( http://www.foo-magazin.de ).
 
 Magazines that frequently carry quality articles on Perl include I<The
 Perl Review> ( http://www.theperlreview.com ), I<Unix Review> (
