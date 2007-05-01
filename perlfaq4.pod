@@ -1615,7 +1615,7 @@ unpublished) of Knuth's I<The Art of Computer Programming>
 and will work on any list:
 
 	#!/usr/bin/perl -n
-	# Fischer-Kause ordered permutation generator
+	# Fischer-Krause ordered permutation generator
 
 	sub permute (&@) {
 		my $code = shift;
