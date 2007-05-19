@@ -1178,9 +1178,9 @@ C<close()> function from the C<POSIX> module:
 	
 	POSIX::close( $fd );
 	
-This should rarely be necessary, as the Perl Cclose()> function is to be
+This should rarely be necessary, as the Perl C<close()> function is to be
 used for things that Perl opened itself, even if it was a dup of a
-numeric descriptor as with MHCONTEXT above.  But if you really have
+numeric descriptor as with C<MHCONTEXT> above.  But if you really have
 to, you may be able to do this:
 
 	require 'sys/syscall.ph';
