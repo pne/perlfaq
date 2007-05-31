@@ -334,12 +334,11 @@ You spend lots and lots of money on dedicated hardware, but this is
 bound to get you talked about.
 
 Seriously, you can't if they are Unix password files--the Unix
-password system employs one-way encryption.  It's more like hashing than
-encryption.  The best you can check is whether something else hashes to
-the same string.  You can't turn a hash back into the original string.
-Programs like Crack
-can forcibly (and intelligently) try to guess passwords, but don't
-(can't) guarantee quick success.
+password system employs one-way encryption.  It's more like hashing
+than encryption.  The best you can do is check whether something else
+hashes to the same string.  You can't turn a hash back into the
+original string. Programs like Crack can forcibly (and intelligently)
+try to guess passwords, but don't (can't) guarantee quick success.
 
 If you're worried about users selecting bad passwords, you should
 proactively check when they try to change their password (by modifying
@@ -818,8 +817,8 @@ like this:
 
 	@ok = `grep @opts '$search_string' @filenames`;
 
-As of Perl 5.8.0, you can use open() with multiple arguments.
-Just like the list forms of system() and exec(), no shell
+As of Perl 5.8.0, you can use C<open()> with multiple arguments.
+Just like the list forms of C<system()> and C<exec()>, no shell
 escapes happen.
 
 	open( GREP, "-|", 'grep', @opts, $search_string, @filenames );
@@ -833,18 +832,19 @@ You can also:
 		while (<GREP>) {
 			chomp;
 			push(@ok, $_);
-	    }
-	    close GREP;
+		}
+		close GREP;
 	} else {
 		exec 'grep', @opts, $search_string, @filenames;
 	}
 
-Just as with system(), no shell escapes happen when you exec() a list.
-Further examples of this can be found in L<perlipc/"Safe Pipe Opens">.
+Just as with C<system()>, no shell escapes happen when you C<exec()> a
+list. Further examples of this can be found in L<perlipc/"Safe Pipe
+Opens">.
 
-Note that if you're use Microsoft, no solution to this vexing issue
-is even possible.  Even if Perl were to emulate fork(), you'd still
-be stuck, because Microsoft does not have a argc/argv-style API.
+Note that if you're use Windows, no solution to this vexing issue is
+even possible.  Even if Perl were to emulate C<fork()>, you'd still be
+stuck, because Windows does not have an argc/argv-style API.
 
 =head2 Why can't my script read from STDIN after I gave it EOF (^D on Unix, ^Z on MS-DOS)?
 
