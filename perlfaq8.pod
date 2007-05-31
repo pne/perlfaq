@@ -842,7 +842,7 @@ Just as with C<system()>, no shell escapes happen when you C<exec()> a
 list. Further examples of this can be found in L<perlipc/"Safe Pipe
 Opens">.
 
-Note that if you're use Windows, no solution to this vexing issue is
+Note that if you're using Windows, no solution to this vexing issue is
 even possible.  Even if Perl were to emulate C<fork()>, you'd still be
 stuck, because Windows does not have an argc/argv-style API.
 
