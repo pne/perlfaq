@@ -1073,7 +1073,7 @@ sysopen():
 
 =head2 How do I tell the difference between errors from the shell and perl?
 
-(answer contributed by brian d foy, C<< <bdfoy@cpan.org> >>
+(answer contributed by brian d foy)
 
 When you run a Perl script, something else is running the script for you,
 and that something else may output error messages.  The script might
@@ -1211,24 +1211,29 @@ In general, you usually want C<use> and a proper Perl module.
 
 =head2 How do I keep my own module/library directory?
 
-When you build modules, use the PREFIX and LIB options when generating
-Makefiles:
+When you build modules, tell Perl where to install the modules.
+
+For C<Makefile.PL>-based distributions, use the PREFIX and LIB options
+when generating Makefiles:
 
 	perl Makefile.PL PREFIX=/mydir/perl LIB=/mydir/perl/lib
 
-then either set the PERL5LIB environment variable before you run
-scripts that use the modules/libraries (see L<perlrun>) or say
+You can set this in your CPAN.pm configuration so modules automatically install
+in your private library directory when you use the CPAN.pm shell:
 
-	use lib '/mydir/perl/lib';
+	% cpan
+	cpan> o conf makepl_arg PREFIX=/mydir/perl,LIB=/mydir/perl/lib
+	cpan> o conf commit
 
-This is almost the same as
+For C<Build.PL>-based distributions, use the --install_base option:
 
-	BEGIN {
-	unshift(@INC, '/mydir/perl/lib');
-	}
+	perl Build.PL --install_base /mydir/perl 
 
-except that the lib module checks for machine-dependent subdirectories.
-See Perl's L<lib> for more information.
+You can configure CPAN.pm to automatically use this option too:
+
+	% cpan
+	cpan> o conf mbuild_arg --install_base /mydir/perl
+	cpan> o conf commit
 
 =head2 How do I add the directory my program lives in to the module/library search path?
 
@@ -1275,15 +1280,32 @@ to locate nearby directories you want to add:
 
 =head2 How do I add a directory to my include path (@INC) at runtime?
 
-Here are the suggested ways of modifying your include path:
+Here are the suggested ways of modifying your include path, including
+environment variables, run-time switches, and in-code statements:
 
-	the PERLLIB environment variable
-	the PERL5LIB environment variable
-	the perl -Idir command line flag
-	the use lib pragma, as in
-		use lib "$ENV{HOME}/myown_perllib";
+=over 4
 
-The latter is particularly useful because it knows about machine
+=item the PERLLIB environment variable
+
+	$ export PERLLIB=/path/to/my/dir
+	$ perl program.pl
+
+=item the PERL5LIB environment variable
+
+	$ export PERL5LIB=/path/to/my/dir
+	$ perl program.pl
+
+=item the perl -Idir command line flag
+
+	$ perl -I/path/to/my/dir program.pl
+
+=item the use lib pragma:
+
+	use lib "$ENV{HOME}/myown_perllib";
+
+=back
+
+The last is particularly useful because it knows about machine
 dependent architectures.  The lib.pm pragmatic module was first
 included with the 5.002 release of Perl.
 
