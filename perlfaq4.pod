@@ -1980,7 +1980,7 @@ And these conditions hold
 	$hash{'d'}                       is false
 	defined $hash{'d'}               is true
 	defined $hash{'a'}               is true
-	exists $hash{'a'}                is true (Perl5 only)
+	exists $hash{'a'}                is true (Perl 5 only)
 	grep ($_ eq 'a', keys %hash)     is true
 
 If you now say
@@ -2004,7 +2004,7 @@ and these conditions now hold; changes in caps:
 	$hash{'d'}                       is false
 	defined $hash{'d'}               is true
 	defined $hash{'a'}               is FALSE
-	exists $hash{'a'}                is true (Perl5 only)
+	exists $hash{'a'}                is true (Perl 5 only)
 	grep ($_ eq 'a', keys %hash)     is true
 
 Notice the last two: you have an undef value, but a defined key!
@@ -2028,7 +2028,7 @@ and these conditions now hold; changes in caps:
 	$hash{'d'}                       is false
 	defined $hash{'d'}               is true
 	defined $hash{'a'}               is false
-	exists $hash{'a'}                is FALSE (Perl5 only)
+	exists $hash{'a'}                is FALSE (Perl 5 only)
 	grep ($_ eq 'a', keys %hash)     is FALSE
 
 See, the whole entry is gone!
