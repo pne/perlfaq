@@ -316,24 +316,25 @@ temporary files in one process, use a counter:
 	BEGIN {
 	use Fcntl;
 	my $temp_dir = -d '/tmp' ? '/tmp' : $ENV{TMPDIR} || $ENV{TEMP};
-	my $base_name = sprintf("%s/%d-%d-0000", $temp_dir, $$, time());
+	my $base_name = sprintf "%s/%d-%d-0000", $temp_dir, $$, time;
 
 	sub temp_file {
 		local *FH;
 		my $count = 0;
-		until (defined(fileno(FH)) || $count++ > 100) {
-		$base_name =~ s/-(\d+)$/"-" . (1 + $1)/e;
-		# O_EXCL is required for security reasons.
-		sysopen(FH, $base_name, O_WRONLY|O_EXCL|O_CREAT);
-		}
+		until( defined(fileno(FH)) || $count++ > 100 ) {
+			$base_name =~ s/-(\d+)$/"-" . (1 + $1)/e;
+			# O_EXCL is required for security reasons.
+			sysopen FH, $base_name, O_WRONLY|O_EXCL|O_CREAT;
+			}
 
-	if (defined(fileno(FH))
-		return (*FH, $base_name);
-	    }
-	else {
-		return ();
-	    }
-	}
+		if( defined fileno(FH) ) {
+			return (*FH, $base_name);
+			}
+		else {
+			return ();
+			}
+		}
+		
 	}
 
 =head2 How can I manipulate fixed-record-length files?
