@@ -198,6 +198,45 @@ for CPAN" ( http://apress.com/book/bookDisplay.html?bID=14 )
 which is the best hands-on guide to creating module
 distributions.
 
+=head2 How do I adopt or take over a module already on CPAN?
+
+(contributed by brian d foy)
+
+The easiest way to take over a module is to have the current
+module maintainer either make you a co-maintainer or transfer
+the module to you.
+
+If you can't reach the author for some reason (e.g. email bounces),
+the PAUSE admins at modules@perl.org can help. The PAUSE admins
+treat each case individually.
+
+=over 4
+
+=item
+
+Get a login for the Perl Authors Upload Server (PAUSE) if you don't
+already have one: http://pause.perl.org
+
+=item
+
+Write to modules@perl.org explaining what you did to contact the
+current maintainer. The PAUSE admins will also try to reach the
+maintainer.
+
+=item 
+
+Post a public message in a heavily trafficed site announcing your
+intention to take over the module.
+
+=item
+
+Wait a bit. The PAUSE admins don't want to act too quickly in case
+the current maintainer is on holiday. If there's no response to 
+private communication or the public post, a PAUSE admin can transfer
+it to you.
+
+=back
+
 =head2 How do I create a class?
 
 See L<perltoot> for an introduction to classes and objects, as well as

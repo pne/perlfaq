@@ -1001,6 +1001,10 @@ How do I create a module?
 
 =item *
 
+How do I adopt or take over a module already on CPAN?
+
+=item *
+
 How do I create a class?
 
 =item *
