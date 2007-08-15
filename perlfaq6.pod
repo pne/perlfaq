@@ -606,7 +606,7 @@ but faster.
 		{
 		foreach $pattern ( @patterns )
 			{
-			print if /\b$pattern\b/i;
+			print if /$pattern/i;
 			next LINE;
 			}
 		}
