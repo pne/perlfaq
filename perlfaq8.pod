@@ -1030,8 +1030,24 @@ The alarm() function is not implemented on all versions of Windows.
 Check the documentation for your specific version of Perl.
 
 =head2 How do I set CPU limits?
+X<BSD::Resource> X<limit> X<CPU>
 
-Use the BSD::Resource module from CPAN.
+(contributed by Xho)
+
+Use the C<BSD::Resource? module from CPAN. As an example:
+
+	use BSD::Resource;
+	setrlimit(RLIMIT_CPU,10,20) or die $!;
+
+This sets the soft and hard limits to 10 and 20 seconds, respectively.
+After 10 seconds of time spent running on the CPU (not "wall" time),
+the process will be sent a signal (XCPU on some systems) which, if not
+trapped, will cause the process to terminate.  If that signal is
+trapped, then after 10 more seconds (20 seconds in total) the process
+will be killed with a non-trappable signal.
+
+See the C<BSD::Resource> and your systems documentation for the gory
+details.
 
 =head2 How do I avoid zombies on a Unix system?
 
