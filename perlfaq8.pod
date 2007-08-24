@@ -1034,7 +1034,7 @@ X<BSD::Resource> X<limit> X<CPU>
 
 (contributed by Xho)
 
-Use the C<BSD::Resource? module from CPAN. As an example:
+Use the C<BSD::Resource> module from CPAN. As an example:
 
 	use BSD::Resource;
 	setrlimit(RLIMIT_CPU,10,20) or die $!;
