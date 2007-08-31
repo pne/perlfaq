@@ -127,7 +127,7 @@ minor release (i.e. perl5.9.x, where 9 is the minor release).
 
 (contributed by brian d foy)
 
-In short, Pelr 4 is the past, Perl 5 is the present, and Perl 6 is the
+In short, Perl 4 is the past, Perl 5 is the present, and Perl 6 is the
 future.
 
 The number after perl (i.e. the 5 after Perl 5) is the major release
@@ -136,7 +136,7 @@ major version has significant differences that earlier versions cannot
 support.
 
 The current major release of Perl is Perl 5, and was released in 1994.
-It can run scripts from the previous major release, perl4 (March 1991),
+It can run scripts from the previous major release, Perl 4 (March 1991),
 but has significant differences. It introduced the concept of references,
 complex data structures, and modules.  The Perl 5 interpreter was a
 complete re-write of the previous perl sources.
