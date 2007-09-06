@@ -501,20 +501,73 @@ directory http://www.cpan.org/authors/Tom_Christiansen/scripts/rep.gz ;
 this program repeats a command and updates the screen as needed, rendering
 B<rep ps axu> similar to B<top>.
 
-=head2 How can I use X or Tk with Perl?
+=head2 How can I write a GUI (X, Tk, Gtk, etc.) in Perl?
+X<GUI> X<Tk> X<Wx> X<WxWidgets> X<Gtk> X<Gtk2> X<CamelBones> X<Qt>
 
-The Tk.pm module is a completely Perl-based, object-oriented interface
-to the Tk toolkit that doesn't force you to use Tcl just to get at Tk.
-Sx is an interface to the Athena Widget set.  Both are available from
-CPAN.  See the directory
-http://www.cpan.org/modules/by-category/08_User_Interfaces/
+(contributed by Ben Morrow)
 
-Invaluable for Perl/Tk programming are the Perl/Tk FAQ at
-http://phaseit.net/claird/comp.lang.perl.tk/ptkFAQ.html , the Perl/Tk Reference
-Guide available at
-http://www.cpan.org/authors/Stephen_O_Lidie/ , and the
-online manpages at
-http://www-users.cs.umn.edu/%7Eamundson/perl/perltk/toc.html .
+There are a number of modules which let you write GUIs in Perl. Most
+GUI toolkits have a perl interface: an incomplete list follows.
+
+=over 4
+
+=item Tk
+
+This works under Unix and Windows, and the current version doesn't
+look half as bad under Windows as it used to. Some of the gui elements
+still don't 'feel' quite right, though. The interface is very natural
+and 'perlish', making it easy to use in small scripts that just need a
+simple gui. It hasn't been updated in a while.
+
+=item Wx
+
+This is a Perl binding for the cross-platform wxWidgets toolkit 
+L<http://www.wxwidgets.org>. It works under Unix, Win32 and Mac OS X,
+using native widgets (Gtk under Unix). The interface follows the C++
+interface closely, but the documentation is a little sparse for someone
+who doesn't know the library, mostly just referring you to the C++
+documentation.
+
+=item Gtk and Gtk2
+
+These are Perl bindings for the Gtk toolkit L<http://www.gtk.org>. The
+interface changed significantly between versions 1 and 2 so they have
+separate Perl modules. It runs under Unix, Win32 and Mac OS X (currently
+it requires an X server on Mac OS, but a 'native' port is underway), and
+the widgets look the same on every plaform: i.e., they don't match the
+native widgets. As with Wx, the Perl bindings follow the C API closely,
+and the documentation requires you to read the C documentation to
+understand it.
+
+=item Win32::GUI
+
+This provides access to most of the Win32 GUI widgets from Perl.
+Obviously, it only runs under Win32, and uses native widgets. The Perl
+interface doesn't really follow the C interface: it's been made more
+Perlish, and the documentation is pretty good. More advanced stuff may
+require familiarity with the C Win32 APIs, or reference to MSDN.
+
+=item CamelBones
+
+CamelBones L<http://camelbones.sourceforge.net> is a Perl interface to
+Mac OS X's Cocoa GUI toolkit, and as such can be used to produce native
+GUIs on Mac OS X. It's not on CPAN, as it requires frameworks that
+CPAN.pm doesn't know how to install, but installation is via the
+standard OSX package installer. The Perl API is, again, very close to
+the ObjC API it's wrapping, and the documentation just tells you how to
+translate from one to the other.
+
+=item Qt
+
+There is a Perl interface to TrollTech's Qt toolkit, but it does not
+appear to be maintained.
+
+=item Athena
+
+Sx is an interface to the Athena widget set which comes with X, but
+again it appears not to be much used nowadays.
+
+=back
 
 =head2 How can I make my Perl program run faster?
 

@@ -313,7 +313,7 @@ How can I use curses with Perl?
 
 =item *
 
-How can I use X or Tk with Perl?
+How can I write a GUI (X, Tk, Gtk, etc.) in Perl?
 
 =item *
 
