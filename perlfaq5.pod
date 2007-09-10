@@ -10,30 +10,28 @@ formats, and footers.
 =head2 How do I flush/unbuffer an output filehandle?  Why must I do this?
 X<flush> X<buffer> X<unbuffer> X<autoflush>
 
-Perl does not support truly unbuffered output (except
-insofar as you can C<syswrite(OUT, $char, 1)>), although it
-does support is "command buffering", in which a physical
-write is performed after every output command.
+Perl does not support truly unbuffered output (except insofar as you
+can C<syswrite(OUT, $char, 1)>), although it does support is "command
+buffering", in which a physical write is performed after every output
+command.
 
-The C standard I/O library (stdio) normally buffers
-characters sent to devices so that there isn't a system call
-for each byte. In most stdio implementations, the type of
-output buffering and the size of the buffer varies according
-to the type of device. Perl's print() and write() functions
-normally buffer output, while syswrite() bypasses buffering
-all together.
+The C standard I/O library (stdio) normally buffers characters sent to
+devices so that there isn't a system call for each byte. In most stdio
+implementations, the type of output buffering and the size of the
+buffer varies according to the type of device. Perl's C<print()> and
+C<write()> functions normally buffer output, while C<syswrite()>
+bypasses buffering all together.
 
-If you want your output to be sent immediately when you
-execute print() or write() (for instance, for some network
-protocols), you must set the handle's autoflush flag. This
-flag is the Perl variable $| and when it is set to a true
-value, Perl will flush the handle's buffer after each
-print() or write(). Setting $| affects buffering only for
-the currently selected default file handle. You choose this
-handle with the one argument select() call (see
+If you want your output to be sent immediately when you execute
+C<print()> or C<write()> (for instance, for some network protocols),
+you must set the handle's autoflush flag. This flag is the Perl
+variable C<$|> and when it is set to a true value, Perl will flush the
+handle's buffer after each C<print()> or C<write()>. Setting C<$|>
+affects buffering only for the currently selected default filehandle.
+You choose this handle with the one argument C<select()> call (see
 L<perlvar/$E<verbar>> and L<perlfunc/select>).
 
-Use select() to choose the desired handle, then set its
+Use C<select()> to choose the desired handle, then set its
 per-filehandle variables.
 
 	$old_fh = select(OUTPUT_HANDLE);
@@ -41,20 +39,28 @@ per-filehandle variables.
 	select($old_fh);
 
 Some modules offer object-oriented access to handles and their
-variables, although they may be overkill if this is the only
-thing you do with them.  You can use IO::Handle:
+variables, although they may be overkill if this is the only thing you
+do with them.  You can use C<IO::Handle>:
 
 	use IO::Handle;
-	open(DEV, ">/dev/printer");   # but is this?
-	DEV->autoflush(1);
+	open my( $printer ), ">", "/dev/printer");   # but is this?
+	$printer->autoflush(1);
 
-or IO::Socket:
+or C<IO::Socket> (which inherits from C<IO::Socket>):
 
 	use IO::Socket;		  # this one is kinda a pipe?
 	my $sock = IO::Socket::INET->new( 'www.example.com:80' );
 
 	$sock->autoflush();
 
+You can also flush an C<IO::Handle> object without setting
+C<autoflush>. Call the C<flush> method to flush the buffer yourself:
+
+	use IO::Handle;
+	open my( $printer ), ">", "/dev/printer"); 
+	$printer->flush; # one time flush
+
+	
 =head2 How do I change, delete, or insert a line in a file, or append to the beginning of a file?
 X<file, editing>
 
