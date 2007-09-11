@@ -46,7 +46,7 @@ do with them.  You can use C<IO::Handle>:
 	open my( $printer ), ">", "/dev/printer");   # but is this?
 	$printer->autoflush(1);
 
-or C<IO::Socket> (which inherits from C<IO::Socket>):
+or C<IO::Socket> (which inherits from C<IO::Handle>):
 
 	use IO::Socket;		  # this one is kinda a pipe?
 	my $sock = IO::Socket::INET->new( 'www.example.com:80' );
