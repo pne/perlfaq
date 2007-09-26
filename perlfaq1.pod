@@ -283,13 +283,23 @@ will sleep easier, too--Wall Street programs not withstanding. :-)
 =head2 What's the difference between "perl" and "Perl"?
 
 One bit.  Oh, you weren't talking ASCII? :-) Larry now uses "Perl" to
-signify the language proper and "perl" the implementation of it,
-i.e. the current interpreter.  Hence Tom's quip that "Nothing but perl
-can parse Perl."  You may or may not choose to follow this usage.  For
-example, parallelism means "awk and perl" and "Python and Perl" look
-OK, while "awk and Perl" and "Python and perl" do not.  But never
-write "PERL", because perl is not an acronym, apocryphal
-folklore and post-facto expansions notwithstanding.
+signify the language proper and "perl" the implementation of it, i.e.
+the current interpreter.  Hence Tom's quip that "Nothing but perl can
+parse Perl."  
+
+Before the first edition of T<Programming perl>, people commonly
+referred to the language as "perl", and its name appeared that way in
+the title because it referred to the interpreter. In the book, Randal
+Schwartz capitalised the language's name to make it stand out better
+when typeset. This convention was adopted by the community, and the
+second eiditon became T<Programming Perl>, using the capitalized
+version of the name to refer to the language.
+
+You may or may not choose to follow this usage.  For example,
+parallelism means "awk and perl" and "Python and Perl" look good, while
+"awk and Perl" and "Python and perl" do not.  But never write "PERL",
+because perl is not an acronym, apocryphal folklore and post-facto
+expansions notwithstanding.
 
 =head2 Is it a Perl program or a Perl script?
 
