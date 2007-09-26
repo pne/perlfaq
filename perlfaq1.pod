@@ -292,7 +292,7 @@ referred to the language as "perl", and its name appeared that way in
 the title because it referred to the interpreter. In the book, Randal
 Schwartz capitalised the language's name to make it stand out better
 when typeset. This convention was adopted by the community, and the
-second eiditon became T<Programming Perl>, using the capitalized
+second edition became T<Programming Perl>, using the capitalized
 version of the name to refer to the language.
 
 You may or may not choose to follow this usage.  For example,
