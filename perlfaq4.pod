@@ -1588,14 +1588,18 @@ Or, simply:
 	my $element = $array[ rand @array ];
 
 =head2 How do I permute N elements of a list?
+X<List::Permuter> X<permute> X<Algorithm::Loops> X<Knuth>
+X<The Art of Computer Programming> X<Fischer-Krause>
 
-Use the C<List::Permutor> module on CPAN.  If the list is actually an
+Use the C<List::Permutor> module on CPAN. If the list is actually an
 array, try the C<Algorithm::Permute> module (also on CPAN). It's
-written in XS code and is very efficient.
+written in XS code and is very efficient:
 
 	use Algorithm::Permute;
+
 	my @array = 'a'..'d';
 	my $p_iterator = Algorithm::Permute->new ( \@array );
+
 	while (my @perm = $p_iterator->next) {
 	   print "next permutation: (@perm)\n";
 		}
@@ -1603,16 +1607,17 @@ written in XS code and is very efficient.
 For even faster execution, you could do:
 
 	use Algorithm::Permute;
+
 	my @array = 'a'..'d';
+
 	Algorithm::Permute::permute {
 		print "next permutation: (@array)\n";
 		} @array;
 
-Here's a little program that generates all permutations of
-all the words on each line of input. The algorithm embodied
-in the C<permute()> function is discussed in Volume 4 (still
-unpublished) of Knuth's I<The Art of Computer Programming>
-and will work on any list:
+Here's a little program that generates all permutations of all the
+words on each line of input. The algorithm embodied in the
+C<permute()> function is discussed in Volume 4 (still unpublished) of
+Knuth's I<The Art of Computer Programming> and will work on any list:
 
 	#!/usr/bin/perl -n
 	# Fischer-Krause ordered permutation generator
@@ -1630,7 +1635,22 @@ and will work on any list:
 		}
 	}
 
-	permute {print"@_\n"} split;
+	permute { print "@_\n" } split;
+
+The C<Algorithm::Loops> module also provides the C<NextPermute> and
+C<NextPermuteNum> functions which efficiently find all unique permutations
+of an array, even if it contains duplicate values, modifying it in-place:
+if its elements are in reverse-sorted order then the array is reversed,
+making it sorted, and it returns false; otherwise the next
+permutation is returned.
+
+C<NextPermute> uses string order and C<NextPermuteNum> numeric order, so
+you can enumerate all the permutations of C<0..9> like this:
+
+	use Algorithm::Loops qw(NextPermuteNum);
+	
+    my @list= 0..9;
+    do { print "@list\n" } while NextPermuteNum @list;
 
 =head2 How do I sort an array by (anything)?
 
