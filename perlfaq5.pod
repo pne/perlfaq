@@ -690,7 +690,7 @@ only version of open() and so it is prevalent in old code and books.
 
 Unless you have a particular reason to use the two argument form you
 should use the three argument form of open() which does not treat any
-charcters in the filename as special.
+characters in the filename as special.
 
 	open FILE, "<", "  file  ";  # filename is "   file   "
 	open FILE, ">", ">file";     # filename is ">file"
@@ -777,7 +777,7 @@ atomic test-and-set instruction.   In theory, this "ought" to work:
 except that lamentably, file creation (and deletion) is not atomic
 over NFS, so this won't work (at least, not every time) over the net.
 Various schemes involving link() have been suggested, but
-these tend to involve busy-wait, which is also subdesirable.
+these tend to involve busy-wait, which is also less than desirable.
 
 =head2 I still don't get locking.  I just want to increment the number in the file.  How can I do this?
 X<counter> X<file, counter>
