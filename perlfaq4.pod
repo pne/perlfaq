@@ -1308,7 +1308,7 @@ multiple values against the same array.
 
 If you are testing only once, the standard module C<List::Util> exports
 the function C<first> for this purpose.  It works by stopping once it
-finds the element. It's written in C for speed, and its Perl equivalant
+finds the element. It's written in C for speed, and its Perl equivalent
 looks like this subroutine:
 
 	sub first (&@) {

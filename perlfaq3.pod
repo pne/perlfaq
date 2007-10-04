@@ -138,7 +138,7 @@ C<-d> switch. It's fully explained in L<perldebug>.
 If you'd like a graphical user interface and you have Tk, you can use
 C<ptkdb>. It's on CPAN and available for free.
 
-If you need something much more sophisicated and controllable, Leon
+If you need something much more sophisticated and controllable, Leon
 Brocard's Devel::ebug (which you can call with the -D switch as -Debug)
 gives you the programmatic hooks into everything you need to write your
 own (without too much pain and suffering).
@@ -708,7 +708,7 @@ or
 Pass arrays and hashes by reference, not by value. For one thing, it's
 the only way to pass multiple lists or hashes (or both) in a single
 call/return. It also avoids creating a copy of all the contents. This
-requires some judgment, however, because any changes will be propagated
+requires some judgement, however, because any changes will be propagated
 back to the original data. If you really want to mangle (er, modify) a
 copy, you'll have to sacrifice the memory needed to make one.
 

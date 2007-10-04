@@ -61,13 +61,13 @@ it, try the resources in L<perlfaq2>.
 
 Tom Christiansen wrote the original perlfaq then expanded it with the
 help of Nat Torkington.  The perlfaq-workers maintain current document
-and the dezinens of comp.lang.perl.misc regularly review and update the
+and the denizens of comp.lang.perl.misc regularly review and update the
 FAQ. Several people have contributed answers, corrections, and comments,
 and the perlfaq notes those contributions wherever appropriate.
 
 =head1 AUTHOR AND COPYRIGHT
 
-Tom Christainsen wrote the original version of this document.
+Tom Christiansen wrote the original version of this document.
 brian d foy C<< <bdfoy@cpan.org> >> wrote this version. See the
 individual perlfaq documents for additional copyright information.
 
