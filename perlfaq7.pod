@@ -225,7 +225,7 @@ maintainer.
 
 =item 
 
-Post a public message in a heavily trafficed site announcing your
+Post a public message in a heavily trafficked site announcing your
 intention to take over the module.
 
 =item
