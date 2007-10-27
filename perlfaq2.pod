@@ -54,10 +54,7 @@ Some URLs that might help you are:
 
 Someone looking for a perl for Win16 might look to Laszlo Molnar's
 djgpp port in http://www.cpan.org/ports/#msdos , which comes with
-clear installation instructions.  A simple installation guide for
-MS-DOS using Ilya Zakharevich's OS/2 port is available at
-http://www.cs.ruu.nl/%7Epiet/perl5dos.html
-and similarly for Windows 3.1 at http://www.cs.ruu.nl/%7Epiet/perlwin3.html .
+clear installation instructions.
 
 =head2 I don't have a C compiler. How can I build my own Perl interpreter?
 
@@ -71,7 +68,8 @@ information on where to get such a binary version.
 You might look around the net for a pre-built binary of Perl (or a 
 C compiler!) that meets your needs, though:
 
-For Windows, Vanilla Perl (http://vanillaperl.com/) comes with a 
+For Windows, Vanilla Perl ( http://vanillaperl.com/ ) and Strawberry Perl
+( http://strawberryperl.com/ ) comes with a 
 bundled C compiler. ActivePerl is a pre-compiled version of Perl
 ready-to-use.
 
