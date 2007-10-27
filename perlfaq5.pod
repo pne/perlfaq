@@ -521,8 +521,27 @@ techniques to make it possible for the intrepid hacker.
 =head2 How can I write() into a string?
 X<write, into a string>
 
-See L<perlform/"Accessing Formatting Internals"> for an swrite() function.
+See L<perlform/"Accessing Formatting Internals"> for an C<swrite()> function.
 
+=head2 How can I open a filehandle to a string?
+X<string>, X<open>, X<IO::Scalar>, X<filehandle>
+
+(contributed by Peter J. Holzer, hjp-usenet2@hjp.at)
+
+Since Perl 5.8.0, you can pass a reference to a scalar instead of the
+filename to create a file handle which you can used to read from or write to
+a string:
+
+	open(my $fh, '>', \$string) or die "Could not open string for writing";
+	print $fh "foo\n";
+	print $fh "bar\n";	# $string now contains "foo\nbar\n"
+
+	open(my $fh, '<', \$string) or die "Could not open string for reading";
+	my $x = <$fh>;	# $x now contains "foo\n"
+
+With older versions of Perl, the C<IO::String> module provides similar
+functionality.
+    
 =head2 How can I output my numbers with commas added?
 X<number, commify>
 

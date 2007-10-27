@@ -747,6 +747,10 @@ How can I write() into a string?
 
 =item *
 
+How can I open a filehandle to a string?
+
+=item *
+
 How can I output my numbers with commas added?
 
 =item *
