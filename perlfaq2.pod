@@ -69,7 +69,7 @@ You might look around the net for a pre-built binary of Perl (or a
 C compiler!) that meets your needs, though:
 
 For Windows, Vanilla Perl ( http://vanillaperl.com/ ) and Strawberry Perl
-( http://strawberryperl.com/ ) comes with a 
+( http://strawberryperl.com/ ) come with a 
 bundled C compiler. ActivePerl is a pre-compiled version of Perl
 ready-to-use.
 
