@@ -504,9 +504,9 @@ The Perl Foundation is an advocacy organization for the Perl language
 which maintains the web site http://www.perl.org/ as a general
 advocacy site for the Perl language. It uses the domain to provide
 general support services to the Perl community, including the hosting
-of mailing lists, web sites, and other services.  The web site
-http://www.perl.org/ is a general advocacy site for the Perl language,
-and there are many other sub-domains for special topics, such as
+of mailing lists, web sites, and other services.  There are also many
+other sub-domains for special topics like learning Perl, Perl news, jobs
+in Perl, such as:
 
 	http://learn.perl.org/
 	http://use.perl.org/
