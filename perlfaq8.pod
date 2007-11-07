@@ -461,48 +461,25 @@ probably get away with setting an environment variable:
 	system "trn comp.lang.perl.misc";
 
 =head2 How can I sleep() or alarm() for under a second?
+X<Time::HiRes> X<BSD::Itimer> X<sleep> X<select>
 
-If you want finer granularity than the 1 second that the sleep()
-function provides, the easiest way is to use the select() function as
-documented in L<perlfunc/"select">.  Try the Time::HiRes and
-the BSD::Itimer modules (available from CPAN, and starting from
-Perl 5.8 Time::HiRes is part of the standard distribution).
+If you want finer granularity than the 1 second that the C<sleep()>
+function provides, the easiest way is to use the C<select()> function as
+documented in L<perlfunc/"select">.  Try the C<Time::HiRes> and
+the C<BSD::Itimer> modules (available from CPAN, and starting from
+Perl 5.8 C<Time::HiRes> is part of the standard distribution).
 
 =head2 How can I measure time under a second?
+X<Time::HiRes> X<BSD::Itimer> X<sleep> X<select>
 
-In general, you may not be able to.  The Time::HiRes module (available
-from CPAN, and starting from Perl 5.8 part of the standard distribution)
-provides this functionality for some systems.
+(contributed by brian d foy)
 
-If your system supports both the syscall() function in Perl as well as
-a system call like gettimeofday(2), then you may be able to do
-something like this:
-
-	require 'sys/syscall.ph';
-
-	$TIMEVAL_T = "LL";
-
-	$done = $start = pack($TIMEVAL_T, ());
-
-	syscall(&SYS_gettimeofday, $start, 0) != -1
-		or die "gettimeofday: $!";
-
-	   ##########################
-	   # DO YOUR OPERATION HERE #
-	   ##########################
-
-	syscall( &SYS_gettimeofday, $done, 0) != -1
-		or die "gettimeofday: $!";
-
-	@start = unpack($TIMEVAL_T, $start);
-	@done  = unpack($TIMEVAL_T, $done);
-
-	# fix microseconds
-	for ($done[1], $start[1]) { $_ /= 1_000_000 }
-
-	$delta_time = sprintf "%.4f", ($done[0]  + $done[1]  )
-											-
-								 ($start[0] + $start[1] );
+The C<Time::HiRes> module (part of the standard distribution as of
+Perl 5.8) measures time with the C<gettimeofday()> system call, which
+returns the time in microseconds since the epoch. If you can't install
+C<Time::HiRes> for older Perls and you are on a Unixish system, you
+may be able to call C<gettimeofday(2)> directly. See
+L<perlfunc/syscall>.
 
 =head2 How can I do an atexit() or setjmp()/longjmp()? (Exception handling)
 
