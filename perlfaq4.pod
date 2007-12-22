@@ -48,35 +48,45 @@ numbers.  What you think in the above as 'three' is really more like
 
 =head2 Why isn't my octal data interpreted correctly?
 
-Perl only understands octal and hex numbers as such when they occur as
-literals in your program.  Octal literals in perl must start with a
-leading C<0> and hexadecimal literals must start with a leading C<0x>.
-If they are read in from somewhere and assigned, no automatic
-conversion takes place.  You must explicitly use C<oct()> or C<hex()> if you
-want the values converted to decimal.  C<oct()> interprets hexadecimal (C<0x350>),
-octal (C<0350> or even without the leading C<0>, like C<377>) and binary
-(C<0b1010>) numbers, while C<hex()> only converts hexadecimal ones, with
-or without a leading C<0x>, such as C<0x255>, C<3A>, C<ff>, or C<deadbeef>.
-The inverse mapping from decimal to octal can be done with either the
-<%o> or C<%O> C<sprintf()> formats.
+(contributed by brian d foy)
 
-This problem shows up most often when people try using C<chmod()>,
-C<mkdir()>, C<umask()>, or C<sysopen()>, which by widespread tradition
-typically take permissions in octal.
+You're probably trying to convert a string to a number, which Perl only
+converts as a decimal number. When Perl converts a string to a number, it 
+ignores leading spaces and zeroes, then assumes the rest of the digits
+are in base 10:
 
-	chmod(644,  $file);   # WRONG
-	chmod(0644, $file);   # right
+	my $string = '0644';
+	
+	print $string + 0;  # prints 644
+	
+	print $string + 44; # prints 688, certainly not octal!
 
-Note the mistake in the first line was specifying the decimal literal
-C<644>, rather than the intended octal literal C<0644>.  The problem can
-be seen with:
+This problem usually involves one of the Perl built-ins that has the
+same name a unix command that uses octal numbers as arguments on the
+command line. In this example, C<chmod> on the command line knows that
+its first argument is octal because that's what it does:
 
-	printf("%#o",644);   # prints 01204
+	%prompt> chmod 644 file
+	
+If you want to use the same literal digits (644) in Perl, you have to tell
+Perl to treat them as octal numbers either by prefixing the digits with 
+a C<0> or using C<oct>:
 
-Surely you had not intended C<chmod(01204, $file);> - did you?  If you
-want to use numeric literals as arguments to chmod() et al. then please
-try to express them as octal constants, that is with a leading zero and
-with the following digits restricted to the set C<0..7>.
+	chmod(     0644, $file);   # right, has leading zero
+	chmod( oct(644), $file );  # also correct
+
+The problem comes in when you take your numbers from something that Perl
+thinks is a string, such as a command line argument in C<@ARGV>:
+
+	chmod( $ARGV[0],      $file);   # wrong, even if "0644"
+
+	chmod( oct($ARGV[0]), $file );  # correct, treat string as octal
+
+You can always check the value you're using by printing it in octal 
+notation to ensure it matches what you think it should be. Print it
+in octal  and decimal format:
+
+	printf "0%o %d", $number, $number;
 
 =head2 Does Perl have a round() function?  What about ceil() and floor()?  Trig functions?
 
@@ -363,7 +373,7 @@ pseudorandom generator than comes with your operating system, look at
 =head2 How do I get a random number between X and Y?
 
 To get a random number between two values, you can use the C<rand()>
-builtin to get a random number between 0 and 1. From there, you shift
+built-in to get a random number between 0 and 1. From there, you shift
 that into the range that you want.
 
 C<rand($x)> returns a number such that C<< 0 <= rand($x) < $x >>. Thus
@@ -373,7 +383,7 @@ from 0 to the difference between your I<X> and I<Y>.
 That is, to get a number between 10 and 15, inclusive, you want a
 random number between 0 and 5 that you can then add to 10.
 
-	my $number = 10 + int rand( 15-10+1 );
+	my $number = 10 + int rand( 15-10+1 ); # ( 10,11,12,13,14, or 15 )
 
 Hence you derive the following simple function to abstract
 that. It selects a random integer between the two given
