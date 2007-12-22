@@ -520,7 +520,7 @@ simple gui. It hasn't been updated in a while.
 =item Wx
 
 This is a Perl binding for the cross-platform wxWidgets toolkit 
-L<http://www.wxwidgets.org>. It works under Unix, Win32 and Mac OS X,
+( http://www.wxwidgets.org ). It works under Unix, Win32 and Mac OS X,
 using native widgets (Gtk under Unix). The interface follows the C++
 interface closely, but the documentation is a little sparse for someone
 who doesn't know the library, mostly just referring you to the C++
@@ -528,7 +528,7 @@ documentation.
 
 =item Gtk and Gtk2
 
-These are Perl bindings for the Gtk toolkit L<http://www.gtk.org>. The
+These are Perl bindings for the Gtk toolkit ( http://www.gtk.org ). The
 interface changed significantly between versions 1 and 2 so they have
 separate Perl modules. It runs under Unix, Win32 and Mac OS X (currently
 it requires an X server on Mac OS, but a 'native' port is underway), and
@@ -547,7 +547,7 @@ require familiarity with the C Win32 APIs, or reference to MSDN.
 
 =item CamelBones
 
-CamelBones L<http://camelbones.sourceforge.net> is a Perl interface to
+CamelBones ( http://camelbones.sourceforge.net ) is a Perl interface to
 Mac OS X's Cocoa GUI toolkit, and as such can be used to produce native
 GUIs on Mac OS X. It's not on CPAN, as it requires frameworks that
 CPAN.pm doesn't know how to install, but installation is via the
