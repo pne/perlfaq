@@ -574,8 +574,8 @@ X<regular expression, efficiency>
 ( contributed by brian d foy )
 
 Avoid asking Perl to compile a regular expression every time
-you want to match it.  In this example, perl must recompile
-the regular expression for every iteration of the foreach()
+you want to match it. In this example, perl must recompile
+the regular expression for every iteration of the C<foreach>
 loop since it has no way to know what $pattern will be.
 
 	@patterns = qw( foo bar baz );
@@ -592,11 +592,11 @@ loop since it has no way to know what $pattern will be.
 			}
 		}
 
-The qr// operator showed up in perl 5.005.  It compiles a
+The C<qr//> operator showed up in perl 5.005.  It compiles a
 regular expression, but doesn't apply it.  When you use the
 pre-compiled version of the regex, perl does less work. In
-this example, I inserted a map() to turn each pattern into
-its pre-compiled form.  The rest of the script is the same,
+this example, I inserted a C<map> to turn each pattern into
+its pre-compiled form. The rest of the script is the same,
 but faster.
 
 	@patterns = map { qr/\b$_\b/i } qw( foo bar baz );
@@ -605,13 +605,16 @@ but faster.
 		{
 		foreach $pattern ( @patterns )
 			{
-			print if /$pattern/i;
-			next LINE;
+			if( /$pattern/ )
+				{
+				print;
+				next LINE;
+				}
 			}
 		}
 
 In some cases, you may be able to make several patterns into
-a single regular expression.  Beware of situations that require
+a single regular expression. Beware of situations that require
 backtracking though.
 
 	$regex = join '|', qw( foo bar baz );
@@ -621,8 +624,8 @@ backtracking though.
 		print if /\b(?:$regex)\b/i;
 		}
 
-For more details on regular expression efficiency, see Mastering
-Regular Expressions by Jeffrey Freidl.  He explains how regular
+For more details on regular expression efficiency, see I<Mastering
+Regular Expressions> by Jeffrey Freidl.  He explains how regular
 expressions engine work and why some patterns are surprisingly
 inefficient.  Once you understand how perl applies regular
 expressions, you can tune them for individual situations.
