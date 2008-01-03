@@ -288,7 +288,6 @@ An alternate spelling of C<regex>.
 
 to read in an entire file in one step
 
-
 =head2 SWIG
 
 An interface for allowing Perl to use C/C++ libraries and code.
@@ -302,7 +301,7 @@ just as in natural language.
 =head2 Topaz
 
 An old, exploratory project by Chip Salzenberg to rewrite Perl in C++.
-This project predates the Perl6 project and is now dead.
+This project predates the Perl 6 project and is now dead.
 
 =head2 TPC
 
