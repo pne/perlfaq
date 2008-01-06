@@ -1947,7 +1947,7 @@ create a report which lists the keys in ASCIIbetical order.
 
 	foreach my $key ( @keys )
 		{
-		printf "%-20s %6d\n", $key, $hash{$value};
+		printf "%-20s %6d\n", $key, $hash{$key};
 		}
 
 We could get more fancy in the C<sort()> block though. Instead of
