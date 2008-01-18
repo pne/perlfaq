@@ -486,9 +486,11 @@ You could also investigate the can() method in the UNIVERSAL class
 
 (contributed by brian d foy)
 
-Perl doesn't have "static" variables, which can only be accessed from
-the function in which they are declared. You can get the same effect
-with lexical variables, though.
+In Perl 5.10, declare the variable with C<state>. The C<state>
+declaration creates the lexical variable that persists between calls
+to the subroutine:
+
+	sub counter { state $count = 1; $counter++ }
 
 You can fake a static variable by using a lexical variable which goes
 out of scope. In this example, you define the subroutine C<counter>, and
@@ -688,8 +690,19 @@ where they don't belong.
 
 =head2 How do I create a switch or case statement?
 
+In Perl 5.10, use the C<given-when> construct described in L<perlsyn>:
+
+	use 5.010;
+	
+	given ( $string ) {
+		when( 'Fred' )        { say "I found Fred!" }
+		when( 'Barney' )      { say "I found Barney!" }
+		when( /Bamm-?Bamm/ )  { say "I found Bamm-Bamm!" }
+		default               { say "I don't recognize the name!" }
+		};
+		
 If one wants to use pure Perl and to be compatible with Perl versions
-prior to 5.10, the general answer is to write a construct like this:
+prior to 5.10, the general answer is to use C<if-elsif-else>:
 
 	for ($variable_to_test) {
 		if    (/pat1/)  { }     # do something
