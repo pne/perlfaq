@@ -1181,26 +1181,36 @@ and use?".
 
 =head2 What's the difference between require and use?
 
-Perl offers several different ways to include code from one file into
-another.  Here are the deltas between the various inclusion constructs:
+(contributed by brian d foy)
 
-	1)  do $file is like eval `cat $file`, except the former
-	1.1: searches @INC and updates %INC.
-	1.2: bequeaths an *unrelated* lexical scope on the eval'ed code.
+Perl runs C<require> statement at run-time. Once Perl loads, compiles,
+and runs the file, it doesn't do anything else. The C<use> statement
+is the same as a C<require> run at compile-time, but Perl also calls the
+C<import> method for the loaded package. These two are the same:
 
-	2)  require $file is like do $file, except the former
-	2.1: checks for redundant loading, skipping already loaded files.
-	2.2: raises an exception on failure to find, compile, or execute $file.
+	use MODULE qw(import list);
+	
+	BEGIN {
+		require MODULE;
+		MODULE->import(import list);
+		}
 
-	3)  require Module is like require "Module.pm", except the former
-	3.1: translates each "::" into your system's directory separator.
-	3.2: primes the parser to disambiguate class Module as an indirect object.
+However, you can suppress the C<import> by using an explicit, empty
+import list. Both of these still happen at compile-time:
 
-	4)  use Module is like require Module, except the former
-	4.1: loads the module at compile time, not run-time.
-	4.2: imports symbols and semantics from that package to the current one.
+	use MODULE ();
+	
+	BEGIN {
+		require MODULE;
+		}
 
-In general, you usually want C<use> and a proper Perl module.
+Since C<use> will also call the C<import> method, the actual value
+for C<MODULE> must be a bareword. That is, C<use> cannot load files
+by name, although C<require> can: 
+
+	require "lib/Foo.pm"; # no @INC searching!
+
+See the entry for C<use> in L<perlfunc> for more details.
 
 =head2 How do I keep my own module/library directory?
 
