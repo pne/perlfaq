@@ -1208,7 +1208,7 @@ Since C<use> will also call the C<import> method, the actual value
 for C<MODULE> must be a bareword. That is, C<use> cannot load files
 by name, although C<require> can: 
 
-	require "lib/Foo.pm"; # no @INC searching!
+	require "$ENV{HOME}/lib/Foo.pm"; # no @INC searching!
 
 See the entry for C<use> in L<perlfunc> for more details.
 
