@@ -1727,7 +1727,9 @@ For example, this sets C<$vec> to have bit N set if C<$ints[N]> was
 set:
 
 	$vec = '';
-	foreach(@ints) { vec($vec,$_,1) = 1 }
+	foreach(@ints) { 
+		vec($vec,$_,1) = 1 if $_;
+		}
 
 Here's how, given a vector in C<$vec>, you can get those bits into your
 C<@ints> array:
