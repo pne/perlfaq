@@ -1723,16 +1723,23 @@ See also the question later in L<perlfaq4> on sorting hashes.
 Use C<pack()> and C<unpack()>, or else C<vec()> and the bitwise
 operations.
 
-For example, this sets C<$vec> to have bit N set if C<$ints[N]> was
-set:
+For example, you don't have to store individual bits in an array
+(which would mean that you're wasting a lot of space). To convert an
+array of bits to a string, use C<vec()> to set the right bits. This
+sets C<$vec> to have bit N set only if C<$ints[N]> was set:
 
+	@ints = (...); # array of bits, e.g. ( 1, 0, 0, 1, 1, 0 ... )
 	$vec = '';
 	foreach(@ints) { 
 		vec($vec,$_,1) = 1 if $_;
 		}
 
-Here's how, given a vector in C<$vec>, you can get those bits into your
-C<@ints> array:
+The string C<$vec> only takes up as many bits as it needs. For
+instance, if you had 16 entries in C<@ints>, C<$vec> only needs two
+bytes to store them (not counting the scalar variable overhead).
+
+Here's how, given a vector in C<$vec>, you can get those bits into
+your C<@ints> array:
 
 	sub bitvec_to_list {
 		my $vec = shift;
