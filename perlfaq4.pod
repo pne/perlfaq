@@ -1730,8 +1730,8 @@ sets C<$vec> to have bit N set only if C<$ints[N]> was set:
 
 	@ints = (...); # array of bits, e.g. ( 1, 0, 0, 1, 1, 0 ... )
 	$vec = '';
-	foreach(@ints) { 
-		vec($vec,$_,1) = 1 if $_;
+	foreach( 0 .. $#ints ) { 
+		vec($vec,$_,1) = 1 if $ints[$_];
 		}
 
 The string C<$vec> only takes up as many bits as it needs. For
