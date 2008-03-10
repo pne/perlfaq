@@ -95,7 +95,7 @@ the loop that prints the existing lines.
 	open my $in,  '<',  $file      or die "Can't read old file: $!";
 	open my $out, '>', "$file.new" or die "Can't write new file: $!";
 
-	print "# Add this line to the top\n"; # <--- HERE'S THE MAGIC
+	print $out "# Add this line to the top\n"; # <--- HERE'S THE MAGIC
 
 	while( <$in> )
 		{
@@ -112,7 +112,7 @@ be sure that you're supposed to do that on every line!
 	open my $in,  '<',  $file      or die "Can't read old file: $!";
 	open my $out, '>', "$file.new" or die "Can't write new file: $!";
 
-	print "# Add this line to the top\n";
+	print $out "# Add this line to the top\n";
 
 	while( <$in> )
 		{
