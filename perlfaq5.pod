@@ -955,7 +955,7 @@ You can use the File::Slurp module to do it in one step.
 	use File::Slurp;
 
 	$all_of_it = read_file($filename); # entire file in scalar
-	@all_lines = read_file($filename); # one line perl element
+	@all_lines = read_file($filename); # one line per element
 
 The customary Perl approach for processing all the lines in a file is to
 do so one line at a time:
