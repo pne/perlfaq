@@ -224,9 +224,9 @@ And here it is as a subroutine, modeled after the above:
 			substr($mask, -1) x (length($new) - length($old))
     }
 
-	$a = "this is a TEsT case";
-	$a =~ s/(test)/preserve_case($1, "success")/egi;
-	print "$a\n";
+	$string = "this is a TEsT case";
+	$string =~ s/(test)/preserve_case($1, "success")/egi;
+	print "$string\n";
 
 This prints:
 
