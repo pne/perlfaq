@@ -1283,24 +1283,44 @@ file as an array.  Simply access a random array element.
 
 =head2 Why do I get weird spaces when I print an array of lines?
 
-Saying
+(contributed by brian d foy)
 
-	print "@lines\n";
+If you are seeing spaces between the elements of your array when 
+you print the array, you are probably interpolating the array in
+double quotes:
 
-joins together the elements of C<@lines> with a space between them.
-If C<@lines> were C<("little", "fluffy", "clouds")> then the above
-statement would print
+	my @animals = qw(camel llama alpaca vicuna);
+	print "animals are: @animals\n";
 
-	little fluffy clouds
+It's the double quotes, not the C<print>, doing this. Whenever you
+interpolate an array in a double quote contexts, Perl joins the
+elements of spaces (or whatever is in C<$">, which is a space by
+default):
 
-but if each element of C<@lines> was a line of text, ending a newline
-character C<("little\n", "fluffy\n", "clouds\n")> then it would print:
+	animals are: camel llama alpaca vicuna
 
-	little
-	 fluffy
-	 clouds
+This is different than print the array without the interpolation:
 
-If your array contains lines, just print them:
+	my @animals = qw(camel llama alpaca vicuna);
+	print "animals are: ", @animals, "\n";
+
+Now the output doesn't have the spaces between the elements because
+the elements of C<@animals> simply becoming part of the list to
+C<print>:
+
+	animals are: camelllamaalpacavicuna
+
+You might notice this when each of the elements of C<@array> end with
+a newline. You expect to print one element per line, but notice that
+every line after the first is indented:
+
+	this is a line
+	 this is another line
+	 this is the third line
+
+That extra space comes from the interpolation of the array. If you
+don't want to put anything between your array elements, don't use it
+in double quotes. You can send
 
 	print @lines;
 
