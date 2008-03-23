@@ -13,7 +13,7 @@ X<flush> X<buffer> X<unbuffer> X<autoflush>
 (contributed by brian d foy)
 
 You might like to read Mark Jason Dominus's "Suffering From Buffering"
-at U<http://perl.plover.com/FAQs/Buffering.html> .
+at http://perl.plover.com/FAQs/Buffering.html .
 
 Perl normally buffers output so it doesn't make a system call for every
 bit of output. By saving up output, it makes fewer expensive system calls.
