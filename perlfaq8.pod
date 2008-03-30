@@ -1273,13 +1273,11 @@ it into an absolute path. Once you have the
 		
 	use lib $directory;
 
-The C<FindBin> module, which comes with Perl, might work. It searches
-through C<$ENV{PATH}> (so your script has to be in one of those
-directories). You can then use that directory (in C<$FindBin::Bin>)
-to locate nearby directories you want to add:
+The C<FindBin> module, which comes with Perl, might work. It finds the
+directory of the currently running script and puts it in C<$Bin>, which 
+you can then use to construct the right library path:
 
-	use FindBin;
-	use lib "$FindBin::Bin/../lib";
+	use FindBin qw($Bin);
 
 =head2 How do I add a directory to my include path (@INC) at runtime?
 
