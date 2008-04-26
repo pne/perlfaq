@@ -298,8 +298,8 @@ Recommended books on (or mostly on) Perl follow.
 
 	Perl 5 Pocket Reference
 	by Johan Vromans
-	ISBN 0-596-00032-4 [3rd edition May 2000]
-	http://www.oreilly.com/catalog/perlpr3/
+	ISBN 0-596-00374-9 [4th edition July 2002]
+	http://www.oreilly.com/catalog/perlpr4/
 
 =item Tutorials
 
