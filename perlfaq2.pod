@@ -455,7 +455,7 @@ A comprehensive list of Perl related mailing lists can be found at:
 The Google search engine now carries archived and searchable newsgroup
 content.
 
-http://groups.google.com/groups?group=comp.lang.perl.misc
+http://groups.google.com/group/comp.lang.perl.misc/topics
 
 If you have a question, you can be sure someone has already asked the
 same question at some point on c.l.p.m. It requires some time and patience
