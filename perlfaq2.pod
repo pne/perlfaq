@@ -483,20 +483,31 @@ also all come with perl.
 
 =head2 Where do I send bug reports?
 
-If you are reporting a bug in the perl interpreter or the modules
-shipped with Perl, use the I<perlbug> program in the Perl distribution or
-mail your report to perlbug@perl.org or at http://rt.perl.org/perlbug/ .
+(contributed by brian d foy)
 
-For Perl modules, you can submit bug reports to the Request Tracker set
-up at http://rt.cpan.org .
+First, ensure that you've found an actual bug. Second, ensure you've
+found an actual bug.
 
-If you are posting a bug with a non-standard port (see the answer to
-"What platforms is perl available for?"), a binary distribution, or a
-non-standard module (such as Tk, CGI, etc), then please see the
-documentation that came with it to determine the correct place to post
-bugs.
+If you've found a bug with the perl interpreter or one of the modules
+in the standard library (those that come with Perl), you can use the
+C<perlbug> utility that comes with Perl (>= 5.004). It collects
+information about your installation to include with your message, then
+sends the message to the right place.
 
-Read the perlbug(1) man page (perl5.004 or later) for more information.
+To determine if a module came with your version of Perl, you can
+use the C<Module::CoreList> module. It has the information about
+the modules (with their versions) included with each release of Perl.
+
+Every CPAN module has a bug tracker set up in RT, http://rt.cpan.org .
+You can submit bugs to RT either through its web interface or by
+email. To email a bug report, send it to
+bug-E<lt>distribution-nameE<gt>@rt.cpan.org . For example, if you
+wanted to report a bug in C<Business::ISBN>, you could send a message to
+bug-Business-ISBN@rt.cpan.org .
+
+Some modules might have special reporting requirements, such as a
+Sourceforge or Google Code tracking system, so you should check the
+module documentation too.
 
 =head2 What is perl.com? Perl Mongers? pm.org? perl.org? cpan.org?
 

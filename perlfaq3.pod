@@ -51,7 +51,8 @@ http://sourceforge.net/projects/psh/ .
 
 Zoidberg is a similar project and provides a shell written in perl,
 configured in perl and operated in perl. It is intended as a login shell
-and development environment. It can be found at http://zoidberg.sf.net/
+and development environment. It can be found at 
+http://pardus-larus.student.utwente.nl/~pardus/projects/zoidberg/
 or your local CPAN mirror.
 
 The Shell.pm module (distributed with Perl) makes Perl try commands
