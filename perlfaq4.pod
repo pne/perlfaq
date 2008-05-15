@@ -1498,13 +1498,21 @@ But again, Perl's built-in are virtually always good enough.
 
 =head2 How do I handle circular lists?
 
-Circular lists could be handled in the traditional fashion with linked
-lists, or you could just do something like this with an array:
+(contributed by brian d foy)
 
-	unshift(@array, pop(@array));  # the last shall be first
-	push(@array, shift(@array));   # and vice versa
+If you want to cycle through an array endlessy, you can increment the
+index modulo the number of elements in the array:
 
-You can also use C<Tie::Cycle>:
+	my @array = qw( a b c );
+	my $i = 0;
+	
+	while( 1 ) {
+		print $array[ $i++ % @array ], "\n";
+		last if $i > 20;
+		}
+
+You can also use C<Tie::Cycle> to use a scalar that always has the
+next element of the circular array:
 
 	use Tie::Cycle;
 
@@ -1513,6 +1521,19 @@ You can also use C<Tie::Cycle>:
 	print $cycle; # FFFFFF
 	print $cycle; # 000000
 	print $cycle; # FFFF00
+
+The C<Array::Iterator::Circular> creates an iterator object for
+circular arrays:
+	
+	use Array::Iterator::Circular;
+	  
+	my $color_iterator = Array::Iterator::Circular->new(
+		qw(red green blue orange)
+		);
+	  
+	foreach ( 1 .. 20 ) {
+		print $color_iterator->next, "\n";
+		}
 
 =head2 How do I shuffle an array randomly?
 
