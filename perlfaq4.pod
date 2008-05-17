@@ -1497,6 +1497,8 @@ You could add to the list this way:
 But again, Perl's built-in are virtually always good enough.
 
 =head2 How do I handle circular lists?
+X<circular> X<array> X<Tie::Cycle> X<Array::Iterator::Circular>
+X<cycle> X<modulus>
 
 (contributed by brian d foy)
 
