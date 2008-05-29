@@ -460,7 +460,7 @@ spread over multiple lines using a continuation character):
 =head2 Can I use Perl regular expressions to match balanced text?
 X<regex, matching balanced test> X<regexp, matching balanced test>
 X<regular expression, matching balanced test> X<possessive> X<PARNO>
-X<Text::Balanced> X<Regexp::Common> X<backtracking> x<recursion>
+X<Text::Balanced> X<Regexp::Common> X<backtracking> X<recursion>
 
 (contributed by brian d foy)
 
