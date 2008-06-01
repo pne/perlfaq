@@ -77,22 +77,25 @@ can use File::Find::Rule.
 
 	use File::Find::Rule;
 
-	my @files = File::Find::Rule->file()->name( '*.pm' )->in( @INC );
+	my @files = File::Find::Rule->extras({follow => 1})->file()->name( '*.pm' )->in( @INC );
 
 If you do not have that module, you can do the same thing
 with File::Find which is part of the standard library.
 
-    use File::Find;
-    my @files;
+	use File::Find;
+	my @files;
 
-    find(
-      sub {
-      	push @files, $File::Find::name
-      		if -f $File::Find::name && /\.pm$/
-      	},
-
-      @INC
-      );
+	find(
+	    {
+		wanted => sub {
+		    push @files, $File::Find::fullname
+			if -f $File::Find::fullname && /\.pm$/
+		},
+		follow => 1,
+		follow_skip => 2,
+	    },
+	    @INC
+	);
 
 	print join "\n", @files;
 
