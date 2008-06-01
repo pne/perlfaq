@@ -488,6 +488,9 @@ Julian day)
 	31
 
 =head2 How do I find yesterday's date?
+X<date> X<yesterday> X<DateTime> X<Date::Calc> X<Time::Local>
+X<daylight saving time> X<day> X<Today_and_Now> X<localtime>
+X<timelocal>
 
 (contributed by brian d foy)
 
@@ -513,6 +516,22 @@ Most people try to use the time rather than the calendar to figure out
 dates, but that assumes that days are twenty-four hours each.  For
 most people, there are two days a year when they aren't: the switch to
 and from summer time throws this off. Let the modules do the work.
+
+If you absolutely must do it yourself (or can't use one of the
+modules), here's a solution using C<Time::Local>, which comes with
+Perl:
+
+	# contributed by Gunnar Hjalmarsson
+	 use Time::Local;
+	 my $today = timelocal 0, 0, 12, ( localtime )[3..5];
+	 my ($d, $m, $y) = ( localtime $today-86400 )[3..5];
+	 printf "Yesterday: %d-%02d-%02d\n", $y+1900, $m+1, $d;
+
+In this case, you measure the day starting at noon, and subtract 24
+hours. Even if the length of the calendar day is 23 or 25 hours,
+you'll still end up on the previous calendar day, although not at
+noon. Since you don't care about the time, the one hour difference
+doesn't matter and you end up with the previous date.
 
 =head2 Does Perl have a Year 2000 problem? Is Perl Y2K compliant?
 
