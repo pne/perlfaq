@@ -807,6 +807,11 @@ of each match (see perlvar for the full story), so they give you
 essentially the same information, but without the risk of excessive
 string copying.
 
+Perl 5.10 added three specials, C<${^MATCH}>, C<${^PREMATCH}>, and
+C<${^POSTMATCH}> to do the same job but without the global performance
+penalty. Pelr only sets these variables if you compile or execute the
+regular expression with the C</p> modifier.
+
 =head2 What good is C<\G> in a regular expression?
 X<\G>
 
