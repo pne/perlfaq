@@ -556,7 +556,7 @@ X<write, into a string>
 See L<perlform/"Accessing Formatting Internals"> for an C<swrite()> function.
 
 =head2 How can I open a filehandle to a string?
-X<string>, X<open>, X<IO::Scalar>, X<filehandle>
+X<string> X<open> X<IO::Scalar> X<filehandle>
 
 (contributed by Peter J. Holzer, hjp-usenet2@hjp.at)
 
