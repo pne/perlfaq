@@ -1302,16 +1302,32 @@ same thing.
 
 =head2 How can I tell whether a certain element is contained in a list or array?
 
-(portions of this answer contributed by Anno Siegel)
+(portions of this answer contributed by Anno Siegel and brian d foy)
 
 Hearing the word "in" is an I<in>dication that you probably should have
 used a hash, not a list or array, to store your data.  Hashes are
 designed to answer this question quickly and efficiently.  Arrays aren't.
 
-That being said, there are several ways to approach this.  If you
+That being said, there are several ways to approach this.  In Perl 5.10
+and later, you can use the smart match operator to check that an item is
+contained in an array or a hash:
+
+	use 5.010;
+	
+	if( $item ~~ @array ) 
+		{ 
+		say "The array contains $item"
+		}
+	
+	if( $item ~~ %hash )
+		{ 
+		say "The hash contains $item"
+		}
+
+With earlier versions of Perl, you have to do a bit more work. If you
 are going to make this query many times over arbitrary string values,
 the fastest way is probably to invert the original array and maintain a
-hash whose keys are the first array's values.
+hash whose keys are the first array's values:
 
 	@blues = qw/azure cerulean teal turquoise lapis-lazuli/;
 	%is_blue = ();
@@ -1386,6 +1402,21 @@ in either A or in B but not in both.  Think of it as an xor operation.
 
 =head2 How do I test whether two arrays or hashes are equal?
 
+With Perl 5.10 and later, the smart match operator can give you the answer
+with the least amount of work:
+
+	use 5.010;
+	
+	if( @array1 ~~ @array2 )
+		{
+		say "The arrays are the same";
+		}
+		
+	if( %hash1 ~~ %hash2 ) # doesn't check values!
+		{
+		say "The hash keys are the same";
+		}
+		
 The following code works for single-level arrays.  It uses a
 stringwise comparison, and does not distinguish defined versus
 undefined empty strings.  Modify if you have other needs.
@@ -1938,6 +1969,62 @@ all of the elements. Additionally, a hash has only one iterator, so if
 you use C<keys>, C<values>, or C<each> on the same hash, you can reset
 the iterator and mess up your processing. See the C<each> entry in
 L<perlfunc> for more details.
+
+=head2 How do I merge two hashes?
+X<hash> X<merge> X<slice, hash>
+
+(contributed by brian d foy)
+
+Before you decide to merge two hashes, you have to decide what to do
+if both hashes contain keys that are the same and if you want to leave
+the original hashes as they were.
+
+If you want to preserve the original hashes, copy one hash (<%hash1>)
+to a new hash (C<%new_hash>), then add the keys from the other hash
+(C<%hash2> to the new hash. Checking that the key already exists in
+C<%new_hash> gives you a chance to decide what to do with the
+duplicates:
+
+	my %new_hash = %hash1; # make a copy; leave %hash1 alone
+	
+	foreach my $key2 ( keys %hash2 )
+		{
+		if( exists $new_hash{$key2} )
+			{
+			warn "Key [$key2] is in both hashes!";
+			# handle the duplicate (perhaps only warning)
+			...
+			next;
+			}
+		else
+			{
+			$new_hash{$key2} = $hash2{$key2};
+			}			
+		}
+
+If you don't want to create a new hash, you can still use this looping
+technique; just change the C<%new_hash> to C<%hash1>. 
+
+	foreach my $key2 ( keys %hash2 )
+		{
+		if( exists $hash1{$key2} )
+			{
+			warn "Key [$key2] is in both hashes!";
+			# handle the duplicate (perhaps only warning)
+			...
+			next;
+			}
+		else
+			{
+			$hash1{$key2} = $hash2{$key2};
+			}			
+		}
+
+If you don't care that one hash overwrites keys and values from the other, you
+could just use a hash slice to add one hash to another. In this case, values 
+from C<%hash2> replace values from C<%hash1> when they have keys in common:
+
+	@hash1{ keys %hash2 } = values %hash2;
 
 =head2 What happens if I add or remove keys from a hash while iterating over it?
 
