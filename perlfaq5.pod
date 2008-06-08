@@ -979,7 +979,7 @@ to each filehandle.
 
 	for $fh (FH1, FH2, FH3) { print $fh "whatever\n" }
 
-=head2 How can I read in an entire file all at once?
+=head2 How can I read in an entire file all at once? How can I slurp a file?
 X<slurp> X<file, slurping>
 
 You can use the File::Slurp module to do it in one step.
