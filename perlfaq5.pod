@@ -613,10 +613,10 @@ It is easier to see with comments:
 =head2 How can I translate tildes (~) in a filename?
 X<tilde> X<tilde expansion>
 
-Use the <> (glob()) operator, documented in L<perlfunc>.  Older
-versions of Perl require that you have a shell installed that groks
+Use the E<lt>E<gt> (C<glob()>) operator, documented in L<perlfunc>. Versions of
+Perl older than 5.6 require that you have a shell installed that groks
 tildes.  Recent perl versions have this feature built in. The
-File::KGlob module (available from CPAN) gives more portable glob
+C<File::KGlob> module (available from CPAN) gives more portable glob
 functionality.
 
 Within Perl, you may use this directly:
