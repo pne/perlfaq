@@ -613,11 +613,11 @@ It is easier to see with comments:
 =head2 How can I translate tildes (~) in a filename?
 X<tilde> X<tilde expansion>
 
-Use the E<lt>E<gt> (C<glob()>) operator, documented in L<perlfunc>. Versions of
-Perl older than 5.6 require that you have a shell installed that groks
-tildes.  Recent perl versions have this feature built in. The
-C<File::KGlob> module (available from CPAN) gives more portable glob
-functionality.
+Use the E<lt>E<gt> (C<glob()>) operator, documented in L<perlfunc>.
+Versions of Perl older than 5.6 require that you have a shell
+installed that groks tildes.  Later versions of Perl have this feature
+built in. The C<File::KGlob> module (available from CPAN) gives more
+portable glob functionality.
 
 Within Perl, you may use this directly:
 
@@ -979,7 +979,7 @@ to each filehandle.
 
 	for $fh (FH1, FH2, FH3) { print $fh "whatever\n" }
 
-=head2 How can I read in an entire file all at once? How can I slurp a file?
+=head2 How can I read in an entire file all at once?
 X<slurp> X<file, slurping>
 
 You can use the File::Slurp module to do it in one step.
@@ -1295,7 +1295,10 @@ the permissions of the file govern whether you're allowed to.
 =head2 How do I select a random line from a file?
 X<file, selecting a random line>
 
-Here's an algorithm from the Camel Book:
+Short of loading the file into a database or pre-indexing the lines in
+the file, there are a couple of things that you can do.
+
+Here's a resevoir-sampling algorithm from the Camel Book:
 
 	srand;
 	rand($.) < 1 && ($line = $_) while <>;
@@ -1304,13 +1307,13 @@ This has a significant advantage in space over reading the whole file
 in.  You can find a proof of this method in I<The Art of Computer
 Programming>, Volume 2, Section 3.4.2, by Donald E. Knuth.
 
-You can use the File::Random module which provides a function
+You can use the C<File::Random> module which provides a function
 for that algorithm:
 
 	use File::Random qw/random_line/;
 	my $line = random_line($filename);
 
-Another way is to use the Tie::File module, which treats the entire
+Another way is to use the C<Tie::File> module, which treats the entire
 file as an array.  Simply access a random array element.
 
 =head2 Why do I get weird spaces when I print an array of lines?
