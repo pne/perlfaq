@@ -1077,7 +1077,7 @@ Why can't a method included in this same file be found?
 
 =item *
 
-How can I find out my current package?
+How can I find out my current or calling package?
 
 =item *
 
