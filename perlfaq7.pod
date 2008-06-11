@@ -239,8 +239,17 @@ it to you.
 
 =head2 How do I create a class?
 
-See L<perltoot> for an introduction to classes and objects, as well as
-L<perlobj> and L<perlbot>.
+(contributed by brian d foy)
+
+In Perl, a class is just a package, and methods are just subroutines.
+Perl doesn't get more formal than that and lets you set up the package
+just the way that you like it (that is, it doesn't set up anything for
+you).
+
+The Perl documentation has several tutorials that cover class
+creation, including L<perlboot> (Barnyard Object Oriented Tutorial),
+L<perltoot> (Tom's Object Oriented Tutorial), L<perlbot> (Bag o'
+Object Tricks), and L<perlobj>.
 
 =head2 How can I tell if a variable is tainted?
 
