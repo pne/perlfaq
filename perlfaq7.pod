@@ -819,20 +819,42 @@ the perils of indirect objects in L<perlobj/"Method Invocation">.
 
 =head2 How can I find out my current package?
 
-If you're just a random program, you can do this to find
-out what the currently compiled package is:
+(contributed by brian d foy)
 
-	my $packname = __PACKAGE__;
+To find the package you are currently in, use the special literal
+C<__PACKAGE__>, as documented in L<perldata>. You can only use the
+special literals as separate tokens, so you can't interpolate them
+into strings like you can with variables:
 
-But, if you're a method and you want to print an error message
-that includes the kind of object you were called on (which is
-not necessarily the same as the one in which you were compiled):
+	my $current_package = __PACKAGE__;
+	print "I am in package $current_package\n";
 
-	sub amethod {
-		my $self  = shift;
-		my $class = ref($self) || $self;
-		warn "called me from a $class object";
-		}
+This is different from finding out the package an object is blessed
+into, which might not be the current package. For that, use C<blessed>
+from C<Scalar::Util>, part of the Standard Library since Perl 5.8:
+
+	use Scalar::Util qw(blessed);
+	my $object_package = blessed( $object );
+	
+Most of the time, you shouldn't care what package an object is blessed
+into, however, as long as it claims to inherit from that class:
+
+	my $is_right_class = eval { $object->isa( $package ) }; # true or false
+
+If you want to find the package calling your code, perhaps to give better 
+diagnostics as C<Carp> does, use the C<caller> built-in:
+
+	sub foo {
+		my @args = ...;
+		my( $package, $filename, $line ) = caller;
+		
+		print "I was called from package $package\n";
+		);
+		
+By default, your program starts in package C<main>, so you should
+always be in some package unless someone uses the C<package> built-in
+with no namespace. See the C<package> entry in L<perlfunc> for the
+details of empty packges.
 
 =head2 How can I comment out a large block of perl code?
 
