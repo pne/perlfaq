@@ -682,21 +682,40 @@ see L<perltoot/"Overridden Methods">.
 
 =head2 What's the difference between calling a function as &foo and foo()?
 
-When you call a function as C<&foo>, you allow that function access to
-your current @_ values, and you bypass prototypes.
-The function doesn't get an empty @_--it gets yours!  While not
-strictly speaking a bug (it's documented that way in L<perlsub>), it
-would be hard to consider this a feature in most cases.
+(contributed by brian d foy)
 
-When you call your function as C<&foo()>, then you I<do> get a new @_,
-but prototyping is still circumvented.
+Calling a subroutine as C<&foo> with no trailing parentheses ignores
+the prototype of C<foo> and passes it the current value of the argumet
+list, C<@_>. Here's an example; the C<bar> subroutine calls C<&foo>,
+which prints what its arguments list:
 
-Normally, you want to call a function using C<foo()>.  You may only
-omit the parentheses if the function is already known to the compiler
-because it already saw the definition (C<use> but not C<require>),
-or via a forward reference or C<use subs> declaration.  Even in this
-case, you get a clean @_ without any of the old values leaking through
-where they don't belong.
+	sub bar { &foo }
+	
+	sub foo { print "Args in foo are: @_\n" }
+	
+	bar( qw( a b c ) );
+
+When you call C<bar> with arguments, you see that C<foo> got the same C<@_>:
+
+	Args in foo are: a b c
+
+Calling the subroutine with trailing parentheses, with or without arguments,
+does not use the current C<@_> and respects the subroutine prototype. Changing
+the example to put parentheses after the call to C<foo> changes the program:
+
+	sub bar { &foo() }
+	
+	sub foo { print "Args in foo are: @_\n" }
+	
+	bar( qw( a b c ) );
+
+Now the output shows that C<foo> doesn't get the C<@_> from its caller.
+
+	Args in foo are: 
+
+The main use of the C<@_> pass-through feature is to write subroutines
+whose main job it is to call other subroutines for you. For further
+details, see L<perlsub>.
 
 =head2 How do I create a switch or case statement?
 
