@@ -20,11 +20,16 @@ the name of the operating system (not its release number) that your perl
 binary was built for.
 
 =head2 How come exec() doesn't return?
+X<exec> X<system> X<fork> X<open> X<pipe>
 
-Because that's what it does: it replaces your currently running
-program with a different one.  If you want to keep going (as is
-probably the case if you're asking this question) use system()
-instead.
+(contributed by brian d foy)
+
+he C,exec> function's job is to turn your process into another
+command and never to return. If that's not what you want to do, don't
+use C<exec>. :)
+
+If you want to run an external command and still keep your Perl process
+going, look at a piped C<open>, C<fork>, or C<system>.
 
 =head2 How do I do fancy stuff with the keyboard/screen/mouse?
 
