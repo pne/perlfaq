@@ -238,6 +238,7 @@ it to you.
 =back
 
 =head2 How do I create a class?
+X<class, creation> X<package>
 
 (contributed by brian d foy)
 

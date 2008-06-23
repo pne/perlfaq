@@ -169,23 +169,49 @@ not to block:
 
 =head2 How do I clear the screen?
 
-If you only have do so infrequently, use C<system>:
+(contributed by brian d foy)
 
-	system("clear");
+To clear the screen, you just have to print the special sequence
+that tells the terminal to clear the screen. Once you have that
+sequence, output it when you want to clear the screen.
 
-If you have to do this a lot, save the clear string
-so you can print it 100 times without calling a program
-100 times:
+You can use the C<Term::ANSIScreen> module to get the special 
+sequence. Import the C<cls> function (or the C<:screen> tag):
 
-	$clear_string = `clear`;
-	print $clear_string;
+	use Term::ANSIScreen qw(cls);
+	my $clear_screen = cls();
+	
+	print $clear_screen;
 
-If you're planning on doing other screen manipulations, like cursor
-positions, etc, you might wish to use Term::Cap module:
+The C<Term::Cap> module can also get the special sequence if you want
+to deal with the low-level details of terminal control. The C<Tputs>
+method returns the string for the given capability:
 
 	use Term::Cap;
-	$terminal = Term::Cap->Tgetent( {OSPEED => 9600} );
+
+	$terminal = Term::Cap->Tgetent( { OSPEED => 9600 } );
 	$clear_string = $terminal->Tputs('cl');
+	
+	print $clear_screen;
+
+On Windows, you can use the C<Win32::Console> module. After creating 
+an object for the output filehandle you want to affect, call the
+C<Cls> method:
+
+	Win32::Console;
+	
+	$OUT = Win32::Console->new(STD_OUTPUT_HANDLE);
+	my $clear_string = $OUT->Cls;
+	
+	print $clear_screen;
+
+If you have a command-line program that does the job, you can call
+it in backticks to capture whatever it outputs so you can use it
+later:
+
+	$clear_string = `clear`;
+
+	print $clear_string;
 
 =head2 How do I get the screen size?
 
