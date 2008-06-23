@@ -302,11 +302,11 @@ leaving a backup of the original data from each file in a new
 C<.c.orig> file.
 
 =head2 How can I copy a file?
-X<copy> X<file, copy>
+X<copy> X<file, copy> X<File::Copy>
 
 (contributed by brian d foy)
 
-Use the File::Copy module. It comes with Perl and can do a
+Use the C<File::Copy> module. It comes with Perl and can do a
 true copy across file systems, and it does its magic in
 a portable fashion.
 
@@ -314,9 +314,10 @@ a portable fashion.
 
 	copy( $original, $new_copy ) or die "Copy failed: $!";
 
-If you can't use File::Copy, you'll have to do the work yourself:
+If you can't use C<File::Copy>, you'll have to do the work yourself:
 open the original file, open the destination file, then print
-to the destination file as you read the original.
+to the destination file as you read the original. You also have to
+remember to copy the permissions, owner, and group to the new file.
 
 =head2 How do I make a temporary file name?
 X<file, temporary>
