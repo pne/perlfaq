@@ -557,13 +557,13 @@ X<write, into a string>
 See L<perlform/"Accessing Formatting Internals"> for an C<swrite()> function.
 
 =head2 How can I open a filehandle to a string?
-X<string> X<open> X<IO::Scalar> X<filehandle>
+X<string> X<open> X<IO::String> X<filehandle>
 
 (contributed by Peter J. Holzer, hjp-usenet2@hjp.at)
 
-Since Perl 5.8.0, you can pass a reference to a scalar instead of the
-filename to create a file handle which you can used to read from or write to
-a string:
+Since Perl 5.8.0 a file handle referring to a string can be created by 
+calling open with a reference to that string instead of the filename. 
+This file handle can then be used to read from or write to the string:
 
 	open(my $fh, '>', \$string) or die "Could not open string for writing";
 	print $fh "foo\n";
