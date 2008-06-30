@@ -419,7 +419,7 @@ from the Cygwin package ( http://sources.redhat.com/cygwin/ )
 
 =item Ksh
 
-from the MKS Toolkit ( http://www.mks.com/ ), or the Bourne shell of
+from the MKS Toolkit ( http://www.mkssoftware.com/ ), or the Bourne shell of
 the U/WIN environment ( http://www.research.att.com/sw/tools/uwin/ )
 
 =item Tcsh
@@ -468,9 +468,6 @@ are text editors for Mac OS that have a Perl sensitivity mode
 
 
 =back
-
-Pepper and Pe are programming language sensitive text editors for Mac
-OS X and BeOS respectively ( http://www.hekkelman.com/ ).
 
 =head2 Where can I get Perl macros for vi?
 
