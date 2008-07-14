@@ -312,8 +312,8 @@ Recommended books on (or mostly on) Perl follow.
 
 	Learning Perl
 	by Randal L. Schwartz, Tom Phoenix, and brian d foy
-	ISBN 0-596-10105-8 [4th edition July 2005]
-	http://www.oreilly.com/catalog/learnperl4/
+	ISBN 0-596-52010-7 [5th edition June 2008]
+	http://oreilly.com/catalog/9780596520106/
 
 	Intermediate Perl (the "Alpaca Book")
 	by Randal L. Schwartz and brian d foy, with Tom Phoenix (foreword by Damian Conway)
