@@ -746,7 +746,7 @@ You usually can't. Memory allocated to lexicals (i.e. my() variables)
 cannot be reclaimed or reused even if they go out of scope. It is
 reserved in case the variables come back into scope. Memory allocated
 to global variables can be reused (within your program) by using
-undef()ing and/or delete().
+undef() and/or delete().
 
 On most operating systems, memory allocated to a program can never be
 returned to the system. That's why long-running programs sometimes re-
