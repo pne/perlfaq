@@ -152,38 +152,61 @@ from Activestate (Windows and Mac OS X), or EPIC (most platforms).
 
 =head2 How do I profile my Perl programs?
 
-You should get the Devel::DProf module from the standard distribution
-(or separately on CPAN) and also use Benchmark.pm from the standard
-distribution.  The Benchmark module lets you time specific portions of
-your code, while Devel::DProf gives detailed breakdowns of where your
-code spends its time.
+(contributed by brian d foy, updated Fri Jul 25 12:22:26 PDT 2008)
 
-Here's a sample use of Benchmark:
+The C<Devel> namespace has several modules which you can use to
+profile your Perl programs. The C<Devel::DProf> module comes with Perl
+and you can invoke it with the C<-d> switch:
 
-  use Benchmark;
+	perl -d:DProf program.pl
 
-  @junk = `cat /etc/motd`;
-  $count = 10_000;
+After running your program under C<DProf>, you'll get a F<tmon.out> file
+with the profile data. To look at the data, you can turn it into a
+human-readable report with the C<dprofpp> program that comes with
+C<Devel::DProf>.
 
-  timethese($count, {
-            'map' => sub { my @a = @junk;
-			   map { s/a/b/ } @a;
-			   return @a },
-            'for' => sub { my @a = @junk;
-			   for (@a) { s/a/b/ };
-			   return @a },
-           });
+	dprofpp
+	
+You can also do the profiling and reporting in one step with the C<-p>
+switch to <dprofpp>:
 
-This is what it prints (on one machine--your results will be dependent
-on your hardware, operating system, and the load on your machine):
+	dprofpp -p program.pl
 
-  Benchmark: timing 10000 iterations of for, map...
-         for:  4 secs ( 3.97 usr  0.01 sys =  3.98 cpu)
-         map:  6 secs ( 4.97 usr  0.00 sys =  4.97 cpu)
+The C<Devel::NYTProf> (New York Times Profiler) does both statement
+and subroutine profiling. It's available from CPAN and you also invoke
+it with the C<-d> switch:
 
-Be aware that a good benchmark is very hard to write.  It only tests the
-data you give it and proves little about the differing complexities
-of contrasting algorithms.
+	perl -d:NYTProf some_perl.pl
+
+Like C<DProf>, it creates a database of the profile information that you
+can turn into reports. The C<nytprofhtml> command turns the data into
+an HTML report similar to the C<Devel::Cover> report:
+
+	nytprofhtml
+
+CPAN has several other profilers that you can invoke in the same
+fashion. You might also be interested in using the C<Benchmark> to
+measure and compare code snippets.
+
+You can read more about profiling in I<Programming Perl>, chapter 20,
+or I<Mastering Perl>, chapter 5.
+
+L<perldebguts> documents creating a custom debugger if you need to
+create a special sort of profiler. brian d foy describes the process
+in I<The Perl Journal>, "Creating a Perl Debugger",
+http://www.ddj.com/184404522 , and "Profiling in Perl"
+http://www.ddj.com/184404580 .
+
+Perl.com has two interesting articles on profiling: "Profiling Perl",
+by Simon Cozens, http://www.perl.com/lpt/a/850 and "Debugging and
+Profiling mod_perl Applications", by Frank Wiles,
+http://www.perl.com/pub/a/2006/02/09/debug_mod_perl.html .
+
+Randal L. Schwartz writes about profiling in "Speeding up Your Perl
+Programs" for I<Unix Review>,
+http://www.stonehenge.com/merlyn/UnixReview/col49.html , and "Profiling
+in Template Toolkit via Overriding" for I<Linux Magazine>,
+http://www.stonehenge.com/merlyn/LinuxMag/col75.html .
 
 =head2 How do I cross-reference my Perl programs?
 
