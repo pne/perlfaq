@@ -1009,7 +1009,7 @@ appear as part of the data.
 
 If you want to work with comma-separated values, don't do this since
 that format is a bit more complicated. Use one of the modules that
-handle that fornat, such as C<Text::CSV>, C<Text::CSV_XS>, or
+handle that format, such as C<Text::CSV>, C<Text::CSV_XS>, or
 C<Text::CSV_PP>.
 
 If you want to break apart an entire line of fixed columns, you can use
