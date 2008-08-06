@@ -1,6 +1,6 @@
 # $Id$
 PERL=perl
-CVS=cvs
+SVN=svn
 
 CHECK_URLS=bin/check_urls.pl
 TOC_PL=bin/perlfaq_toc.pl
@@ -30,13 +30,13 @@ checkurls:
 	@ touch $@
 
 split:
-#	${CVS} update -d
+	${SVN} update
 	${PERL} bin/splitfaq ${SPLIT_DIR} ${FILES}
 	rm -f ${SPLIT_DIR}/perlfaq.00.00.txt
 	bin/touch ${SPLIT_DIR}/*
 	
 splitquiet:
-	@ ${CVS} update -d
+	@ ${SVN} update
 	@ ${PERL} bin/splitfaq -q ${SPLIT_DIR} ${FILES}
 	@ rm -f ${SPLIT_DIR}/perlfaq.00.00.txt
 	@ bin/touch ${SPLIT_DIR}/*  

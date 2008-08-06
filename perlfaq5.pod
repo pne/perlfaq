@@ -877,7 +877,7 @@ and you write less than one buffer-full of output between each manual
 flushing of the buffer then each bufferload is almost guaranteed to be
 written to the end of the file in one chunk without getting
 intermingled with anyone else's output. You can also use the
-C<syswrite> function which is simply a wrapper around your systems
+C<syswrite> function which is simply a wrapper around your system's
 C<write(2)> system call.
 
 There is still a small theoretical chance that a signal will interrupt
