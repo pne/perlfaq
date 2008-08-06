@@ -164,7 +164,7 @@ have done for you already! :)
 
 The problem with things such as XML is that they have balanced text
 containing multiple levels of balanced text, but sometimes it isn't
-balanced text, as in an empty tag (C<<br/>, for instance). Even then,
+balanced text, as in an empty tag (C<< <br/> >>, for instance). Even then,
 things can occur out-of-order. Just when you think you've got a
 pattern that matches your input, someone throws you a curveball. 
 
