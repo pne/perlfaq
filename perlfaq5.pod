@@ -1301,7 +1301,7 @@ X<file, selecting a random line>
 Short of loading the file into a database or pre-indexing the lines in
 the file, there are a couple of things that you can do.
 
-Here's a resevoir-sampling algorithm from the Camel Book:
+Here's a reservoir-sampling algorithm from the Camel Book:
 
 	srand;
 	rand($.) < 1 && ($line = $_) while <>;
