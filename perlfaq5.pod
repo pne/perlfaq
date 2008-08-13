@@ -1332,7 +1332,7 @@ double quotes:
 
 It's the double quotes, not the C<print>, doing this. Whenever you
 interpolate an array in a double quote contexts, Perl joins the
-elements of spaces (or whatever is in C<$">, which is a space by
+elements with spaces (or whatever is in C<$">, which is a space by
 default):
 
 	animals are: camel llama alpaca vicuna
