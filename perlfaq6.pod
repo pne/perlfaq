@@ -97,7 +97,7 @@ to newlines.  But it's imperative that $/ be set to something other
 than the default, or else we won't actually ever have a multiline
 record read in.
 
-	$/ = '';  		# read in more whole paragraph, not just one line
+	$/ = '';  		# read in whole paragraph, not just one line
 	while ( <> ) {
 		while ( /\b([\w'-]+)(\s+\1)+\b/gi ) {  	# word starts alpha
 			print "Duplicate $1 at paragraph $.\n";
@@ -107,7 +107,7 @@ record read in.
 Here's code that finds sentences that begin with "From " (which would
 be mangled by many mailers):
 
-	$/ = '';  		# read in more whole paragraph, not just one line
+	$/ = '';  		# read in whole paragraph, not just one line
 	while ( <> ) {
 		while ( /^From /gm ) { # /m makes ^ match next to \n
 		print "leading from in paragraph $.\n";
