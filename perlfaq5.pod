@@ -1331,19 +1331,19 @@ double quotes:
 	print "animals are: @animals\n";
 
 It's the double quotes, not the C<print>, doing this. Whenever you
-interpolate an array in a double quote contexts, Perl joins the
+interpolate an array in a double quote context, Perl joins the
 elements with spaces (or whatever is in C<$">, which is a space by
 default):
 
 	animals are: camel llama alpaca vicuna
 
-This is different than print the array without the interpolation:
+This is different than printing the array without the interpolation:
 
 	my @animals = qw(camel llama alpaca vicuna);
 	print "animals are: ", @animals, "\n";
 
 Now the output doesn't have the spaces between the elements because
-the elements of C<@animals> simply becoming part of the list to
+the elements of C<@animals> simply become part of the list to
 C<print>:
 
 	animals are: camelllamaalpacavicuna
@@ -1357,8 +1357,8 @@ every line after the first is indented:
 	 this is the third line
 
 That extra space comes from the interpolation of the array. If you
-don't want to put anything between your array elements, don't use it
-in double quotes. You can send
+don't want to put anything between your array elements, don't use the
+array in double quotes. You can send it to print without them:
 
 	print @lines;
 
