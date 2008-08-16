@@ -1934,7 +1934,7 @@ can then get the value through the particular key you're processing:
 		}
 
 Once you have the list of keys, you can process that list before you
-process the hashh elements. For instance, you can sort the keys so you
+process the hash elements. For instance, you can sort the keys so you
 can process them in lexical order:
 
 	foreach my $key ( sort keys %hash ) {
@@ -1952,7 +1952,7 @@ those using C<grep>:
 		}
 
 If the hash is very large, you might not want to create a long list of
-keys. To save some memory, you can grab on key-value pair at a time using
+keys. To save some memory, you can grab one key-value pair at a time using
 C<each()>, which returns a pair you haven't seen yet:
 
 	while( my( $key, $value ) = each( %hash ) ) {
