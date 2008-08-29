@@ -2279,21 +2279,45 @@ Use the C<Tie::IxHash> from CPAN.
 
 =head2 Why does passing a subroutine an undefined element in a hash create it?
 
-If you say something like:
+(contributed by brian d foy)
 
-	somefunc($hash{"nonesuch key here"});
+Are you using a really old version of Perl?
 
-Then that element "autovivifies"; that is, it springs into existence
-whether you store something there or not.  That's because functions
-get scalars passed in by reference.  If somefunc() modifies C<$_[0]>,
-it has to be ready to write it back into the caller's version.
+Normally, accessing a hash key's value for a nonexistent key will
+I<not> create the key.  
 
-This has been fixed as of Perl5.004.
+	my %hash  = ();
+	my $value = $hash{ 'foo' };
+	print "This won't print\n" if exists $hash{ 'foo' };
 
-Normally, merely accessing a key's value for a nonexistent key does
-I<not> cause that key to be forever there.  This is different than
-awk's behavior.
+Passing C<$hash{ 'foo' }> to a subroutine used to be a special case, though.
+Since you could assign directly to C<$_[0]>, Perl had to be ready to
+make that assignment so it created the hash key ahead of time:
 
+    my_sub( $hash{ 'foo' } );
+	print "This will print before 5.004\n" if exists $hash{ 'foo' };
+	
+	sub my_sub {
+		# $_[0] = 'bar'; # create hash key in case you do this
+		1;
+		}
+		
+Since Perl 5.004, however, this situation is a special case and Perl
+creates the hash key only when you make the assignment:
+
+    my_sub( $hash{ 'foo' } );
+	print "This will print, even after 5.004\n" if exists $hash{ 'foo' };
+	
+	sub my_sub {
+		$_[0] = 'bar';
+		}
+
+However, if you want the old behavior (and think carefully about that
+because it's a weird side effect), you can pass a hash slice instead.
+Perl 5.004 didn't make this a special case:
+
+	my_sub( @hash{ qw/foo/ } );
+	
 =head2 How can I make the Perl equivalent of a C structure/C++ class/hash or array of hashes or arrays?
 
 Usually a hash ref, perhaps like this:
