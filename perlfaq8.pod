@@ -377,18 +377,25 @@ passwd(1), for example).
 
 =head2 How do I start a process in the background?
 
-Several modules can start other processes that do not block
-your Perl program.  You can use IPC::Open3, Parallel::Jobs,
-IPC::Run, and some of the POE modules.  See CPAN for more
-details.
+(contributed by brian d foy)
 
-You could also use
+There's not a single way to run code in the background so you don't
+have to wait for it to finish before your program moves on to other
+tasks. Process management depends on your particular operating system,
+and many of the techniques are in L<perlipc>.
+
+Several CPAN modules may be able to help, including IPC::Open2 or
+IPC::Open3, IPC::Run, Parallel::Jobs, Parallel::ForkManager, POE,
+Proc::Background, and Win32::Process. There are many other modules you
+might use, so check those namespaces for other options too.
+
+If you are on a unix-like system, you might be able to get away with a
+system call where you put an C<&> on the end of the command:
 
 	system("cmd &")
 
-or you could use fork as documented in L<perlfunc/"fork">, with
-further examples in L<perlipc>.  Some things to be aware of, if you're
-on a Unix-like system:
+You can also try using C<fork>, as described in L<perlfunc> (although
+this is the same thing that many of the modules will do for you).
 
 =over 4
 
