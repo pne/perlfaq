@@ -810,14 +810,33 @@ result to a scalar, producing a count of the number of matches.
 	$count = () = $string =~ /-\d+/g;
 
 =head2 How do I capitalize all the words on one line?
+X<Text::Autoformat> X<capitalize> X<case, title> X<case, sentence>
 
-To make the first letter of each word upper case:
+(contributed by brian d foy)
 
-	$line =~ s/\b(\w)/\U$1/g;
+Damian Conway's L<Text::Autoformat> handles all of the thinking 
+for you.
 
-This has the strange effect of turning "C<don't do it>" into "C<Don'T
-Do It>".  Sometimes you might want this.  Other times you might need a
-more thorough solution (Suggested by brian d foy):
+	use Text::Autoformat;
+	my $x = "Dr. Strangelove or: How I Learned to Stop ".
+	  "Worrying and Love the Bomb";
+
+	print $x, "\n";
+	for my $style (qw( sentence title highlight )) {
+		print autoformat($x, { case => $style }), "\n";
+		}
+		
+How do you want to capitalize those words? 
+
+	FRED AND BARNEY'S LODGE        # all uppercase
+	Fred And Barney's Lodge        # title case
+	Fred and Barney's Lodge        # highlight case
+	
+It's not as easy a problem as it looks. How many words do you think
+are in there? Wait for it... wait for it.... If you answered 5
+you're right. Perl words are groups of C<\w+>, but that's not what
+you want to capitalize. How is Perl supposed to know not to capitalize
+that C<s> after the apostrophe? You could try a regular expression:
 
 	$string =~ s/ (
 				 (^\w)    #at the beginning of the line
@@ -828,35 +847,9 @@ more thorough solution (Suggested by brian d foy):
 
 	$string =~ s/([\w']+)/\u\L$1/g;
 
-To make the whole line upper case:
-
-	$line = uc($line);
-
-To force each word to be lower case, with the first letter upper case:
-
-	$line =~ s/(\w+)/\u\L$1/g;
-
-You can (and probably should) enable locale awareness of those
-characters by placing a C<use locale> pragma in your program.
-See L<perllocale> for endless details on locales.
-
-This is sometimes referred to as putting something into "title
-case", but that's not quite accurate.  Consider the proper
-capitalization of the movie I<Dr. Strangelove or: How I Learned to
-Stop Worrying and Love the Bomb>, for example.
-
-Damian Conway's L<Text::Autoformat> module provides some smart
-case transformations:
-
-	use Text::Autoformat;
-	my $x = "Dr. Strangelove or: How I Learned to Stop ".
-	  "Worrying and Love the Bomb";
-
-	print $x, "\n";
-	for my $style (qw( sentence title highlight )) {
-		print autoformat($x, { case => $style }), "\n";
-		}
-
+Now, what if you don't want to capitalize that "and"? Just use 
+ L<Text::Autoformat> and get on with the next problem. :)
+ 
 =head2 How can I split a [character] delimited string except when inside [character]?
 
 Several modules can handle this sort of parsing--C<Text::Balanced>,
