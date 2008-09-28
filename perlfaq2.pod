@@ -31,29 +31,19 @@ source release of perl).
 
 =head2 How can I get a binary version of perl?
 
-For Windows, ActiveState provides a pre-built Perl for free:
+(contributed by brian d foy)
+
+ActiveState: Windows, Linux, Mac OS X, Solaris, AIX and HP-UX
 
 	http://www.activestate.com/
-
-Sunfreeware.com provides binaries for many utilities, including
-Perl, for Solaris on both Intel and SPARC hardware:
+	
+Sunfreeware.com: Solaris 2.5 to Solaris 10 (SPARC and x86)
 
 	http://www.sunfreeware.com/
 
-If you don't have a C compiler because your vendor for whatever
-reasons did not include one with your system, the best thing to do is
-grab a binary version of gcc from the net and use that to compile perl
-with.  CPAN only has binaries for systems that are terribly hard to
-get free compilers for, not for Unix systems.
+Strawberry Perl: Windows, Perl 5.8.8 and 5.10.0
 
-Some URLs that might help you are:
-
-	http://www.cpan.org/ports/
-	http://www.perl.com/pub/language/info/software.html
-
-Someone looking for a perl for Win16 might look to Laszlo Molnar's
-djgpp port in http://www.cpan.org/ports/#msdos , which comes with
-clear installation instructions.
+	http://www.strawberryperl.com
 
 =head2 I don't have a C compiler. How can I build my own Perl interpreter?
 
