@@ -25,7 +25,7 @@ of the latest perlfaq to comp.lang.perl.misc.
 
 You can view the source tree at
 https://svn.perl.org/modules/perlfaq/trunk/ (which is outside of the
-main Perl source tree).  The SVN repository notes all changes to the FAQ
+main Perl source tree). The SVN repository notes all changes to the FAQ
 and holds the latest version of the working documents and may vary
 significantly from the version distributed with the latest version of
 Perl. Check the repository before sending your corrections.
