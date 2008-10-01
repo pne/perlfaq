@@ -63,7 +63,7 @@ one-liners:
 
 	if ($whoops) { exit 1 }
 	@nums = (1, 2, 3);
-	
+
 	if ($whoops) {
 		exit 1;
 	}
@@ -172,7 +172,7 @@ Here's an example:
 	$person = {};                   # new anonymous hash
 	$person->{AGE}  = 24;           # set field AGE to 24
 	$person->{NAME} = "Nat";        # set field NAME to "Nat"
-	
+
 If you're looking for something a bit more rigorous, try L<perltoot>.
 
 =head2 How do I create a module?
@@ -223,7 +223,7 @@ Write to modules@perl.org explaining what you did to contact the
 current maintainer. The PAUSE admins will also try to reach the
 maintainer.
 
-=item 
+=item
 
 Post a public message in a heavily trafficked site announcing your
 intention to take over the module.
@@ -231,7 +231,7 @@ intention to take over the module.
 =item
 
 Wait a bit. The PAUSE admins don't want to act too quickly in case
-the current maintainer is on holiday. If there's no response to 
+the current maintainer is on holiday. If there's no response to
 private communication or the public post, a PAUSE admin can transfer
 it to you.
 
@@ -266,7 +266,7 @@ I<Closure> is a computer science term with a precise but
 hard-to-explain meaning. Usually, closures are implemented in Perl as
 anonymous subroutines with lasting references to lexical variables
 outside their own scopes. These lexicals magically refer to the
-variables that were around when the subroutine was defined (deep 
+variables that were around when the subroutine was defined (deep
 binding).
 
 Closures are most often used in programming languages where you can
@@ -301,7 +301,7 @@ value that the lexical had when the function was created.
 		my $addpiece = shift;
 		return sub { shift() + $addpiece };
 	}
-	
+
 	$f1 = make_adder(20);
 	$f2 = make_adder(555);
 
@@ -520,11 +520,11 @@ C<counter>.
 		my $count = 1;
 		sub counter { $count++ }
 	}
-	
+
 	my $start = counter();
-	
+
 	.... # code that calls counter();
-	
+
 	my $end = counter();
 
 In the previous example, you created a function-private variable
@@ -571,19 +571,19 @@ For instance:
 	sub visible {
 		print "var has value $var\n";
 		}
-	
+
 	sub dynamic {
 		local $var = 'local';	# new temporary value for the still-global
 		visible();              #   variable called $var
 		}
-	
+
 	sub lexical {
 		my $var = 'private';    # new private variable, $var
 		visible();              # (invisible outside of sub scope)
 		}
-	
+
 	$var = 'global';
-	
+
 	visible();      		# prints global
 	dynamic();      		# prints local
 	lexical();      		# prints global
@@ -690,9 +690,9 @@ list, C<@_>. Here's an example; the C<bar> subroutine calls C<&foo>,
 which prints what its arguments list:
 
 	sub bar { &foo }
-	
+
 	sub foo { print "Args in foo are: @_\n" }
-	
+
 	bar( qw( a b c ) );
 
 When you call C<bar> with arguments, you see that C<foo> got the same C<@_>:
@@ -704,14 +704,14 @@ does not use the current C<@_> and respects the subroutine prototype. Changing
 the example to put parentheses after the call to C<foo> changes the program:
 
 	sub bar { &foo() }
-	
+
 	sub foo { print "Args in foo are: @_\n" }
-	
+
 	bar( qw( a b c ) );
 
 Now the output shows that C<foo> doesn't get the C<@_> from its caller.
 
-	Args in foo are: 
+	Args in foo are:
 
 The main use of the C<@_> pass-through feature is to write subroutines
 whose main job it is to call other subroutines for you. For further
@@ -722,14 +722,14 @@ details, see L<perlsub>.
 In Perl 5.10, use the C<given-when> construct described in L<perlsyn>:
 
 	use 5.010;
-	
+
 	given ( $string ) {
 		when( 'Fred' )        { say "I found Fred!" }
 		when( 'Barney' )      { say "I found Barney!" }
 		when( /Bamm-?Bamm/ )  { say "I found Bamm-Bamm!" }
 		default               { say "I don't recognize the name!" }
 		};
-		
+
 If one wants to use pure Perl and to be compatible with Perl versions
 prior to 5.10, the general answer is to use C<if-elsif-else>:
 
@@ -800,7 +800,7 @@ A totally different approach is to create a hash of function references.
 		"done"  => sub { die "See ya!" },
 		"mad"   => \&angry,
 	);
-	
+
 	print "How are you? ";
 	chomp($string = <STDIN>);
 	if ($commands{$string}) {
@@ -864,22 +864,22 @@ from C<Scalar::Util>, part of the Standard Library since Perl 5.8:
 
 	use Scalar::Util qw(blessed);
 	my $object_package = blessed( $object );
-	
+
 Most of the time, you shouldn't care what package an object is blessed
 into, however, as long as it claims to inherit from that class:
 
 	my $is_right_class = eval { $object->isa( $package ) }; # true or false
 
-If you want to find the package calling your code, perhaps to give better 
+If you want to find the package calling your code, perhaps to give better
 diagnostics as C<Carp> does, use the C<caller> built-in:
 
 	sub foo {
 		my @args = ...;
 		my( $package, $filename, $line ) = caller;
-		
+
 		print "I was called from package $package\n";
 		);
-		
+
 By default, your program starts in package C<main>, so you should
 always be in some package unless someone uses the C<package> built-in
 with no namespace. See the C<package> entry in L<perlfunc> for the
@@ -894,18 +894,18 @@ should claim to understand (by policy).  Mark the end of the block
 with <=end>.
 
 	# program is here
-	
+
 	=begin comment
-	
+
 	all of this stuff
-	
+
 	here will be ignored
 	by everyone
-	
+
 	=end comment
-	
+
 	=cut
-	
+
 	# program continues
 
 The pod directives cannot go just anywhere.  You must put a

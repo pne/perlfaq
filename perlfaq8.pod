@@ -180,12 +180,12 @@ To clear the screen, you just have to print the special sequence
 that tells the terminal to clear the screen. Once you have that
 sequence, output it when you want to clear the screen.
 
-You can use the C<Term::ANSIScreen> module to get the special 
+You can use the C<Term::ANSIScreen> module to get the special
 sequence. Import the C<cls> function (or the C<:screen> tag):
 
 	use Term::ANSIScreen qw(cls);
 	my $clear_screen = cls();
-	
+
 	print $clear_screen;
 
 The C<Term::Cap> module can also get the special sequence if you want
@@ -196,18 +196,18 @@ method returns the string for the given capability:
 
 	$terminal = Term::Cap->Tgetent( { OSPEED => 9600 } );
 	$clear_string = $terminal->Tputs('cl');
-	
+
 	print $clear_screen;
 
-On Windows, you can use the C<Win32::Console> module. After creating 
+On Windows, you can use the C<Win32::Console> module. After creating
 an object for the output filehandle you want to affect, call the
 C<Cls> method:
 
 	Win32::Console;
-	
+
 	$OUT = Win32::Console->new(STD_OUTPUT_HANDLE);
 	my $clear_string = $OUT->Cls;
-	
+
 	print $clear_screen;
 
 If you have a command-line program that does the job, you can call
@@ -1227,7 +1227,7 @@ is the same as a C<require> run at compile-time, but Perl also calls the
 C<import> method for the loaded package. These two are the same:
 
 	use MODULE qw(import list);
-	
+
 	BEGIN {
 		require MODULE;
 		MODULE->import(import list);
@@ -1237,14 +1237,14 @@ However, you can suppress the C<import> by using an explicit, empty
 import list. Both of these still happen at compile-time:
 
 	use MODULE ();
-	
+
 	BEGIN {
 		require MODULE;
 		}
 
 Since C<use> will also call the C<import> method, the actual value
 for C<MODULE> must be a bareword. That is, C<use> cannot load files
-by name, although C<require> can: 
+by name, although C<require> can:
 
 	require "$ENV{HOME}/lib/Foo.pm"; # no @INC searching!
 
@@ -1268,7 +1268,7 @@ in your private library directory when you use the CPAN.pm shell:
 
 For C<Build.PL>-based distributions, use the --install_base option:
 
-	perl Build.PL --install_base /mydir/perl 
+	perl Build.PL --install_base /mydir/perl
 
 You can configure CPAN.pm to automatically use this option too:
 
@@ -1285,7 +1285,7 @@ for any other directory. You might <use lib> if you know the directory
 at compile time:
 
 	use lib $directory;
-	
+
 The trick in this task is to find the directory. Before your script does
 anything else (such as a C<chdir>), you can get the current working
 directory with the C<Cwd> module, which comes with Perl:
@@ -1294,25 +1294,25 @@ directory with the C<Cwd> module, which comes with Perl:
 		use Cwd;
 		our $directory = cwd;
 		}
-	
+
 	use lib $directory;
-	
+
 You can do a similar thing with the value of C<$0>, which holds the
 script name. That might hold a relative path, but C<rel2abs> can turn
-it into an absolute path. Once you have the 
+it into an absolute path. Once you have the
 
-	BEGIN {	
+	BEGIN {
 		use File::Spec::Functions qw(rel2abs);
 		use File::Basename qw(dirname);
-		
+
 		my $path   = rel2abs( $0 );
 		our $directory = dirname( $path );
 		}
-		
+
 	use lib $directory;
 
 The C<FindBin> module, which comes with Perl, might work. It finds the
-directory of the currently running script and puts it in C<$Bin>, which 
+directory of the currently running script and puts it in C<$Bin>, which
 you can then use to construct the right library path:
 
 	use FindBin qw($Bin);

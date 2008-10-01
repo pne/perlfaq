@@ -166,7 +166,7 @@ The problem with things such as XML is that they have balanced text
 containing multiple levels of balanced text, but sometimes it isn't
 balanced text, as in an empty tag (C<< <br/> >>, for instance). Even then,
 things can occur out-of-order. Just when you think you've got a
-pattern that matches your input, someone throws you a curveball. 
+pattern that matches your input, someone throws you a curveball.
 
 If you'd like to do it the hard way, scratching and clawing your way
 toward a right answer but constantly being disappointed, beseiged by
@@ -194,7 +194,7 @@ Good luck!
 X<$/, regexes in> X<$INPUT_RECORD_SEPARATOR, regexes in>
 X<$RS, regexes in>
 
-$/ has to be a string.  You can use these examples if you really need to 
+$/ has to be a string.  You can use these examples if you really need to
 do this.
 
 If you have File::Stream, this is easy.
@@ -397,7 +397,7 @@ This example takes a regular expression from the argument list and
 prints the lines of input that match it:
 
 	my $pattern = shift @ARGV;
-	
+
 	while( <> ) {
 		print if m/$pattern/;
 		}
@@ -408,7 +408,7 @@ would prevent this by telling Perl to compile the pattern the first
 time, then reuse that for subsequent iterations:
 
 	my $pattern = shift @ARGV;
-	
+
 	while( <> ) {
 		print if m/$pattern/o; # useful for Perl < 5.6
 		}
@@ -428,7 +428,7 @@ compiling the regular expression on each iteration. With Perl 5.6 or
 later, you should only see C<re> report that for the first iteration.
 
 	use re 'debug';
-	
+
 	$regex = 'Perl';
 	foreach ( qw(Perl Java Ruby Python) ) {
 		print STDERR "-" x 73, "\n";
@@ -539,30 +539,30 @@ particular capture buffer given by C<PARNO>. In the following regex,
 the first capture buffer finds (and remembers) the balanced text, and
 you  need that same pattern within the first buffer to get past the
 nested text. That's the recursive part. The C<(?1)> uses the pattern
-in the outer capture buffer as an independent part of the regex. 
+in the outer capture buffer as an independent part of the regex.
 
 Putting it all together, you have:
 
 	#!/usr/local/bin/perl5.10.0
-	
+
 	my $string =<<"HERE";
 	I have some <brackets in <nested brackets> > and
 	<another group <nested once <nested twice> > >
 	and that's it.
 	HERE
-	
+
 	my @groups = $string =~ m/
 			(                   # start of capture buffer 1
 			<                   # match an opening angle bracket
-				(?:               
+				(?:
 					[^<>]++     # one or more non angle brackets, non backtracking
-					  |                  
+					  |
 					(?1)        # found < or >, so recurse to capture buffer 1
-				)*                 
+				)*
 			>                   # match a closing angle bracket
 			)                   # end of capture buffer 1
 			/xg;
-	
+
 	$" = "\n\t";
 	print "Found:\n\t@groups\n";
 
@@ -579,34 +579,34 @@ just matched so don't match it again) and add it to a queue of strings
 to process. Keep doing that until you get no matches:
 
 	#!/usr/local/bin/perl5.10.0
-		
+
 	my @queue =<<"HERE";
 	I have some <brackets in <nested brackets> > and
 	<another group <nested once <nested twice> > >
 	and that's it.
 	HERE
-	
+
 	my $regex = qr/
 			(                   # start of bracket 1
 			<                   # match an opening angle bracket
-				(?:               
+				(?:
 					[^<>]++     # one or more non angle brackets, non backtracking
-					  |                  
+					  |
 					(?1)        # recurse to bracket 1
-				)*                 
+				)*
 			>                   # match a closing angle bracket
 			)                   # end of bracket 1
 			/x;
-	
+
 	$" = "\n\t";
-	
+
 	while( @queue )
 		{
 		my $string = shift @queue;
-		
+
 		my @groups = $string =~ m/$regex/g;
 		print "Found:\n\t@groups\n\n" if @groups;
-		
+
 		unshift @queue, map { s/^<//; s/>$//; $_ } @groups;
 		}
 
@@ -616,13 +616,13 @@ first and the nested matches so up later:
 	Found:
 		<brackets in <nested brackets> >
 		<another group <nested once <nested twice> > >
-	
+
 	Found:
 		<nested brackets>
-	
+
 	Found:
 		<nested once <nested twice> >
-	
+
 	Found:
 		<nested twice>
 

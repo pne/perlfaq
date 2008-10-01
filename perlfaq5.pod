@@ -26,7 +26,7 @@ have a long wait before you see a row of 50 dots all at once:
 	while( <> ) {
 		print ".";
 		print "\n" unless ++$count % 50;
-		
+
 		#... expensive line processing operations
 		}
 
@@ -40,7 +40,7 @@ case, C<STDOUT>. You can set the special variable C<$|> to a true value
 	while( <> ) {
 		print ".";
 		print "\n" unless ++$count % 50;
-		
+
 		#... expensive line processing operations
 		}
 
@@ -51,10 +51,10 @@ case, C<STDOUT>. You can set the special variable C<$|> to a true value
 
 	{
 	my $previous_default = select(STDOUT);  # save previous default
-	$|++;                                   # autoflush STDOUT 
+	$|++;                                   # autoflush STDOUT
 	select(STDERR);
 	$|++;                                   # autoflush STDERR, to be sure
-	select($previous_default);              # restore previous default 
+	select($previous_default);              # restore previous default
 	}
 
 	# now should alternate . and +
@@ -65,23 +65,23 @@ case, C<STDOUT>. You can set the special variable C<$|> to a true value
 		print STDERR "+";
 		print STDOUT "\n" unless ++$count % 25;
 		}
-	
+
 Besides the C<$|> special variable, you can use C<binmode> to give
 your filehandle a C<:unix> layer, which is unbuffered:
 
 	binmode( STDOUT, ":unix" );
-	
+
 	while( 1 ) {
 		sleep 1;
 		print ".";
 		print "\n" unless ++$count % 50;
 		}
-	
+
 For more information on output layers, see the entries for C<binmode>
 and C<open> in L<perlfunc>, and the C<PerlIO> module documentation.
 
 If you are using C<IO::Handle> or one of its subclasses, you can
-call the C<autoflush> method to change the settings of the 
+call the C<autoflush> method to change the settings of the
 filehandle:
 
 	use IO::Handle;
@@ -92,7 +92,7 @@ The C<IO::Handle> objects also have a C<flush> method. You can flush
 the buffer any time you want without auto-buffering
 
 	$io_fh->flush;
-	
+
 =head2 How do I change, delete, or insert a line in a file, or append to the beginning of a file?
 X<file, editing>
 
@@ -173,7 +173,7 @@ print it. After that, read the rest of the lines and print those:
 		{
 		print $out $_;
 		}
-		
+
 To skip lines, use the looping controls. The C<next> in this example
 skips comment lines, and the C<last> stops all processing once it
 encounters either C<__END__> or C<__DATA__>.
@@ -373,7 +373,7 @@ temporary files in one process, use a counter:
 			return ();
 			}
 		}
-		
+
 	}
 
 =head2 How can I manipulate fixed-record-length files?
@@ -561,8 +561,8 @@ X<string> X<open> X<IO::String> X<filehandle>
 
 (contributed by Peter J. Holzer, hjp-usenet2@hjp.at)
 
-Since Perl 5.8.0 a file handle referring to a string can be created by 
-calling open with a reference to that string instead of the filename. 
+Since Perl 5.8.0 a file handle referring to a string can be created by
+calling open with a reference to that string instead of the filename.
 This file handle can then be used to read from or write to the string:
 
 	open(my $fh, '>', \$string) or die "Could not open string for writing";
@@ -574,7 +574,7 @@ This file handle can then be used to read from or write to the string:
 
 With older versions of Perl, the C<IO::String> module provides similar
 functionality.
-    
+
 =head2 How can I output my numbers with commas added?
 X<number, commify>
 
@@ -1236,9 +1236,9 @@ filehandle (perhaps you used C<POSIX::open>), you can use the
 C<close()> function from the C<POSIX> module:
 
 	use POSIX ();
-	
+
 	POSIX::close( $fd );
-	
+
 This should rarely be necessary, as the Perl C<close()> function is to be
 used for things that Perl opened itself, even if it was a dup of a
 numeric descriptor as with C<MHCONTEXT> above.  But if you really have
@@ -1323,7 +1323,7 @@ file as an array.  Simply access a random array element.
 
 (contributed by brian d foy)
 
-If you are seeing spaces between the elements of your array when 
+If you are seeing spaces between the elements of your array when
 you print the array, you are probably interpolating the array in
 double quotes:
 

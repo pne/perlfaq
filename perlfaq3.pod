@@ -51,7 +51,7 @@ http://sourceforge.net/projects/psh/ .
 
 Zoidberg is a similar project and provides a shell written in perl,
 configured in perl and operated in perl. It is intended as a login shell
-and development environment. It can be found at 
+and development environment. It can be found at
 http://pardus-larus.student.utwente.nl/~pardus/projects/zoidberg/
 or your local CPAN mirror.
 
@@ -166,7 +166,7 @@ human-readable report with the C<dprofpp> program that comes with
 C<Devel::DProf>.
 
 	dprofpp
-	
+
 You can also do the profiling and reporting in one step with the C<-p>
 switch to <dprofpp>:
 
@@ -547,7 +547,7 @@ simple gui. It hasn't been updated in a while.
 
 =item Wx
 
-This is a Perl binding for the cross-platform wxWidgets toolkit 
+This is a Perl binding for the cross-platform wxWidgets toolkit
 ( http://www.wxwidgets.org ). It works under Unix, Win32 and Mac OS X,
 using native widgets (Gtk under Unix). The interface follows the C++
 interface closely, but the documentation is a little sparse for someone

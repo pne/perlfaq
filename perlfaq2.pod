@@ -36,7 +36,7 @@ source release of perl).
 ActiveState: Windows, Linux, Mac OS X, Solaris, AIX and HP-UX
 
 	http://www.activestate.com/
-	
+
 Sunfreeware.com: Solaris 2.5 to Solaris 10 (SPARC and x86)
 
 	http://www.sunfreeware.com/
@@ -54,15 +54,15 @@ What you need to do is get a binary version of gcc for your system
 first.  Consult the Usenet FAQs for your operating system for
 information on where to get such a binary version.
 
-You might look around the net for a pre-built binary of Perl (or a 
+You might look around the net for a pre-built binary of Perl (or a
 C compiler!) that meets your needs, though:
 
 For Windows, Vanilla Perl ( http://vanillaperl.com/ ) and Strawberry Perl
-( http://strawberryperl.com/ ) come with a 
+( http://strawberryperl.com/ ) come with a
 bundled C compiler. ActivePerl is a pre-compiled version of Perl
 ready-to-use.
 
-For Sun systems, SunFreeware.com provides binaries of most popular 
+For Sun systems, SunFreeware.com provides binaries of most popular
 applications, including compilers and Perl.
 
 =head2 I copied the perl binary from one machine to another, but scripts don't work.
@@ -395,7 +395,7 @@ Recommended books on (or mostly on) Perl follow.
 	by Richard Foley with Andy Lester
 	ISBN 1-59059-454-1 [1st edition July 2005]
 	http://www.apress.com/book/view/1590594541
-	
+
 =back
 
 =head2 Which magazines have Perl content?

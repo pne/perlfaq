@@ -290,24 +290,24 @@ can use the the C<URI::Escape> module. The C<uri_escape> function
 returns the escaped string:
 
 	my $original = "Colon : Hash # Percent %";
-	
+
 	my $escaped = uri_escape( $original )
-	
+
 	print "$string\n"; # 'Colon%20%3A%20Hash%20%23%20Percent%20%25%20'
 
 To decode the string, use the C<uri_unescape> function:
 
 	my $unescaped = uri_unescape( $escaped );
-	
+
 	print $unescaped; # back to original
-	
+
 If you wanted to do it yourself, you simply need to replace the
 reserved characters with their encodings. A global substitution
 is one way to do it:
 
 	# encode
 	$string =~ s/([^^A-Za-z0-9\-_.!~*'()])/ sprintf "%%%0x", ord $1 /eg;
-	
+
 	#decode
 	$string =~ s/%([A-Fa-f\d]{2})/chr hex $1/eg;
 
