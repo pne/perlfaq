@@ -1254,16 +1254,16 @@ See the entry for C<use> in L<perlfunc> for more details.
 
 When you build modules, tell Perl where to install the modules.
 
-For C<Makefile.PL>-based distributions, use the PREFIX and LIB options
+For C<Makefile.PL>-based distributions, use the INSTALL_BASE option
 when generating Makefiles:
 
-	perl Makefile.PL PREFIX=/mydir/perl LIB=/mydir/perl/lib
+	perl Makefile.PL INSTALL_BASE=/mydir/perl
 
 You can set this in your CPAN.pm configuration so modules automatically install
 in your private library directory when you use the CPAN.pm shell:
 
 	% cpan
-	cpan> o conf makepl_arg PREFIX=/mydir/perl,LIB=/mydir/perl/lib
+	cpan> o conf makepl_arg INSTALL_BASE=/mydir/perl
 	cpan> o conf commit
 
 For C<Build.PL>-based distributions, use the --install_base option:
@@ -1275,6 +1275,19 @@ You can configure CPAN.pm to automatically use this option too:
 	% cpan
 	cpan> o conf mbuild_arg --install_base /mydir/perl
 	cpan> o conf commit
+
+INSTALL_BASE tells these tools to put your modules into
+F</mydir/perl/lib/perl5>.  See L<How do I add a directory to my
+include path (@INC) at runtime?> for details on how to run your newly
+installed moudles.
+
+There is one caveat with INSTALL_BASE, though, since it acts
+differently than the PREFIX and LIB settings that older versions of
+ExtUtils::MakeMaker advocated. INSTALL_BASE does not support
+installing modules for multiple versions of Perl or different
+architectures under the same directory. You should consider if you
+really want that , and if you do, use the older PREFIX and LIB
+settings. See the ExtUtils::Makemaker documentation for more details.
 
 =head2 How do I add the directory my program lives in to the module/library search path?
 
