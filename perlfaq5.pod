@@ -1362,6 +1362,75 @@ array in double quotes. You can send it to print without them:
 
 	print @lines;
 
+=head2 How do I traverse a directory tree?
+
+(contributed by brian d foy)
+
+The C<File::Find> module, which comes with Perl, does all of the hard
+work to traverse a directory structure. It comes with Perl. You simply
+call the C<find> subroutine with a callback subroutine and the
+directories you want to traverse:
+
+	use File::Find;
+	
+	find( \&wanted, @directories );
+	
+	sub wanted {
+		# full path in $File::Find::name
+		# just filename in $_
+		... do whatever you want to do ...
+		}
+
+The C<File::Find::Closures>, which you can download from CPAN, provides
+many ready-to-use subroutines that you can use with C<File::Find>.
+
+The C<File::Finder>, which you can download from CPAN, can help you
+create the callback subroutine using something closer to the syntax of
+the C<find> command-line utility:
+
+	use File::Find;
+	use File::Finder;
+	
+	my $deep_dirs = File::Finder->depth->type('d')->ls->exec('rmdir','{}');         
+	
+	find( $deep_dirs->as_options, @places );
+
+The C<File::Find::Rule> module, which you can download from CPAN, has
+a similar interface, but does the traversal for you too:
+
+	use File::Find::Rule;
+	
+	my @files = File::Find::Rule->file()
+							 ->name( '*.pm' )
+							 ->in( @INC );
+
+=head2 How do I delete a directory tree?
+
+(contributed by brian d foy)
+
+If you have an empty directory, you can use Perl's built-in C<rmdir>. If 
+the directory is not empty (so, no files or subdirectories), you either
+have to empty it yourself (a lot of work) or use a module to help you.
+
+The C<File::Path> module, which comes with Perl, has a C<rmtree> which 
+can take care of all of the hard work for you:
+
+	use File::Path qw(rmtree);
+	
+	rmtree( \@directories, 0, 0 );
+
+The first argument to C<rmtree> is either a string representing a directory path
+or an array reference. The second argument controls progress messages, and the
+third argument controls the handling of files you don't have permissions to 
+delete. See the C<File::Path> module for the details.
+
+=head2 How do I copy an entire directory?
+
+(contributed by Shlomi Fish)
+
+To do the equivalent of C<cp -R> (i.e. copy an entire directory tree
+recursively) in portable Perl, you'll either need to write something yourself
+or find a good CPAN module such as  L<File::Copy::Recursive>. 
 =head1 REVISION
 
 Revision: $Revision$
