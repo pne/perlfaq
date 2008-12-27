@@ -2333,19 +2333,32 @@ in L<perltoot>.
 
 =head2 How can I use a reference as a hash key?
 
-(contributed by brian d foy)
+(contributed by brian d foy and Ben Morrow)
 
 Hash keys are strings, so you can't really use a reference as the key.
 When you try to do that, perl turns the reference into its stringified
 form (for instance, C<HASH(0xDEADBEEF)>). From there you can't get
 back the reference from the stringified form, at least without doing
-some extra work on your own. Also remember that hash keys must be
-unique, but two different variables can store the same reference (and
-those variables can change later).
+some extra work on your own.
 
-The C<Tie::RefHash> module, which is distributed with perl, might be
-what you want. It handles that extra work.
+Remember that the entry in the hash will still be there even if
+the referenced variable  goes out of scope, and that it is entirely
+possible for Perl to subsequently allocate a different variable at
+the same address. This will mean a new variable might accidentally
+be associated with the value for an old.
 
+If you have Perl 5.10 or later, and you just want to store a value
+against the reference for lookup later, you can use the core
+Hash::Util::Fieldhash module. This will also handle renaming the
+keys if you use multiple threads (which causes all variables to be
+reallocated at new addresses, changing their stringification), and
+garbage-collecting the entries when the referenced variable goes out
+of scope.
+
+If you actually need to be able to get a real reference back from
+each hash entry, you can use the Tie::RefHash module, which does the
+required work for you.
+    
 =head1 Data: Misc
 
 =head2 How do I handle binary data correctly?
