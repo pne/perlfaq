@@ -62,10 +62,19 @@ be what you want.
 
 =head2 How do I find which modules are installed on my system?
 
-You can use the ExtUtils::Installed module to show all installed
-distributions, although it can take awhile to do its magic.  The
-standard library which comes with Perl just shows up as "Perl" (although
-you can get those with Module::CoreList).
+From the command line, you can use the C<cpan> command's C<-l> switch:
+
+	$ cpan -l
+	
+You can also use C<cpan>'s C<-a> switch to create an autobundle file
+that C<CPAN.pm> understands and cna use to re-install every module:
+
+	$ cpan -a
+	
+Inside a Perl program, you can use the ExtUtils::Installed module to
+show all installed distributions, although it can take awhile to do
+its magic.  The standard library which comes with Perl just shows up
+as "Perl" (although you can get those with Module::CoreList).
 
 	use ExtUtils::Installed;
 
@@ -77,7 +86,12 @@ can use File::Find::Rule.
 
 	use File::Find::Rule;
 
-	my @files = File::Find::Rule->extras({follow => 1})->file()->name( '*.pm' )->in( @INC );
+	my @files = File::Find::Rule->
+		extras({follow => 1})->
+		file()->
+		name( '*.pm' )->
+		in( @INC )
+		;
 
 If you do not have that module, you can do the same thing
 with File::Find which is part of the standard library.
@@ -105,12 +119,12 @@ read the documentation the module is most likely installed.
 If you cannot read the documentation, the module might not
 have any (in rare cases).
 
-	prompt% perldoc Module::Name
+	$ perldoc Module::Name
 
 You can also try to include the module in a one-liner to see if
 perl finds it.
 
-	perl -MModule::Name -e1
+	$ perl -MModule::Name -e1
 
 =head2 How do I debug my Perl programs?
 
