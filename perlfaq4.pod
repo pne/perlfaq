@@ -1593,6 +1593,8 @@ If not, you can use a Fisher-Yates shuffle.
 
 	sub fisher_yates_shuffle {
 		my $deck = shift;  # $deck is a reference to an array
+		return unless @$deck; # must not be empty!
+
 		my $i = @$deck;
 		while (--$i) {
 			my $j = int rand ($i+1);
