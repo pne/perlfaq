@@ -323,8 +323,8 @@ remember to copy the permissions, owner, and group to the new file.
 X<file, temporary>
 
 If you don't need to know the name of the file, you can use C<open()>
-with C<undef> in place of the file name.  The C<open()> function
-creates an anonymous temporary file.
+with C<undef> in place of the file name.  In Perl 5.8 or later, the
+C<open()> function creates an anonymous temporary file:
 
 	open my $tmp, '+>', undef or die $!;
 
