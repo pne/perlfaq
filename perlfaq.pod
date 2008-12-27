@@ -25,7 +25,7 @@ of the latest perlfaq to comp.lang.perl.misc.
 
 You can view the source tree at
 https://svn.perl.org/modules/perlfaq/trunk/ (which is outside of the
-main Perl source tree). The SVN repository notes all changes to the FAQ
+main Perl source tree).  The SVN repository notes all changes to the FAQ
 and holds the latest version of the working documents and may vary
 significantly from the version distributed with the latest version of
 Perl. Check the repository before sending your corrections.
@@ -861,6 +861,18 @@ How do I select a random line from a file?
 
 Why do I get weird spaces when I print an array of lines?
 
+=item *
+
+How do I traverse a directory tree?
+
+=item *
+
+How do I delete a directory tree?
+
+=item *
+
+How do I copy an entire directory?
+
 =back
 
 
@@ -1418,4 +1430,5 @@ How do I fetch/put an FTP file?
 How can I do RPC in Perl?
 
 =back
+
 
