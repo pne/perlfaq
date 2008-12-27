@@ -2460,8 +2460,15 @@ you wanted to copy.
 
 =head2 How do I define methods for every class/object?
 
-Use the C<UNIVERSAL> class (see L<UNIVERSAL>).
+(contributed by Ben Morrow)
 
+You can use the C<UNIVERSAL> class (see L<UNIVERSAL>). However, please
+be very careful to consider the consequences of doing this: adding
+methods to every object is very likely to have unintended
+consequences. If possible, it would be better to have all your object
+inherit from some common base class, or to use an object system like
+Moose that supports roles.
+    
 =head2 How do I verify a credit card checksum?
 
 Get the C<Business::CreditCard> module from CPAN.
