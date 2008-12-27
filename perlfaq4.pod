@@ -1972,7 +1972,7 @@ Before you decide to merge two hashes, you have to decide what to do
 if both hashes contain keys that are the same and if you want to leave
 the original hashes as they were.
 
-If you want to preserve the original hashes, copy one hash (<%hash1>)
+If you want to preserve the original hashes, copy one hash (C<%hash1>)
 to a new hash (C<%new_hash>), then add the keys from the other hash
 (C<%hash2> to the new hash. Checking that the key already exists in
 C<%new_hash> gives you a chance to decide what to do with the
