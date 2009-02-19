@@ -493,10 +493,10 @@ whitespace and comments.  Here it is expanded, courtesy of Fred Curtis.
        )
      }{defined $2 ? $2 : ""}gxse;
 
-A slight modification also removes C++ comments, as long as they are not
-spread over multiple lines using a continuation character):
+A slight modification also removes C++ comments, possibly spanning multiple lines
+using a continuation character:
 
-	s#/\*[^*]*\*+([^/*][^*]*\*+)*/|//[^\n]*|("(\\.|[^"\\])*"|'(\\.|[^'\\])*'|.[^/"'\\]*)#defined $2 ? $2 : ""#gse;
+ s#/\*[^*]*\*+([^/*][^*]*\*+)*/|//([^\\]|[^\n][\n]?)*?\n|("(\\.|[^"\\])*"|'(\\.|[^'\\])*'|.[^/"'\\]*)#defined $3 ? $3 : ""#gse;
 
 =head2 Can I use Perl regular expressions to match balanced text?
 X<regex, matching balanced test> X<regexp, matching balanced test>
