@@ -322,6 +322,14 @@ http://www.optiperl.com/
 OptiPerl is a Windows IDE with simulated CGI environment, including
 debugger and syntax highlighting editor.
 
+=item Padre
+
+http://padre.perlide.org/
+
+Padre is cross-platform IDE for Perl written in Perl using the the wxWidgets
+to provide a native look and feel. It's open source under the Artistic
+License.
+
 =item PerlBuilder
 
 http://www.solutionsoft.com/perl.htm
@@ -420,7 +428,7 @@ incarnation of it, and secondly because you can embed Perl inside it
 to use Perl as the scripting language.  nvi is not alone in this,
 though: at least also vim and vile offer an embedded Perl.
 
-The following are Win32 multilanguage editor/IDESs that support Perl:
+The following are Win32 multilanguage editor/IDEs that support Perl:
 
 =over 4
 
@@ -475,10 +483,10 @@ http://www.zsh.org/
 =back
 
 MKS and U/WIN are commercial (U/WIN is free for educational and
-research purposes), Cygwin is covered by the GNU Public License (but
-that shouldn't matter for Perl use).  The Cygwin, MKS, and U/WIN all
-contain (in addition to the shells) a comprehensive set of standard
-UNIX toolkit utilities.
+research purposes), Cygwin is covered by the GNU General Public
+License (but that shouldn't matter for Perl use).  The Cygwin, MKS,
+and U/WIN all contain (in addition to the shells) a comprehensive set
+of standard UNIX toolkit utilities.
 
 If you're transferring text files between Unix and Windows using FTP
 be sure to transfer them in ASCII mode so the ends of lines are
