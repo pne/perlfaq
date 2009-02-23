@@ -334,7 +334,7 @@ License.
 
 http://www.solutionsoft.com/perl.htm
 
-PerlBuidler is an integrated development environment for Windows that
+PerlBuilder is an integrated development environment for Windows that
 supports Perl development.
 
 =item visiPerl+
