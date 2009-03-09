@@ -220,7 +220,7 @@ resources and give their content back to you as a string:
 
 It can also store the resource directly in a file:
 
-	use LWP::Simple, qw(getstore);
+	use LWP::Simple qw(getstore);
 
 	getstore( "http://www.example.com/index.html", "foo.html" );
 
