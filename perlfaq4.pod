@@ -2358,7 +2358,7 @@ of scope.
 If you actually need to be able to get a real reference back from
 each hash entry, you can use the Tie::RefHash module, which does the
 required work for you.
-    
+
 =head1 Data: Misc
 
 =head2 How do I handle binary data correctly?
@@ -2468,7 +2468,7 @@ methods to every object is very likely to have unintended
 consequences. If possible, it would be better to have all your object
 inherit from some common base class, or to use an object system like
 Moose that supports roles.
-    
+
 =head2 How do I verify a credit card checksum?
 
 Get the C<Business::CreditCard> module from CPAN.
