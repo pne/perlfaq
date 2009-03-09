@@ -212,35 +212,25 @@ examples.
 
 =head2 How do I fetch an HTML file?
 
-One approach, if you have the lynx text-based HTML browser installed
-on your system, is this:
+(contributed by brian d foy)
 
-    $html_code = `lynx -source $url`;
-    $text_data = `lynx -dump $url`;
+Use the libwww-perl distribution. The C<LWP::Simple> module can fetch web
+resources and give their content back to you as a string:
 
-The libwww-perl (LWP) modules from CPAN provide a more powerful way
-to do this.  They don't require lynx, but like lynx, can still work
-through proxies:
+    use LWP::Simple qw(get);
+    
+    my $html = get( "http://www.example.com/index.html" );
+    
+It can also store the resource directly in a file:
 
-    # simplest version
-    use LWP::Simple;
-    $content = get($URL);
-
-    # or print HTML from a URL
-    use LWP::Simple;
-    getprint "http://www.perl.com";
-
-    # or print ASCII from HTML from a URL
-    # also need HTML-Tree package from CPAN
-    use LWP::Simple;
-    use HTML::Parser;
-    use HTML::FormatText;
-    my ($html, $ascii);
-    $html = get("http://www.perl.com/");
-    defined $html
-        or die "Can't fetch HTML from http://www.perl.com/";
-    $ascii = HTML::FormatText->new->format(parse_html($html));
-    print $ascii;
+    use LWP::Simple, qw(getstore);
+    
+    getstore( "http://www.example.com/index.html", "foo.html" );
+    
+If you need to do something more complicated, you can use 
+C<LWP::UserAgent> module to create your own user-agent (e.g. browser)
+to get the job done. If you want to simulate an interactive web
+browser, you can use the C<WWW::Mechanize> module.
 
 =head2 How do I automate an HTML form submission?
 
@@ -692,7 +682,7 @@ See L<perlfaq> for source control details and availability.
 
 =head1 AUTHOR AND COPYRIGHT
 
-Copyright (c) 1997-2008 Tom Christiansen, Nathan Torkington, and
+Copyright (c) 1997-2009 Tom Christiansen, Nathan Torkington, and
 other authors as noted. All rights reserved.
 
 This documentation is free; you can redistribute it and/or modify it
