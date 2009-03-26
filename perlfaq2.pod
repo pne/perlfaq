@@ -44,6 +44,10 @@ Sunfreeware.com: Solaris 2.5 to Solaris 10 (SPARC and x86)
 Strawberry Perl: Windows, Perl 5.8.8 and 5.10.0
 
 	http://www.strawberryperl.com
+	
+IndigoPerl: Windows
+
+	http://indigostar.com/
 
 =head2 I don't have a C compiler. How can I build my own Perl interpreter?
 
