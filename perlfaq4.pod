@@ -2475,9 +2475,11 @@ Get the C<Business::CreditCard> module from CPAN.
 
 =head2 How do I pack arrays of doubles or floats for XS code?
 
-The kgbpack.c code in the C<PGPLOT> module on CPAN does just this.
+The arrays.h/arrays.c code in the C<PGPLOT> module on CPAN does just this.
 If you're doing a lot of float or double processing, consider using
 the C<PDL> module from CPAN instead--it makes number-crunching easy.
+
+See L<http://search.cpan.org/dist/PGPLOT> for the code.
 
 =head1 REVISION
 
