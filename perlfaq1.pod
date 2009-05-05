@@ -1,6 +1,6 @@
 =head1 NAME
 
-perlfaq1 - General Questions About Perl ($Revision$)
+perlfaq1 - General Questions About Perl
 
 =head1 DESCRIPTION
 
