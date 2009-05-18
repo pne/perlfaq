@@ -885,33 +885,50 @@ always be in some package unless someone uses the C<package> built-in
 with no namespace. See the C<package> entry in L<perlfunc> for the
 details of empty packges.
 
-=head2 How can I comment out a large block of perl code?
+=head2 How can I comment out a large block of Perl code?
 
-You can use embedded POD to discard it.  Enclose the blocks you want
-to comment out in POD markers.  The <=begin> directive marks a section
-for a specific formatter.  Use the C<comment> format, which no formatter
-should claim to understand (by policy).  Mark the end of the block
-with <=end>.
+(contributed by brian d foy)
 
-	# program is here
+The quick-and-dirty way to comment out more than one line of Perl is
+to surround those lines with Pod directives. You have to put these
+directives at the beginning of the line and somewhere where Perl
+expects a new statement (so not in the middle of statements like the #
+comments). You end the comment with C<=cut>, ending the Pod section:
+
+	=pod
+
+	my $object = NotGonnaHappen->new();
+
+	ignored_sub();
+
+	$wont_be_assigned = 37;
+
+	=cut
+
+The quick-and-dirty method only works well when you don't plan to 
+leave the commented code in the source. If a Pod parser comes along,
+you're multiline comment is going to show up in the Pod translation.
+A better way hides it from Pod parsers as well. 
+
+The C<=begin> directive can mark a section for a particular purpose.
+If the Pod parser doesn't want to handle it, it just ignores it. Label
+the comments with C<comment>. End the comment using C<=end> with the
+same label. You still need the C<=cut> to go back to Perl code from
+the Pod comment:
 
 	=begin comment
 
-	all of this stuff
+	my $object = NotGonnaHappen->new();
 
-	here will be ignored
-	by everyone
+	ignored_sub();
+
+	$wont_be_assigned = 37;
 
 	=end comment
 
 	=cut
 
-	# program continues
-
-The pod directives cannot go just anywhere.  You must put a
-pod directive where the parser is expecting a new statement,
-not just in the middle of an expression or some other
-arbitrary grammar production.
+For more information on Pod, check out L<perlpod> and L<perlpodspec>.
 
 See L<perlpod> for more details.
 
