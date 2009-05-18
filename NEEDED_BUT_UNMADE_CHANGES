@@ -49,9 +49,18 @@ Add this question
 # put some parsing, reporting code here
 
 __END__
+
+?perlfaq3 -  Where can I get perl-mode for emacs?
+	Everyone seems to disagree on what cperl is the right one
+	
+?perlfaq5 - How can I translate tildes (~) in a filename?
+
 ?perlfaq7 - remove Switch.pm mention
 
 ?perlfaq8 - FAQ 8.43 How do I open a file without blocking?
 	see http://groups.google.com/group/comp.lang.perl.misc/browse_frm/thread/54a2b857dbbb23b1/4d96198cfd1214b0?lnk=st&q=FAQ+8.43+How+do+I+open+a+file+without+blocking%3F&rnum=1#4d96198cfd1214b0
 	
 -perlfaq7 - What is variable suicide and how can I prevent it?
+
+!perlfaq9 - How do I remove HTML from a string?
+	This answer is 15 years old and just plain wrong
