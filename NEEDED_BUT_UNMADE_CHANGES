@@ -53,3 +53,5 @@ __END__
 
 ?perlfaq8 - FAQ 8.43 How do I open a file without blocking?
 	see http://groups.google.com/group/comp.lang.perl.misc/browse_frm/thread/54a2b857dbbb23b1/4d96198cfd1214b0?lnk=st&q=FAQ+8.43+How+do+I+open+a+file+without+blocking%3F&rnum=1#4d96198cfd1214b0
+	
+-perlfaq7 - What is variable suicide and how can I prevent it?
