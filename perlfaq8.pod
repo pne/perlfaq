@@ -24,7 +24,7 @@ X<exec> X<system> X<fork> X<open> X<pipe>
 
 (contributed by brian d foy)
 
-he C,exec> function's job is to turn your process into another
+The C<exec> function's job is to turn your process into another
 command and never to return. If that's not what you want to do, don't
 use C<exec>. :)
 

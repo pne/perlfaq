@@ -44,10 +44,10 @@ case, C<STDOUT>. You can set the special variable C<$|> to a true value
 		#... expensive line processing operations
 		}
 
- The C<$|> is one of the per-filehandle special variables, so each
- filehandle has its own copy of its value. If you want to merge
- standard output and standard error for instance, you have to unbuffer
- each (although STDERR might be unbuffered by default):
+The C<$|> is one of the per-filehandle special variables, so each
+filehandle has its own copy of its value. If you want to merge
+standard output and standard error for instance, you have to unbuffer
+each (although STDERR might be unbuffered by default):
 
 	{
 	my $previous_default = select(STDOUT);  # save previous default

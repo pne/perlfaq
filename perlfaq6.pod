@@ -222,9 +222,9 @@ complete line (using your regular expression).
 		}
 	}
 
- You can do the same thing with foreach and a match using the
- c flag and the \G anchor, if you do not mind your entire file
- being in memory at the end.
+You can do the same thing with foreach and a match using the
+c flag and the \G anchor, if you do not mind your entire file
+being in memory at the end.
 
 	local $_ = "";
 	while( sysread FH, $_, 8192, length ) {

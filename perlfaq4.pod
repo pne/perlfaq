@@ -848,7 +848,7 @@ that C<s> after the apostrophe? You could try a regular expression:
 	$string =~ s/([\w']+)/\u\L$1/g;
 
 Now, what if you don't want to capitalize that "and"? Just use
- L<Text::Autoformat> and get on with the next problem. :)
+L<Text::Autoformat> and get on with the next problem. :)
 
 =head2 How can I split a [character] delimited string except when inside [character]?
 
