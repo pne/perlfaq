@@ -210,13 +210,13 @@ If you have File::Stream, this is easy.
 
 If you don't have File::Stream, you have to do a little more work.
 
-You can use the four argument form of sysread to continually add to
+You can use the four-argument form of sysread to continually add to
 a buffer.  After you add to the buffer, you check if you have a
 complete line (using your regular expression).
 
 	local $_ = "";
 	while( sysread FH, $_, 8192, length ) {
-		while( s/^((?s).*?)your_pattern/ ) {
+		while( s/^((?s).*?)your_pattern// ) {
 			my $record = $1;
 			# do stuff here.
 		}
