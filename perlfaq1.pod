@@ -59,7 +59,7 @@ users the informal support will more than suffice.  See the answer to
 (contributed by brian d foy)
 
 There is often a matter of opinion and taste, and there isn't any one
-answer that fits anyone.  In general, you want to use either the current
+answer that fits everyone. In general, you want to use either the current
 stable release, or the stable release immediately prior to that one.
 Currently, those are perl5.10.x and perl5.8.x, respectively.
 
