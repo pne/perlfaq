@@ -2057,14 +2057,35 @@ worry you, you can always reverse the hash into a hash of arrays instead:
 
 =head2 How can I know how many entries are in a hash?
 
-If you mean how many keys, then all you have to do is
-use the keys() function in a scalar context:
+(contributed by brian d foy)
 
-    $num_keys = keys %hash;
+This is very similar to "How do I process an entire hash?", also in
+L<perlfaq4>, but a bit simpler in the common cases.
 
-The keys() function also resets the iterator, which means that you may
+You can use the C<keys()> built-in function in scalar context to find out
+have many entries you have in a hash:
+
+	my $key_count = keys %hash; # must be scalar context!
+	
+If you want to find out how many entries have a defined value, that's
+a bit different. You have to check each value. A C<grep> is handy: 
+
+	my $defined_value_count = grep { defined } values %hash;
+
+You can use that same structure to count the entries any way that
+you like. If you want the count of the keys with vowels in them,
+you just test for that instead:
+
+	my $vowel_count = grep { /[aeiou]/ } keys %hash;
+	
+The C<grep> in scalar context returns the count. If you want the list
+of matching items, just use it in list context instead:
+
+	my @defined_values = grep { defined } values %hash;
+
+The C<keys()> function also resets the iterator, which means that you may
 see strange results if you use this between uses of other hash operators
-such as each().
+such as C<each()>.
 
 =head2 How do I sort a hash (optionally by value instead of key)?
 
