@@ -930,8 +930,6 @@ the Pod comment:
 
 For more information on Pod, check out L<perlpod> and L<perlpodspec>.
 
-See L<perlpod> for more details.
-
 =head2 How do I clear a package?
 
 Use this code, provided by Mark-Jason Dominus:
