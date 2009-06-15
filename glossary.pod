@@ -306,7 +306,7 @@ This project predates the Perl 6 project and is now dead.
 =head2 TPC
 
 The Perl Conference, hosted by O'Reilly & Associates.  It is held
-concurrently with OSCon.
+concurrently with OSCON.
 
 =head2 TPF
 
