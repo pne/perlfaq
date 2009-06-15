@@ -26,7 +26,7 @@ by an Exegesis.
 
 =head2 blat
 
-To write out an entire file in one step
+To write out an entire file in one step.
 
 =head2 Camel book
 
@@ -88,7 +88,7 @@ one simply uses a different DBD.
 =head2 DBI
 
 Perl's abstract DataBase Interface which supports any database product
-with a database driver (DBD)
+with a database driver (DBD).
 
 =head2 Exegesis
 
@@ -188,8 +188,8 @@ including TPC, and is run by O'Reilly & Associates.
 
 =head2 OSS
 
-Open Source Software.  Perl is open source and is often mentioned into
-relationship to the OSS movement
+Open Source Software.  Perl is open source and is often mentioned in
+connection with the OSS movement.
 
 =head2 p5p
 
@@ -235,17 +235,17 @@ Mailing list for Perl6 and parrot code development.
 
 =head2 perl6-language
 
-A livley list for the discussion of the Perl 6 language design.  Not
+A lively list for the discussion of the Perl 6 language design.  Not
 for the faint of heart.
 
 =head2 Perl5
 
-The modern major release of Perl
+The modern major release of Perl.
 
 =head2 Perl6
 
 A long-term project to reinvent the Perl language.  This project is
-still in the design phase.
+still in the early stages of development.
 
 =head2 perlio
 
@@ -260,7 +260,7 @@ website for viewing Perl documentation, http://www.perldoc.com/
 =head2 Perl Mongers
 
 Perl Mongers is a world-wide organization devoted to the social and
-technical nature of Perl.  Comprised of geographically localized groups,
+technical nature of Perl.  Composed of geographically localized groups,
 Perl Mongers brings Perl to the masses.  http://www.pm.org/
 
 =head2 The Perl Review
@@ -286,7 +286,7 @@ An alternate spelling of C<regex>.
 
 =head2 slurp
 
-to read in an entire file in one step
+To read in an entire file in one step.
 
 =head2 SWIG
 
