@@ -121,10 +121,10 @@ Happy Fun Ball - Elaine Ashton.
 
 =head2 Inline
 
-Brian Ingerson's C<Inline> module for embedding foreign code in a Perl
-program.  The most popular use of Inline is C<Inline::C>, which provides
-a cleaner and simpler way to interface with C programs, compared to h2xs
-or SWIG.
+Ingy dE<ouml>t Net's C<Inline> module for embedding foreign code in a
+Perl program.  The most popular use of Inline is C<Inline::C>, which
+provides a cleaner and simpler way to interface with C programs,
+compared to h2xs or SWIG.
 
 =head2 JAPH
 
