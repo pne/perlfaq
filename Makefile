@@ -1,4 +1,3 @@
-# $Id$
 PERL=perl
 SVN=svn
 

@@ -1,5 +1,4 @@
 #!/usr/bin/perl -wT
-# $Id$
 
 use strict;
 
