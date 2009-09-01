@@ -64,3 +64,5 @@ __END__
 
 !perlfaq9 - How do I remove HTML from a string?
 	This answer is 15 years old and just plain wrong
+
++perlfaq4 - How do I traverse nested hashes?
