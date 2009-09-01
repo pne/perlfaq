@@ -1,5 +1,4 @@
 #!/usr/bin/perl -w
-# $Id$
 use strict;
 
 =head1 NAME
@@ -26,7 +25,7 @@ files.
 
 =head1 TO DO
 
-* do something else with redirections.  permanant redirections
+* do something else with redirections.  permanent redirections
 should be errors, and temporary ones shouldn't
 
 * make the output template based

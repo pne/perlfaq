@@ -1,6 +1,5 @@
-# $Id$
 PERL=perl
-SVN=svn
+VCSUPDATE=git pull
 
 CHECK_URLS=bin/check_urls.pl
 TOC_PL=bin/perlfaq_toc.pl
@@ -30,13 +29,13 @@ checkurls:
 	@ touch $@
 
 split:
-	${SVN} update
+	${VCSUPDATE}
 	${PERL} bin/splitfaq ${SPLIT_DIR} ${FILES}
 	rm -f ${SPLIT_DIR}/perlfaq.00.00.txt
 	bin/touch ${SPLIT_DIR}/*
 	
 splitquiet:
-	@ ${SVN} update
+	@ ${VCSUPDATE}
 	@ ${PERL} bin/splitfaq -q ${SPLIT_DIR} ${FILES}
 	@ rm -f ${SPLIT_DIR}/perlfaq.00.00.txt
 	@ bin/touch ${SPLIT_DIR}/*  
