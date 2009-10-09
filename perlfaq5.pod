@@ -196,7 +196,7 @@ example skips every fifth line:
 		}
 
 If, for some odd reason, you really want to see the whole file at once
-rather than processing line by line, you can slurp it in (as long as
+rather than processing line-by-line, you can slurp it in (as long as
 you can fit the whole thing in memory!):
 
 	open my $in,  '<',  $file      or die "Can't read old file: $!"
@@ -755,13 +755,11 @@ functional equivalent, this works:
 
 	rename($old, $new) or system("mv", $old, $new);
 
-It may be more portable to use the File::Copy module instead.
+It may be more portable to use the C<File::Copy> module instead.
 You just copy to the new file to the new name (checking return
 values), then delete the old one.  This isn't really the same
-semantically as a rename(), which preserves meta-information like
+semantically as a C<rename()>, which preserves meta-information like
 permissions, timestamps, inode info, etc.
-
-Newer versions of File::Copy export a move() function.
 
 =head2 How can I lock a file?
 X<lock> X<file, lock> X<flock>
