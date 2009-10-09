@@ -748,7 +748,7 @@ characters in the filename as special.
 	open FILE, ">", ">file";     # filename is ">file"
 
 =head2 How can I reliably rename a file?
-X<rename> X<mv> X<move> X<file, rename> X<ren>
+X<rename> X<mv> X<move> X<file, rename>
 
 If your operating system supports a proper mv(1) utility or its
 functional equivalent, this works:
