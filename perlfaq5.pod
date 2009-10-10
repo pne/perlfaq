@@ -725,10 +725,11 @@ one that doesn't use the shell to do globbing.
 =head2 Is there a leak/bug in glob()?
 X<glob>
 
-Due to the current implementation on some operating systems, when you
-use the glob() function or its angle-bracket alias in a scalar
-context, you may cause a memory leak and/or unpredictable behavior.  It's
-best therefore to use glob() only in list context.
+(conributed by brian d foy)
+
+Starting with Perl 5.6.0, C<glob> is implemented internally rather
+than relying on an external resource. As such, memory issues with 
+C<glob> aren't a problem in modern perls.
 
 =head2 How can I open a file with a leading ">" or trailing blanks?
 X<filename, special characters>
