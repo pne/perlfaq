@@ -1009,31 +1009,42 @@ perform these actions for you.
 
 =head2 How do I find out if I'm running interactively or not?
 
-Good question. Sometimes C<-t STDIN> and C<-t STDOUT> can give clues,
-sometimes not.
+(contributed by brian d foy)
 
-	if (-t STDIN && -t STDOUT) {
-		print "Now what? ";
+This is a difficult question to answer, and the best answer is 
+only a guess. What do you really want to know? If you merely 
+want to know if one of your filehandles is connected to a terminal,
+you can try the C<-t> file test:
+
+	if( -t STDOUT ) {
+		print "I'm connected to a terminal!\n";
 		}
+		
+However, you might be out of luck if you expect that means there is a
+real person on the other side. With the C<Expect> module, another
+program can pretend to be a person. The program might even come close
+to passing the Turing test.
 
-On POSIX systems, you can test whether your own process group matches
-the current process group of your controlling terminal as follows:
+The C<IO::Interactive> module does the best it can to give you an
+answer. Its C<is_interactive> function returns an output filehandle;
+that filehandle points to standard output if the module thinks the
+session is interactive. Otherwise, the filehandle is a null handle
+that simply discards the output:
 
-	use POSIX qw/getpgrp tcgetpgrp/;
+	use IO::Interactive;
+	
+	print { is_interactive } "I might go to standard output!\n";
 
-	# Some POSIX systems, such as Linux, can be
-	# without a /dev/tty at boot time.
-	if (!open(TTY, "/dev/tty")) {
-		print "no tty\n";
-	} else {
-		$tpgrp = tcgetpgrp(fileno(*TTY));
-		$pgrp = getpgrp();
-		if ($tpgrp == $pgrp) {
-			print "foreground\n";
-		} else {
-			print "background\n";
+This still doesn't guarantee that a real person is answering your
+prompts or reading your output.
+
+If you want to know how to handle automated testing for your
+distribution, you can check the environment. The CPAN
+Testers, for instance, set the value of C<AUTOMATED_TESTING>:
+
+	unless( $ENV{AUTOMATED_TESTING} ) {
+		print "Hello interactive tester!\n";
 		}
-	}
 
 =head2 How do I timeout a slow event?
 
