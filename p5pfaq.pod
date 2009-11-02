@@ -2,7 +2,6 @@
 
 p5pfaq - The perl 5 porters FAQ
 
-<<<<<<< HEAD
 =head1 About P5P
 
 =head2 Who are the porters?
@@ -56,9 +55,6 @@ things like the web archive - at least set your outgoing Subject header
 to the subject of the individual message you're replying to.
 
 =head1 List Administrivia
-=======
-=head1 Administration
->>>>>>> 40be4560df4b2df1b554b4c82ed567a9f9ec5264
 
 =head2 Help! How do I unsubscribe?
 
@@ -94,65 +90,11 @@ messages with sequence numbers from 4902 to 4950, send mail to
 More general help on list management can be retrieved by sending
 a mail to <perl5-porters-help@perl.org>.
 
-<<<<<<< HEAD
-=======
-=head2 Is there a web archive?
-
-Yes, there is, and it's at
-F<http://www.xray.mpe.mpg.de/mailing-lists/perl5-porters/>.
-
-=head2 perl5-porters is too big! Is there a digest?
-
-Funny you should mention that. Rafael Garcia-Suarez and afterwards
-David Landgren used to compile a weekly summary of the highlights, with links
-to the archive where more extensive reading is recommended. These can be found 
-at F<http://use.perl.org/> and at 
-F<http://www.nntp.perl.org/group/perl.perl5.summary>. You can also choose to 
-receive them by mail by subscribing to the <perl5-summary@perl.org> mailing 
-list.
-
-If you want to receive all the messages but batched into a single mail
-per day, you can subscribe to <perl5-porters-digest@perl.org> instead;
-send mail to <perl5-porters-digest-subscribe@perl.org>. Be warned that
-replying to messages from the digest may end up messing up threading on
-things like the web archive - at least set your outgoing Subject header
-to the subject of the individual message you're replying to.
-
->>>>>>> 40be4560df4b2df1b554b4c82ed567a9f9ec5264
 =head2 How do I get this document?
 
 Uh, you're reading it, aren't you? Oh well, life is strange. Send
 mail to <perl5-porters-faq@perl.org> and you'll receive a copy.
 
-<<<<<<< HEAD
-=======
-=head1 Questions about perl5-porters itself
-
-=head2 What is perl5-porters for?
-
-perl5-porters is, briefly, for all topics related to the development of
-the Perl 5 language and the perl 5 interpreter. It's for reporting and
-fixing bugs, working towards the next version of perl 5, and improving the
-overall quality of the Perl 5 language.
-
-=head2 What is perl5-porters not for?
-
-    * Questions about programming Perl.
-    * Questions covered in the Perl FAQ.
-    * Spam.
-
-=head2 Are there any rules?
-
-No. However, Larry's advice from perlstyle apply just as well here as it does
-to Perl programming:
-
-    * Be consistent.
-    * Be nice.
-
-The established medium for messages is plain text. If your email client
-wants to send things in HTML, please try and discipline it.
-
->>>>>>> 40be4560df4b2df1b554b4c82ed567a9f9ec5264
 =head1 Development questions
 
 =head2 How do I report a bug?
@@ -165,11 +107,7 @@ in 5 lines of code, rather than buried somewhere in the middle of a
 500-line program.
 
 Next, do we already know about it? Check with the bug ticketing system
-<<<<<<< HEAD
 at L<http://rt.perl.org/perlbug/>.
-=======
-at F<http://rt.perl.org/perlbug/>.
->>>>>>> 40be4560df4b2df1b554b4c82ed567a9f9ec5264
 
 It's always worth getting someone else to look it over and confirm that
 this really is a Perl bug, not just a thinko. If there's nobody around
@@ -218,7 +156,6 @@ people who want to help. Just go for it. However, if you're still
 worried about whether you should send the patch, email the relevant
 pumpking for the area you're patching, or one of the referees.
 
-<<<<<<< HEAD
 =head2 Is Perl in CVS / SVN / Perforce / Git?
 
 Perl is available inside a git repository. git ( L<http://git-scm.com/> ) is a
@@ -236,26 +173,10 @@ L<http://github.com/github/perl/> but this lags behind.
 
 =head2 What is the APC?
 
-Perl used to be kept in a Perforce repository. When a change was made on the
+Perl was formerly kept in a Perforce repository. When a change was made on the
 Perforce server, a patch was generated and placed in the Archive of Perl
 Changes. This is located at
-C<ftp://ftp.linux.activestate.com/pub/staff/gsar/APC/>
-=======
-=head2 Is Perl in CVS?
-
-Perl is actually available inside a git repository. git 
-( L<http://git-scm.com/> ) is a popular, distributed and open-source version 
-control system. To learn more about checking out the Perl source using
-git see: 
-
-L<http://perl5.git.perl.org/perl.git/blob/HEAD:/pod/perlrepository.pod>
-
-=head2 What is the APC?
-
-When a change was made on the Perforce server, a patch was generated and
-placed in the Archive of Perl Changes. This is located at
-ftp://ftp.linux.activestate.com/pub/staff/gsar/APC/
->>>>>>> 40be4560df4b2df1b554b4c82ed567a9f9ec5264
+L<ftp://ftp.linux.activestate.com/pub/staff/gsar/APC/>
 
 The directory diffs/ contains patches against the latest release.
 
@@ -292,7 +213,6 @@ patches on a specific area.
 
 *The* pumpking is the person who holds the patch pumpkin for Perl
 itself, what other projects call the "release engineer". For perl 5.8,
-<<<<<<< HEAD
 the pumpking was Jarkko Heitaniemi. For perl 5.10, that was Hugo van der
 Sanden. Currently there is a new system whereby many people will pumpking a
 new release for shorter terms. As of this writing, that person is Jesse Vincent
@@ -303,16 +223,5 @@ The FAQ was last updated Mon Nov 01 2009.
 
 Its primary author was Simon Cozens. It's currently maintained by Rafael
 Garcia-Suarez and James Laver.
-=======
-the pumpking was Jarkko Heitaniemi. For perl 5.10, that's Hugo van der
-Sanden.
-
-=head1 AUTHORS
-
-The FAQ was last updated Mon  Jun 22 2009.
-
-Its primary author was Simon Cozens. It's currently maintained by Rafael
-Garcia-Suarez.
->>>>>>> 40be4560df4b2df1b554b4c82ed567a9f9ec5264
 
 =cut
