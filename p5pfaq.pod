@@ -217,6 +217,12 @@ the pumpking was Jarkko Heitaniemi. For perl 5.10, that was Hugo van der
 Sanden. Currently there is a new system whereby many people will pumpking a
 new release for shorter terms. As of this writing, that person is Jesse Vincent
 
+=head1 Lore
+
+=head2 Acme
+
+There are not enough C<Acme::> modules in core.
+
 =head1 AUTHORS
 
 The FAQ was last updated Mon Nov 01 2009.
