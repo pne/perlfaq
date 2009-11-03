@@ -1,5 +1,8 @@
-#!/usr/bin/perl -w
+#!/usr/bin/perl
+
+package PerlFAQ::Poster::Usenet;
 use strict;
+use warnings;
 
 =head1 NAME
 
@@ -24,13 +27,15 @@ This script uses these configuration directives:
 	POST_TEMPLATE    the Text::Template file to use
 	NNTP_USER        the NNTP user (if needed)
 	NNTP_PASS        the NNTP password (if needed)
+	DEBUG            true or false
+	IGNORE_POSTOK    true if your newsserver gives the wrong answer
 	
 This is a sample configuration file:
 
-	SERVER news.example.com
-	GROUP alt.test
-	EMAIL joe@example.com
-	FAQ_DIR /path/to/splits
+	SERVER        news.example.com
+	GROUP         alt.test
+	EMAIL         joe@example.com
+	FAQ_DIR       /path/to/splits
 	POST_TEMPLATE /path/to/template
 	
 The script checks the file specified on the command line first.
@@ -38,7 +43,7 @@ If you do not specify a file, it looks in the environment variable
 POSTFAQ_CONFIG, and finally for ~/.postfaqrc.  It uses the first
 configuration filename it finds.
 
-If the file does not exist, is not a plain file, and is not 
+If the file does not exist, is not a plain file, or is not 
 readable, the script dies.
 		
 =head2 Post template
@@ -83,59 +88,72 @@ brian d foy, C<< <bdfoy@cpan.org> >>
 
 =head1 COPYRIGHT
 
-Copyright 2002, brian d foy
+Copyright 2002-2009, brian d foy
 
-You may use and redistribute this under the same terms as
-Perl itself.
+You may use and redistribute this under the same terms as Perl itself.
 
 =cut
 
-use ConfigReader::Simple;
 use File::Spec;
+use Log::Log4perl qw(:easy);
 use Net::NNTP;
 use Text::Template;
 
-my $config                   = get_config( $ARGV[0] );
-                               check_setup( $config );
+__PACKAGE__->run unless caller;
 
-my $nntp                     = get_nntp( $config );
-
-my ( $file, $major, $minor ) = select_faq( $config );
-
-my( $subject, $body )        = get_content( $file );
-
-
-
-my $message = Text::Template::fill_in_file( 
-	$config->POST_TEMPLATE,
-
-	HASH =>
-		{
-		subject  => $subject,
-		body     => $body,
-		major    => $major,
-		minor    => $minor,
-		} 
-	);
+sub run
+	{
+	Log::Log4perl->easy_init( $INFO );
 	
+	my $config                   = get_config( $ARGV[0] );
+								   check_setup( $config );
+	
+	my $nntp                     = get_nntp( $config );
+	
+	my ( $file, $major, $minor ) = select_faq( $config );
+	
+	my( $subject, $body )        = get_content( $file );
+	
+	
+	
+	my $message = Text::Template::fill_in_file( 
+		$config->POST_TEMPLATE,
+	
+		HASH =>
+			{
+			subject  => $subject,
+			body     => $body,
+			major    => $major,
+			minor    => $minor,
+			} 
+		);
 
-
-$subject = "$major.$minor $subject";
-
-my @header                   = get_header( $config, $subject );
-
-#print "@header", "\n", $message;
-
-$nntp->post( @header, "\n", split /$/m, $message );
-
-$nntp->quit;
-
+	$subject = "$major.$minor $subject";
+	
+	my @header                   = get_header( $config, $subject );
+	
+	if( $config->DEBUG )
+		{
+		print @header, "\n", $message;
+		}
+	else
+		{
+		$nntp->post( @header, "\n", split /$/m, $message );
+		}
+		
+	$nntp->quit;
+	
+	return 1;
+	}
+	
 # # # # # # # # # # # # # # #
  # # # # # # # # # # # # # # #
 # # # # # # # # # # # # # # #
 
 sub get_config
 	{
+	require ConfigReader::Simple;
+	
 	my $file = shift;
 	
 	$file ||= $ENV{POSTFAQ_CONFIG} || 
@@ -172,26 +190,31 @@ sub get_nntp
 	{
 	my $config = shift;
 	
-	my $nntp = Net::NNTP->new( $config->SERVER );
-	$nntp->postok() or die "Posting not allowed \n";
-	$nntp->authinfo( $config->NNTP_USER, $config->NNTP_PASS ) 
+	my $nntp = Net::NNTP->new( $config->SERVER, Debug => $config->DEBUG );
+	unless( $config->IGNORE_POSTOK )
+		{
+		$nntp->postok() or die "Posting to @{[$config->SERVER]} not allowed\n";
+		}
+		
+	my $authorized = $nntp->authinfo( $config->NNTP_USER, $config->NNTP_PASS ) 
 		if defined $config->NNTP_USER || defined $config->NNTP_PASS;
+	die "Authoriztion to @{[$config->SERVER]} failed!\n" unless $authorized;
 	
 	$nntp;
 	}
 	
 sub check_file
 	{
-	my $file = shift;
+	my $file = shift || '';
 	
-	die "Could not read [$file]" unless -r $file;
+	-r $file;
 	}
 	
 sub check_dir
 	{
-	my $dir = shift;
+	my $dir = shift || '';
 	
-	die "Directory does not exist [$dir]" unless -d $dir;
+	-d $dir;
 	}
 	
 sub select_faq
