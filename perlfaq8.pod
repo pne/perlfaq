@@ -1280,7 +1280,7 @@ You can configure CPAN.pm to automatically use this option too:
 INSTALL_BASE tells these tools to put your modules into
 F</mydir/perl/lib/perl5>.  See L<How do I add a directory to my
 include path (@INC) at runtime?> for details on how to run your newly
-installed moudles.
+installed modules.
 
 There is one caveat with INSTALL_BASE, though, since it acts
 differently than the PREFIX and LIB settings that older versions of
