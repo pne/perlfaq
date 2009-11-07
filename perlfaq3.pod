@@ -67,7 +67,7 @@ From the command line, you can use the C<cpan> command's C<-l> switch:
 	$ cpan -l
 
 You can also use C<cpan>'s C<-a> switch to create an autobundle file
-that C<CPAN.pm> understands and cna use to re-install every module:
+that C<CPAN.pm> understands and can use to re-install every module:
 
 	$ cpan -a
 
