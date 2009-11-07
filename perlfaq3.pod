@@ -326,9 +326,8 @@ debugger and syntax highlighting editor.
 
 http://padre.perlide.org/
 
-Padre is cross-platform IDE for Perl written in Perl using the the wxWidgets
-to provide a native look and feel. It's open source under the Artistic
-License.
+Padre is cross-platform IDE for Perl written in Perl using wxWidgets to provide
+a native look and feel. It's open source under the Artistic License.
 
 =item PerlBuilder
 
