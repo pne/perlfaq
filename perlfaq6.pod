@@ -169,7 +169,7 @@ things can occur out-of-order. Just when you think you've got a
 pattern that matches your input, someone throws you a curveball.
 
 If you'd like to do it the hard way, scratching and clawing your way
-toward a right answer but constantly being disappointed, beseiged by
+toward a right answer but constantly being disappointed, besieged by
 bug reports, and weary from the inordinate amount of time you have to
 spend reinventing a triangular wheel, then there are several things
 you can try before you give up in frustration:
