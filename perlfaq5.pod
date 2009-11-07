@@ -914,7 +914,7 @@ Don't forget them or you'll be quite sorry.
 X<timestamp> X<file, timestamp>
 
 If you want to retrieve the time at which the file was last
-read, written, or had its meta-data (owner, etc) changed,
+read, written, or had its meta-data (owner, etc.) changed,
 you use the B<-A>, B<-M>, or B<-C> file test operations as
 documented in L<perlfunc>.  These retrieve the age of the
 file (measured against the start-time of your program) in
@@ -1124,7 +1124,7 @@ include also support for non-portable systems as well.
 The very first thing you should do is look into getting the Term::ReadKey
 extension from CPAN.  As we mentioned earlier, it now even has limited
 support for non-portable (read: not open systems, closed, proprietary,
-not POSIX, not Unix, etc) systems.
+not POSIX, not Unix, etc.) systems.
 
 You should also check out the Frequently Asked Questions list in
 comp.unix.* for things like this: the answer is essentially the same.
