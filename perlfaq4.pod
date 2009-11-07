@@ -1545,7 +1545,7 @@ X<cycle> X<modulus>
 
 (contributed by brian d foy)
 
-If you want to cycle through an array endlessy, you can increment the
+If you want to cycle through an array endlessly, you can increment the
 index modulo the number of elements in the array:
 
 	my @array = qw( a b c );
