@@ -528,7 +528,7 @@ The regular expression to match the balanced text  uses two new (to
 Perl 5.10) regular expression features. These are covered in L<perlre>
 and this example is a modified version of one in that documentation.
 
-First, adding the new possesive C<+> to any quantifier finds the
+First, adding the new possessive C<+> to any quantifier finds the
 longest match and does not backtrack. That's important since you want
 to handle any angle brackets through the recursion, not backtracking.
 The group C<< [^<>]++ >> finds one or more non-angle brackets without
