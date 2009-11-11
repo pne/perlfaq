@@ -67,7 +67,7 @@ From the command line, you can use the C<cpan> command's C<-l> switch:
 	$ cpan -l
 
 You can also use C<cpan>'s C<-a> switch to create an autobundle file
-that C<CPAN.pm> understands and cna use to re-install every module:
+that C<CPAN.pm> understands and can use to re-install every module:
 
 	$ cpan -a
 
@@ -326,9 +326,8 @@ debugger and syntax highlighting editor.
 
 http://padre.perlide.org/
 
-Padre is cross-platform IDE for Perl written in Perl using the the wxWidgets
-to provide a native look and feel. It's open source under the Artistic
-License.
+Padre is cross-platform IDE for Perl written in Perl using wxWidgets to provide
+a native look and feel. It's open source under the Artistic License.
 
 =item PerlBuilder
 

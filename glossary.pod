@@ -20,7 +20,7 @@ http://www.activestate.com/.  See also C<cygwin>.
 =head2 Apocalypses
 
 These are articles on perl.com detailing the design of Perl 6.  Larry
-Wall writes them, and each Apocalypse is designed to corrispond with
+Wall writes them, and each Apocalypse is designed to correspond with
 a chapter in the Programming Perl book.  Each Apocalypse is followed
 by an Exegesis.
 
