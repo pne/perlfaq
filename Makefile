@@ -8,6 +8,7 @@ SPLIT_DIR=faqs
 FILES=perlfaq1.pod perlfaq2.pod perlfaq3.pod perlfaq4.pod perlfaq5.pod \
 	perlfaq6.pod perlfaq7.pod perlfaq8.pod perlfaq9.pod
 TOC=perlfaq.toc
+RUNPROVE=runprove
 
 help:
 	@ echo "Available targets:"
@@ -42,3 +43,6 @@ splitquiet:
 
 test:
 	${PERL} t/pod.t
+
+runtest:
+	${RUNPROVE} t/pod.t
