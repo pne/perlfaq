@@ -409,6 +409,9 @@ almost completely (although it sometimes sneaks in an article about
 another language). There's also I<$foo Magazin>, a german magazine
 dedicated to Perl, at ( http://www.foo-magazin.de ).
 
+The "Perl-Zeitung" is a German-speaking magazine for Perl beginners
+(see http://perl-zeitung.at.tf ).
+
 Magazines that frequently carry quality articles on Perl include I<The
 Perl Review> ( http://www.theperlreview.com ), I<Unix Review> (
 http://www.unixreview.com/ ), I<Linux Magazine> (
