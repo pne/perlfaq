@@ -74,7 +74,7 @@ that C<CPAN.pm> understands and can use to re-install every module:
 Inside a Perl program, you can use the ExtUtils::Installed module to
 show all installed distributions, although it can take awhile to do
 its magic.  The standard library which comes with Perl just shows up
-as "Perl" (although you can get those with Module::CoreList).
+as "Perl" (although you can get those with C<Module::CoreList>).
 
 	use ExtUtils::Installed;
 
@@ -82,7 +82,7 @@ as "Perl" (although you can get those with Module::CoreList).
 	my @modules = $inst->modules();
 
 If you want a list of all of the Perl module filenames, you
-can use File::Find::Rule.
+can use C<File::Find::Rule>:
 
 	use File::Find::Rule;
 
@@ -94,7 +94,7 @@ can use File::Find::Rule.
 		;
 
 If you do not have that module, you can do the same thing
-with File::Find which is part of the standard library.
+with File::Find which is part of the standard library:
 
 	use File::Find;
 	my @files;
@@ -117,12 +117,12 @@ If you simply need to quickly check to see if a module is
 available, you can check for its documentation.  If you can
 read the documentation the module is most likely installed.
 If you cannot read the documentation, the module might not
-have any (in rare cases).
+have any (in rare cases):
 
 	$ perldoc Module::Name
 
 You can also try to include the module in a one-liner to see if
-perl finds it.
+perl finds it:
 
 	$ perl -MModule::Name -e1
 
@@ -307,6 +307,10 @@ ActiveState's cross-platform (as of October 2004, that's Windows, Linux,
 and Solaris), multi-language IDE has Perl support, including a regular expression
 debugger and remote debugging.
 
+=item Notepad++
+
+http://notepad-plus.sourceforge.net/
+
 =item Open Perl IDE
 
 http://open-perl-ide.sourceforge.net/
@@ -363,7 +367,7 @@ anything. In any emacs the cperl-mode (M-x cperl-mode) gives you
 perhaps the best available Perl editing mode in any editor.
 
 If you are using Windows, you can use any editor that lets you work
-with plain text, such as NotePad or WordPad.  Word processors, such as
+with plain text, such as NotePad or WordPad. Word processors, such as
 Microsoft Word or WordPerfect, typically do not work since they insert
 all sorts of behind-the-scenes information, although some allow you to
-save files as "Text Only". You can also download te
+save files as "Text Only".
