@@ -278,7 +278,7 @@ returns the escaped string:
 
 	my $original = "Colon : Hash # Percent %";
 
-	my $escaped = uri_escape( $original )
+	my $escaped = uri_escape( $original );
 
 	print "$escaped\n"; # 'Colon%20%3A%20Hash%20%23%20Percent%20%25%20'
 
