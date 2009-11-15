@@ -406,7 +406,7 @@ for you, too.
 
 Many people try to write their own decoder (or copy one from
 another program) and then run into one of the many "gotchas"
-of the task.  It's much easier and less hassle to use CGI.pm.
+of the task.  It's much easier and less hassle to use C<CGI.pm>.
 
 =head2 How do I check a valid mail address?
 
@@ -470,7 +470,7 @@ the MIME/QP encoding.  Decoding BASE64 becomes as simple as:
 	use MIME::Base64;
 	$decoded = decode_base64($encoded);
 
-The MIME-Tools package (available from CPAN) supports extraction with
+The C<MIME-Tools> package (available from CPAN) supports extraction with
 decoding of BASE64 encoded attachments and content directly from email
 messages.
 
@@ -497,7 +497,7 @@ that the company's mail system will not accept, so you should ask for
 users' mail addresses when this matters.  Furthermore, not all systems
 on which Perl runs are so forthcoming with this information as is Unix.
 
-The C<Mail::Util> module from CPAN (part of the MailTools package) provides a
+The C<Mail::Util> module from CPAN (part of the C<MailTools> package) provides a
 C<mailaddress()> function that tries to guess the mail address of the user.
 It makes a more intelligent guess than the code above, using information
 given when the module was installed, but it could still be incorrect.
@@ -531,7 +531,7 @@ called mailx) directly or simply opening up port 25 have having an
 intimate conversation between just you and the remote SMTP daemon,
 probably sendmail.
 
-Or you might be able use the CPAN module Mail::Mailer:
+Or you might be able use the CPAN module C<Mail::Mailer>:
 
 	use Mail::Mailer;
 
