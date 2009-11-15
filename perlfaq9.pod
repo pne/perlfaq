@@ -526,8 +526,8 @@ the message into the queue.  This last option means your message won't
 be immediately delivered, so leave it out if you want immediate
 delivery.
 
-Alternate, less convenient approaches include calling mail (sometimes
-called mailx) directly or simply opening up port 25 have having an
+Alternate, less convenient approaches include calling C<mail> (sometimes
+called C<mailx>) directly or simply opening up port 25 have having an
 intimate conversation between just you and the remote SMTP daemon,
 probably sendmail.
 
