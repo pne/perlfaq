@@ -519,7 +519,7 @@ Use the C<sendmail> program directly:
 	EOF
 	close(SENDMAIL)     or warn "sendmail didn't close nicely";
 
-The B<-oi> option prevents sendmail from interpreting a line consisting
+The B<-oi> option prevents C<sendmail> from interpreting a line consisting
 of a single dot as "end of message".  The B<-t> option says to use the
 headers to decide who to send the message to, and B<-odq> says to put
 the message into the queue.  This last option means your message won't
