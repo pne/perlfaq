@@ -529,7 +529,7 @@ delivery.
 Alternate, less convenient approaches include calling C<mail> (sometimes
 called C<mailx>) directly or simply opening up port 25 have having an
 intimate conversation between just you and the remote SMTP daemon,
-probably sendmail.
+probably C<sendmail>.
 
 Or you might be able use the CPAN module C<Mail::Mailer>:
 
@@ -546,7 +546,7 @@ Or you might be able use the CPAN module C<Mail::Mailer>:
 
 The C<Mail::Internet> module uses C<Net::SMTP> which is less Unix-centric than
 C<Mail::Mailer>, but less reliable.  Avoid raw SMTP commands.  There
-are many reasons to use a mail transport agent like sendmail.  These
+are many reasons to use a mail transport agent like C<sendmail>.  These
 include queuing, MX records, and security.
 
 =head2 How do I use MIME to make an attachment to a mail message?
@@ -639,7 +639,7 @@ perl5.6, can also get the hostname.
 To get the IP address, you can use the C<gethostbyname> built-in function
 to turn the name into a number. To turn that number into the dotted octet
 form (a.b.c.d) that most people expect, use the C<inet_ntoa> function
-from the <Socket> module, which also comes with perl.
+from the C<Socket> module, which also comes with perl.
 
 	use Socket;
 
