@@ -253,6 +253,14 @@ person is Jesse Vincent.
 
 There are not enough C<Acme::> modules in core.
 
+=head1 SOURCE
+
+Participate through Github:
+
+    http://github.com/briandfoy/perlfaq
+    
+You can also send comments to perlfaq-workers@perl.org .
+
 =head1 AUTHORS
 
 The FAQ was last updated Mon Nov 01 2009.
