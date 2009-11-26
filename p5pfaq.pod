@@ -26,7 +26,7 @@ next version of perl 5, and improving the overall quality of the Perl
 =head2 What else goes on the list?
 
 The list receives a number of automatic emails. These include reports
-RT (I<http://rt.perl.org>), smoke test failure reports, and messages
+RT (L<http://rt.perl.org>), smoke test failure reports, and messages
 from the C<perlthanks> utility (which we encourage you to use).
 
 =head2 What is the list not for?
@@ -35,7 +35,7 @@ The list is for the development of the perl codebase. If it's not related
 to developing the codebase, it probably doesn't belong on the list. For 
 example, these thing should not be on the list:
 
-	* Announcements about events related to Perl
+    * Announcements about events related to Perl
     * Questions about programming Perl
     * Questions covered in the Perl FAQ
     * Spam
@@ -55,9 +55,9 @@ wants to send things in HTML, please try and discipline it.
 
 There are actually two rules:
 
-	1. Larry is always right
-	2. Larry can change his mind, goto Rule 1. (exact rule?)
-	
+    1. Larry is always right
+    2. Larry can change his mind, goto Rule 1. (exact rule?)
+
 Larry Wall is a "benevolent dictator", meaning he mostly lets development
 progress without interference, but in the rare cases where people cannot
 agree, everyone agrees that Larry is the final authority. When someone
@@ -67,7 +67,7 @@ is going to be".
 =head2 Is there a web archive?
 
 Yes, there is, and it's at
-F<http://www.xray.mpe.mpg.de/mailing-lists/perl5-porters/>.
+L<http://www.xray.mpe.mpg.de/mailing-lists/perl5-porters/>.
 
 =head2 perl5-porters is too big! Is there a digest?
 
@@ -82,19 +82,19 @@ to the subject of the individual message you're replying to.
 
 =head2 Help! How do I unsubscribe?
 
-Send mail to <perl5-porters-unsubscribe@perl.org>, and await a response.
+Send mail to I<perl5-porters-unsubscribe@perl.org>, and await a response.
 Once you reply to the response, you'll be unsubscribed.
 
 If that doesn't work, find your subscription address - it'll be in the
 C<Return-Path> header of any mails from p5p to you. If that's
-God@eample.com, send mail to
-<perl5-porters-unsubscribe-God=example.com@perl.org>.
+God@example.com, send mail to
+I<perl5-porters-unsubscribe-God=example.com@perl.org>.
 
 =head2 I'm not subscribed - how do I subscribe?
 
 Send mail to I<perl5-porters-subscribe@perl.org>.
 To specify God@example.com as your subscription address, send mail
-to <perl5-porters-subscribe-God=example.com@perl.org>.
+to I<perl5-porters-subscribe-God=example.com@perl.org>.
 
 =head2 How do I retrieve old messages?
 
@@ -117,9 +117,10 @@ a mail to I<perl5-porters-help@perl.org>.
 =head2 How do I get this document?
 
 Uh, you're reading it, aren't you? Oh well, life is strange. Send
-mail to <perl5-porters-faq@perl.org> and you'll receive a copy.
+mail to I<perl5-porters-faq@perl.org> and you'll receive a copy.
 
-It's also in the I<perlfaq> Github repository at XXX
+It's also in the I<perlfaq> Github repository at
+L<http://github.com/briandfoy/perlfaq/blob/master/p5pfaq.pod>
 
 =head1 Development questions
 
@@ -143,10 +144,10 @@ I<comp.lang.perl.moderated> newsgroups.
 Now, if you've really got a bug, type C<perlbug> at your prompt and
 follow the instructions. It really helps us if you provide:
 
-	* your demonstration code
-	* the actual output you got, including warnings and error messages
-	* what you think you should have got,
-	* the part of the Perl documentation that makes you think that.
+    * your demonstration code
+    * the actual output you got, including warnings and error messages
+    * what you think you should have got,
+    * the part of the Perl documentation that makes you think that.
 
 =head2 I want to get involved! What can I do?
 
@@ -242,7 +243,7 @@ patches on a specific area.
 
 B<The> pumpking is the person who holds the patch pumpkin for Perl
 itself, what other projects call the "release engineer". For perl 5.8,
-the pumpking was Jarkko Heitaniemi. For perl 5.10, that was Hugo van
+the pumpking was Jarkko Hietaniemi. For perl 5.10, that was Hugo van
 der Sanden. Currently there is a new system whereby many people will
 pumpking a new release for shorter terms. As of this writing, that
 person is Jesse Vincent.
