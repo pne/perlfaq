@@ -21,7 +21,7 @@ L<perlnumber> shows the gory details of number representations and
 conversions.
 
 To limit the number of decimal places in your numbers, you can use the
-printf or sprintf function.  See the L<"Floating Point
+C<printf> or C<sprintf> function.  See the L<"Floating Point
 Arithmetic"|perlop> for more details.
 
 	printf "%.2f", 10/3;
