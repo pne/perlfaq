@@ -297,8 +297,8 @@ but a string consisting of two null bytes (the result of C<"\020\020"
 
 =head2 How do I multiply matrices?
 
-Use the Math::Matrix or Math::MatrixReal modules (available from CPAN)
-or the PDL extension (also available from CPAN).
+Use the C<Math::Matrix> or C<Math::MatrixReal> modules (available from CPAN)
+or the C<PDL> extension (also available from CPAN).
 
 =head2 How do I perform an operation on a series of integers?
 
@@ -342,7 +342,7 @@ will not create a list of 500,000 integers.
 
 =head2 How can I output Roman numerals?
 
-Get the http://www.cpan.org/modules/by-module/Roman module.
+Get the L<http://www.cpan.org/modules/by-module/Roman> module.
 
 =head2 Why aren't my random numbers random?
 
@@ -358,7 +358,7 @@ rather than more.
 Computers are good at being predictable and bad at being random
 (despite appearances caused by bugs in your programs :-).  see the
 F<random> article in the "Far More Than You Ever Wanted To Know"
-collection in http://www.cpan.org/misc/olddoc/FMTEYEWTK.tgz , courtesy
+collection in L<http://www.cpan.org/misc/olddoc/FMTEYEWTK.tgz>, courtesy
 of Tom Phoenix, talks more about this.  John von Neumann said, "Anyone
 who attempts to generate random numbers by deterministic means is, of
 course, living in a state of sin."
@@ -368,7 +368,7 @@ provides, you should also check out the C<Math::TrulyRandom> module from
 CPAN.  It uses the imperfections in your system's timer to generate
 random numbers, but this takes quite a while.  If you want a better
 pseudorandom generator than comes with your operating system, look at
-"Numerical Recipes in C" at http://www.nr.com/ .
+"Numerical Recipes in C" at L<http://www.nr.com/>.
 
 =head2 How do I get a random number between X and Y?
 
@@ -401,8 +401,8 @@ integers (inclusive), For example: C<random_int_between(50,120)>.
 
 =head2 How do I find the day or week of the year?
 
-The localtime function returns the day of the year.  Without an
-argument localtime uses the current time.
+The C<localtime> function returns the day of the year.  Without an
+argument C<localtime> uses the current time.
 
 	$day_of_year = (localtime)[7];
 
@@ -414,7 +414,7 @@ week of the year.
 	my $week_of_year = strftime "%W", localtime;
 
 To get the day of year for any date, use C<POSIX>'s C<mktime> to get
-a time in epoch seconds for the argument to localtime.
+a time in epoch seconds for the argument to C<localtime>.
 
 	use POSIX qw/mktime strftime/;
 	my $week_of_year = strftime "%W",
