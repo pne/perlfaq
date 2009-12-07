@@ -22,7 +22,7 @@ help:
 echo:
 	@ echo $(FILES)
 
-perlfaq.pod: $(FILES)
+perlfaq.pod: $(FILES) bin/perlfaq_toc.pl
 	${PERL} ${TOC_PL} > perlfaq.pod
 
 checkurls: 
