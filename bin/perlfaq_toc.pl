@@ -35,10 +35,6 @@ brian d foy <bdfoy@cpan.org>
 
 =cut
 
-$/ = undef;
-
-my @files = map { "perlfaq$_.pod" } 1 .. 9;
-
 print <<'PREAMBLE';
 =head1 NAME
 
@@ -65,12 +61,12 @@ The perlfaq is an evolving document and you can read the latest version
 at http://faq.perl.org/ . The perlfaq-workers periodically post extracts
 of the latest perlfaq to comp.lang.perl.misc.
 
-You can view the source tree at
-https://svn.perl.org/modules/perlfaq/trunk/ (which is outside of the
-main Perl source tree).  The SVN repository notes all changes to the FAQ
-and holds the latest version of the working documents and may vary
-significantly from the version distributed with the latest version of
-Perl. Check the repository before sending your corrections.
+You can view the source tree at https://github.com/briandfoy/perlfaq
+(which is outside of the main Perl source tree). The git repository
+notes all changes to the FAQ and holds the latest version of the
+working documents and may vary significantly from the version
+distributed with the latest version of Perl. Check the repository
+before sending your corrections.
 
 =head2 How to contribute to the perlfaq
 
@@ -84,6 +80,12 @@ The perlfaq server posts extracts of the perlfaq to that newsgroup every
 6 hours (or so), and the community of volunteers reviews and updates the
 answers. If you'd like to help review and update the answers, check out
 comp.lang.perl.misc.
+
+You can also fork the git repository for the perlfaq and send a pull
+request so the main repository can pull your changes. The repository
+is at:
+
+       https://github.com/briandfoy/perlfaq
 
 =head2 What will happen if you mail your Perl programming problems to the authors?
 
@@ -102,7 +104,7 @@ it, try the resources in L<perlfaq2>.
 =head1 CREDITS
 
 Tom Christiansen wrote the original perlfaq then expanded it with the
-help of Nat Torkington.  The perlfaq-workers maintain current document
+help of Nat Torkington. The perlfaq-workers maintain current document
 and the dezinens of comp.lang.perl.misc regularly review and update the
 FAQ. Several people have contributed answers, corrections, and comments,
 and the perlfaq notes those contributions wherever appropriate.
@@ -147,15 +149,19 @@ them as you see fit (and at your own risk with no warranty from anyone).
 
 PREAMBLE
 
+$/ = undef;
+
+my @files = map { "perlfaq$_.pod" } 1 .. 9;
+
 foreach my $file ( @files )
 	{
 	open FILE, $file or die "Could not open $file: $!";
 	$_ = <FILE>;
 	close FILE;
 
-	my( $title, $short ) = m/=head1 NAME\s+(perlfaq\d)\s+-\s+(.*?)\s+\(\$R/;
+	my( $title, $short ) = m/=head1 NAME\s+(perlfaq\d)\s+-\s+(.*)/;
 	print "=head2 L<$title>: $short\n\n";
-
+		
 	my( $d ) = m/^=head1 DESCRIPTION\s+(.*?)\s+=head[12]/sm;
 	$d =~ s/This section(?: of the FAQ)? (?:answers|deals with)(?: questions (?:about|related to))?(?: the)? //;
 	$d =~ s/\s+/ /g;
