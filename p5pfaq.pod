@@ -55,8 +55,8 @@ wants to send things in HTML, please try and discipline it.
 
 There are actually two rules:
 
-    1. Larry is always right
-    2. Larry can change his mind, goto Rule 1. (exact rule?)
+    1. Larry is always by definition right about how Perl should behave.
+    2. Larry is allowed to change his mind about any matter at a later date, regardless of whether he previously invoked Rule 1.
 
 Larry Wall is a "benevolent dictator", meaning he mostly lets development
 progress without interference, but in the rare cases where people cannot
@@ -253,6 +253,14 @@ person is Jesse Vincent.
 =head2 Acme
 
 There are not enough C<Acme::> modules in core.
+
+=head1 SOURCE
+
+Participate through Github:
+
+    http://github.com/briandfoy/perlfaq
+    
+You can also send comments to perlfaq-workers@perl.org .
 
 =head1 AUTHORS
 
