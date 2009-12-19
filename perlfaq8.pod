@@ -581,7 +581,7 @@ in C header files to files containing subroutine definitions, like
 C<&SYS_getitimer>, which you can use as arguments to your functions.
 It doesn't work perfectly, but it usually gets most of the job done.
 Simple files like F<errno.h>, F<syscall.h>, and F<socket.h> were fine,
-but the hard ones like F<ioctl.h> nearly always need to hand-edited.
+but the hard ones like F<ioctl.h> nearly always need to be hand-edited.
 Here's how to install the *.ph files:
 
 	1.  become super-user
