@@ -1279,7 +1279,7 @@ For C<Build.PL>-based distributions, use the --install_base option:
 You can configure C<CPAN.pm> to automatically use this option too:
 
 	% cpan
-	cpan> o conf mbuild_arg --install_base /mydir/perl
+	cpan> o conf mbuild_arg "--install_base /mydir/perl"
 	cpan> o conf commit
 
 INSTALL_BASE tells these tools to put your modules into
