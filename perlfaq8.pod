@@ -1015,9 +1015,11 @@ perform these actions for you.
 (contributed by brian d foy)
 
 This is a difficult question to answer, and the best answer is 
-only a guess. What do you really want to know? If you merely 
-want to know if one of your filehandles is connected to a terminal,
-you can try the C<-t> file test:
+only a guess. 
+
+What do you really want to know? If you merely want to know if one of
+your filehandles is connected to a terminal, you can try the C<-t>
+file test:
 
 	if( -t STDOUT ) {
 		print "I'm connected to a terminal!\n";
