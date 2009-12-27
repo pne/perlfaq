@@ -1377,14 +1377,6 @@ It's a Perl 4 style file defining values for system networking
 constants.  Sometimes it is built using C<h2ph> when Perl is installed,
 but other times it is not.  Modern programs C<use Socket;> instead.
 
-=head1 REVISION
-
-Revision: $Revision$
-
-Date: $Date$
-
-See L<perlfaq> for source control details and availability.
-
 =head1 AUTHOR AND COPYRIGHT
 
 Copyright (c) 1997-2009 Tom Christiansen, Nathan Torkington, and
