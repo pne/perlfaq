@@ -1521,7 +1521,7 @@ or find a good CPAN module such as  L<File::Copy::Recursive>.
 
 =head1 AUTHOR AND COPYRIGHT
 
-Copyright (c) 1997-2009 Tom Christiansen, Nathan Torkington, and
+Copyright (c) 1997-2010 Tom Christiansen, Nathan Torkington, and
 other authors as noted. All rights reserved.
 
 This documentation is free; you can redistribute it and/or modify it
