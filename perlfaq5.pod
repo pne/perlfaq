@@ -1495,21 +1495,20 @@ a similar interface, but does the traversal for you too:
 
 (contributed by brian d foy)
 
-If you have an empty directory, you can use Perl's built-in C<rmdir>. If
-the directory is not empty (so, no files or subdirectories), you either
-have to empty it yourself (a lot of work) or use a module to help you.
+If you have an empty directory, you can use Perl's built-in C<rmdir>.
+If the directory is not empty (so, no files or subdirectories), you
+either have to empty it yourself (a lot of work) or use a module to
+help you.
 
-The C<File::Path> module, which comes with Perl, has a C<rmtree> which
-can take care of all of the hard work for you:
+The C<File::Path> module, which comes with Perl, has a C<remove_tree>
+which can take care of all of the hard work for you:
 
-	use File::Path qw(rmtree);
+	use File::Path qw(remove_tree);
 
-	rmtree( \@directories, 0, 0 );
+	remove_tree( @directories );
 
-The first argument to C<rmtree> is either a string representing a directory path
-or an array reference. The second argument controls progress messages, and the
-third argument controls the handling of files you don't have permissions to
-delete. See the C<File::Path> module for the details.
+The C<File::Path> module also has a legacy interface to the older
+C<rmtree> subroutine.
 
 =head2 How do I copy an entire directory?
 
