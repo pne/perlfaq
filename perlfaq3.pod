@@ -1083,17 +1083,9 @@ turns a Perl script, typically called C<Makefile.PL>, into a Makefile.
 The unix tool C<make> uses this file to manage dependencies and actions
 to process and install a Perl distribution.
 
-=head1 REVISION
-
-Revision: $Revision$
-
-Date: $Date$
-
-See L<perlfaq> for source control details and availability.
-
 =head1 AUTHOR AND COPYRIGHT
 
-Copyright (c) 1997-2009 Tom Christiansen, Nathan Torkington, and
+Copyright (c) 1997-2010 Tom Christiansen, Nathan Torkington, and
 other authors as noted. All rights reserved.
 
 This documentation is free; you can redistribute it and/or modify it
