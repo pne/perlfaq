@@ -1271,22 +1271,40 @@ last element is also the count they expect:
 
 =head2 What is the difference between $array[1] and @array[1]?
 
-The former is a scalar value; the latter an array slice, making
-it a list with one (scalar) value.  You should use $ when you want a
-scalar value (most of the time) and @ when you want a list with one
-scalar value in it (very, very rarely; nearly never, in fact).
+(contributed by brian d foy)
 
-Sometimes it doesn't make a difference, but sometimes it does.
-For example, compare:
+The difference is the sigil, that special character in front of the
+array name. The C<$> sigil means "exactly one item", while the C<@>
+sigil means "zero or more items". The C<$> gets you a single scalar,
+while the C<@> gets you a list.
 
-	$good[0] = `some program that outputs several lines`;
+The confusion arises because people incorrectly assume that the sigil
+denotes the variable type.
 
-with
+The C<$array[1]> is a single-element access to the array. It's going
+to return the item in index 1 (or undef if there is no item there).
+If you intend to get exactly one element from the array, this is the
+form you should use.
 
-	@bad[0]  = `same program that outputs several lines`;
+The C<@array[1]> is an array slice, although it has only one index.
+You can pull out multiple elements simultaneously by specifying
+additional indices as a list, like C<@array[1,4,3,0]>.
 
-The C<use warnings> pragma and the B<-w> flag will warn you about these
-matters.
+Using a slice on the lefthand side of the assignment supplies list
+context to the righthand side. This can lead to unexpected results. 
+For instance, if you want to read a single line from a filehandle, 
+assigning to a scalar value is fine:
+
+	$array[1] = <STDIN>;
+
+However, in list context, the line input operator returns all of the
+lines as a list. The first line goes into C<@array[1]> and the rest
+of the lines mysteriously disappear:
+
+	@array[1] = <STDIN>;  # most likely not what you want
+
+Either the C<use warnings> pragma or the B<-w> flag will warn you when
+you use an array slice with a single index.
 
 =head2 How can I remove duplicate elements from a list or array?
 
