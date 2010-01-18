@@ -1197,24 +1197,78 @@ indentation correctly preserved:
 
 =head2 What is the difference between a list and an array?
 
-An array has a changeable length.  A list does not.  An array is
-something you can push or pop, while a list is a set of values.  Some
-people make the distinction that a list is a value while an array is a
-variable. Subroutines are passed and return lists, you put things into
-list context, you initialize arrays with lists, and you C<foreach()>
-across a list.  C<@> variables are arrays, anonymous arrays are
-arrays, arrays in scalar context behave like the number of elements in
-them, subroutines access their arguments through the array C<@_>, and
-C<push>/C<pop>/C<shift> only work on arrays.
+(contributed by brian d foy)
 
-As a side note, there's no such thing as a list in scalar context.
-When you say
+A list is a fixed collection of scalars. An array is a variable that
+holds a variable collection of scalars. An array can supply its collection
+for list operations, so list operations also work on arrays:
 
-	$scalar = (2, 5, 7, 9);
+	# slices
+	( 'dog', 'cat', 'bird' )[2,3];
+	@animals[2,3];
 
-you're using the comma operator in scalar context, so it uses the scalar
-comma operator.  There never was a list there at all! This causes the
-last value to be returned: 9.
+	# iteration
+	foreach ( qw( dog cat bird ) ) { ... }
+	foreach ( @animals ) { ... }
+
+	my @three = grep { length == 3 } qw( dog cat bird );
+	my @three = grep { length == 3 } @animals;
+	
+	# supply an argument list
+	wash_animals( qw( dog cat bird ) );
+	wash_animals( @animals );
+
+Array operations, which change the scalars, reaaranges them, or adds
+or subtracts some scalars, only work on arrays. These can't work on a
+list, which is fixed. Array operations include C<shift>, C<unshift>,
+C<push>, C<pop>, and C<splice>.
+
+An array can also change its length:
+
+	$#animals = 1;  # truncate to two elements
+	$#animals = 10000; # pre-extend to 10,001 elements
+
+You can change an array element, but you can't change a list element:
+
+	$animals[0] = 'Rottweiler';
+	qw( dog cat bird )[0] = 'Rottweiler'; # syntax error!
+
+	foreach ( @animals ) {
+		s/^d/fr/;  # works fine
+		}
+	
+	foreach ( qw( dog cat bird ) ) {
+		s/^d/fr/;  # Error! Modification of read only value!
+		}
+
+However, if the list element is itself a variable, it appears that you 
+can change a list element. However, the list element is the variable, not
+the data. You're not changing the list element, but something the list
+element refers to. The list element itself doesn't change: it's still 
+the same variable.
+
+You also have to be careful about context. You can assign an array to
+a scalar to get the number of elements in the array. This only works
+for arrays, though:
+
+	my $count = @animals;  # only works with arrays
+	
+If you try to do the same thing with what you think is a list, you
+get a quite different result. Although it looks like you have a list
+on the righthand side, Perl actually sees a bunch of scalars separated
+by a comma:
+
+	my $scalar = ( 'dog', 'cat', 'bird' );  # $scalar gets bird
+
+Since you're assigning to a scalar, the righthand side is in scalar
+context. The comma operator (yes, it's an operator!) in scalar
+context evaluates its lefthand side, throws away the result, and
+evaluates it's righthand side and returns the result. In effect,
+that list-lookalike assigns to C<$scalar> it's rightmost value. Many
+people mess this up becuase they choose a list-lookalike whose
+last element is also the count they expect:
+
+	my $scalar = ( 1, 2, 3 );  # $scalar gets 3, accidentally
 
 =head2 What is the difference between $array[1] and @array[1]?
 
