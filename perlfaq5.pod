@@ -1072,7 +1072,20 @@ to each filehandle.
 =head2 How can I read in an entire file all at once?
 X<slurp> X<file, slurping>
 
-You can use the File::Slurp module to do it in one step.
+Are you sure you want to read the entire file and store it in memory?
+If you mmap the file, you can virtually load the entire file into a
+string without actually storing it in memory:
+
+	use File::Map qw(map_file);
+	
+	map_file my $string, $filename;
+
+Once mapped, you can treat C<$string> as you would any other string.
+Since you don't actually load the data, mmap-ing is very fast and does
+not increase your memory footprint.
+
+If you really want to load the entire file, you can use the
+C<File::Slurp> module to do it in one step.
 
 	use File::Slurp;
 

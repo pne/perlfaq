@@ -105,7 +105,7 @@ it, try the resources in L<perlfaq2>.
 
 Tom Christiansen wrote the original perlfaq then expanded it with the
 help of Nat Torkington. The perlfaq-workers maintain current document
-and the dezinens of comp.lang.perl.misc regularly review and update the
+and the denizens of comp.lang.perl.misc regularly review and update the
 FAQ. Several people have contributed answers, corrections, and comments,
 and the perlfaq notes those contributions wherever appropriate.
 
