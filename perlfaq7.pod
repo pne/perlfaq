@@ -375,12 +375,9 @@ The expected output is:
 
 =head2 How can I pass/return a {Function, FileHandle, Array, Hash, Method, Regex}?
 
-With the exception of regexes, you need to pass references to these
-objects.  See L<perlsub/"Pass by Reference"> for this particular
-question, and L<perlref> for information on references.
-
-See "Passing Regexes", later in L<perlfaq7>, for information on
-passing regular expressions.
+You need to pass references to these objects.  See L<perlsub/"Pass by
+Reference"> for this particular question, and L<perlref> for
+information on references.
 
 =over 4
 
@@ -420,12 +417,9 @@ and especially L<perlsub/"Pass by Reference"> for more information.
 
 =item Passing Regexes
 
-To pass regexes around, you'll need to be using a release of Perl
-sufficiently recent as to support the C<qr//> construct, pass around
-strings and use an exception-trapping eval, or else be very, very clever.
-
-Here's an example of how to pass in a string to be regex compared
-using C<qr//>:
+Here's an example of how to pass in a string and a regular expression
+for it to match against. You construct the pattern with the C<qr//>
+operator:
 
 	sub compare($$) {
 		my ($val1, $regex) = @_;
