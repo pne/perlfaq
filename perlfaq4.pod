@@ -11,6 +11,10 @@ numbers, dates, strings, arrays, hashes, and miscellaneous data issues.
 
 =head2 Why am I getting long decimals (eg, 19.9499999999999) instead of the numbers I should be getting (eg, 19.95)?
 
+For the long explanation, see David Goldberg's "What Every Computer
+Scientist Should Know About Floating-Point Arithmetic" 
+(http://docs.sun.com/source/806-3568/ncg_goldberg.html).
+
 Internally, your computer represents floating-point numbers in binary.
 Digital (as in powers of two) computers cannot store all numbers
 exactly.  Some real numbers lose precision in the process.  This is a
