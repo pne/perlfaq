@@ -66,3 +66,5 @@ __END__
 	This answer is 15 years old and just plain wrong
 
 +perlfaq4 - How do I traverse nested hashes?
++ - How can I make a deep copy
++ - Unicode stuff
