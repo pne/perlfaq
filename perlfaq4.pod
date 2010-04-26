@@ -981,7 +981,7 @@ Left and right padding with any character, modifying C<$text> directly:
 
 (contributed by brian d foy)
 
-If you know where the columns that contain the data, you can
+If you know the columns that contain the data, you can
 use C<substr> to extract a single column.
 
 	my $column = substr( $line, $start_column, $length );
