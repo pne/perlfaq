@@ -827,18 +827,6 @@ into strings like you can with variables:
 	my $current_package = __PACKAGE__;
 	print "I am in package $current_package\n";
 
-This is different from finding out the package an object is blessed
-into, which might not be the current package. For that, use C<blessed>
-from C<Scalar::Util>, part of the Standard Library since Perl 5.8:
-
-	use Scalar::Util qw(blessed);
-	my $object_package = blessed( $object );
-
-Most of the time, you shouldn't care what package an object is blessed
-into, however, as long as it claims to inherit from that class:
-
-	my $is_right_class = eval { $object->isa( $package ) }; # true or false
-
 If you want to find the package calling your code, perhaps to give better
 diagnostics as C<Carp> does, use the C<caller> built-in:
 
@@ -853,6 +841,26 @@ By default, your program starts in package C<main>, so you should
 always be in some package unless someone uses the C<package> built-in
 with no namespace. See the C<package> entry in L<perlfunc> for the
 details of empty packages.
+
+This is different from finding out the package an object is blessed
+into, which might not be the current package. For that, use C<blessed>
+from C<Scalar::Util>, part of the Standard Library since Perl 5.8:
+
+	use Scalar::Util qw(blessed);
+	my $object_package = blessed( $object );
+
+Most of the time, you shouldn't care what package an object is blessed
+into, however, as long as it claims to inherit from that class:
+
+	my $is_right_class = eval { $object->isa( $package ) }; # true or false
+
+And, with Perl 5.10 and later, you don't have to check for an
+inheritance to see if the object can handle a role. For that, you can
+use C<DOES>, which comes from C<UNIVERSAL>:
+
+	my $class_does_it = eval { $object->DOES( $role ) }; # true or false
+
+You can safely replace C<isa> with C<DOES> (although the converse is not true).
 
 =head2 How can I comment out a large block of Perl code?
 
