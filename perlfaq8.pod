@@ -523,12 +523,12 @@ L<perlfunc/syscall>.
 
 =head2 How can I do an atexit() or setjmp()/longjmp()? (Exception handling)
 
-Release 5 of Perl added the END block, which can be used to simulate
-C<atexit()>.  Each package's END block is called when the program or
-thread ends (see L<perlmod> manpage for more details).
+You can use the C<END> block to simulate C<atexit()>. Each package's
+C<END> block is called when the program or thread ends See L<perlmod>
+manpage for more details about C<END> blocks.
 
-For example, you can use this to make sure your filter program
-managed to finish its output without filling up the disk:
+For example, you can use this to make sure your filter program managed
+to finish its output without filling up the disk:
 
 	END {
 		close(STDOUT) || die "stdout close failed: $!";
@@ -540,16 +540,16 @@ though, so if you use C<END> blocks you should also use
 	use sigtrap qw(die normal-signals);
 
 Perl's exception-handling mechanism is its C<eval()> operator.  You
-can use C<eval()> as C<setjmp> and C<die()> as C<longjmp>.  For
+can use C<eval()> as C<setjmp> and C<die()> as C<longjmp>. For
 details of this, see the section on signals, especially the time-out
 handler for a blocking C<flock()> in L<perlipc/"Signals"> or the
-section on "Signals" in the Camel Book.
+section on "Signals" in I<Programming Perl>.
 
-If exception handling is all you're interested in, try the
-C<exceptions.pl> library (part of the standard perl distribution).
+If exception handling is all you're interested in, use one of the 
+many CPAN modules that handle exceptions, such as C<Try::Tiny>.
 
-If you want the atexit() syntax (and an rmexit() as well), try the
-AtExit module available from CPAN.
+If you want the C<atexit()> syntax (and an C<rmexit()> as well), try the
+C<AtExit> module available from CPAN.
 
 =head2 Why doesn't my sockets program work under System V (Solaris)?  What does the error message "Protocol not supported" mean?
 
