@@ -1263,7 +1263,15 @@ See the entry for C<use> in L<perlfunc> for more details.
 
 =head2 How do I keep my own module/library directory?
 
-When you build modules, tell Perl where to install the modules.
+When you build modules, tell Perl where to install the modules. 
+
+If you want to install modules for your own use, the easiest way might
+be C<local::lib>, which you can download from CPAN. It sets various
+installation settings for you, and uses those same settings within
+your programs.
+
+If you want more flexibility, you need to configure your CPAN client
+for your particular situation.
 
 For C<Makefile.PL>-based distributions, use the INSTALL_BASE option
 when generating Makefiles:
@@ -1341,6 +1349,14 @@ directory of the currently running script and puts it in C<$Bin>, which
 you can then use to construct the right library path:
 
 	use FindBin qw($Bin);
+	
+You can also use C<local::lib> to do much of the same thing. Install
+modules using C<local::lib>'s settings then use the module in your 
+program:
+
+	 use local::lib; # sets up a local lib at ~/perl5
+
+See the C<local::lib> documentation for more details.
 
 =head2 How do I add a directory to my include path (@INC) at runtime?
 
@@ -1349,24 +1365,30 @@ environment variables, run-time switches, and in-code statements:
 
 =over 4
 
-=item the PERLLIB environment variable
+=item the C<PERLLIB> environment variable
 
 	$ export PERLLIB=/path/to/my/dir
 	$ perl program.pl
 
-=item the PERL5LIB environment variable
+=item the C<PERL5LIB> environment variable
 
 	$ export PERL5LIB=/path/to/my/dir
 	$ perl program.pl
 
-=item the perl -Idir command line flag
+=item the C<perl -Idir> command line flag
 
 	$ perl -I/path/to/my/dir program.pl
 
-=item the use lib pragma:
+=item the C<lib> pragma:
 
 	use lib "$ENV{HOME}/myown_perllib";
 
+=item the C<local::lib> module:
+
+	use local::lib;
+	
+	use local::lib "~/myown_perllib";
+	
 =back
 
 The last is particularly useful because it knows about machine
