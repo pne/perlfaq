@@ -46,3 +46,6 @@ test:
 
 runtest:
 	${RUNPROVE} t/pod.t
+
+sync:
+	cp ../perl/pod/perlfaq* .
